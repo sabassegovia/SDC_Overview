@@ -1,0 +1,38 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "Front End Capstone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GOC-Targaryen/FEC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GOC-Targaryen/FEC/issues"
+  },
+  "homepage": "https://github.com/GOC-Targaryen/FEC#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "axios": "^0.26.1",
+    "babel-loader": "^8.2.4",
+    "eslint": "^8.12.0",
+    "express": "^4.17.3",
+    "html-webpack-plugin": "^5.5.0",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.15",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
