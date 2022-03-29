@@ -1,9 +1,13 @@
 # FEC
 
+## Authors
+Made with love by Pascal Bui, Minggui Yactayo, Theresa Tran, and Raymond Yee
+
 ## Stack
 
 ### Dependencies
 axios
+moment
 
 ### Version
 ES6 on both server-side and client-side
@@ -14,13 +18,19 @@ eslint
 
 ### Front-end
 ReactJS
+Redux
 
 ### Asset compilation + loading
 Webpack
 Webpack-dev
 
-## Server
-
-### MVC
+### Server
 NodeJS
 ExpressJS
+
+### Version Control
+Github
+
+### Whiteboarding
+Excalidraw
+Figma
