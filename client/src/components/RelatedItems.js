@@ -11,7 +11,7 @@ class RelatedItems extends React.Component {
 
   render() {
     return (
-      <h1>ayyyy</h1>
+      <div>hello</div>
     );
   };
 }
