@@ -16,20 +16,12 @@ class App extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   axios('/test')
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  // }
-
   componentDidMount() {
     var options = {headers : {
                     authorization: "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"
                   },
                   method: 'get',
                   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/' }
-
     axios(options)
       .then(result => {
         console.log(result.data)
@@ -42,8 +34,6 @@ class App extends React.Component {
         console.log(err)
       })
   }
-
-
   render() {
     return (
       <div>
