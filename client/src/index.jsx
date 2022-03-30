@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+
 import Overview from './components/Overview.jsx';
 import QnA from './components/QnA.jsx';
 import Ratings from './components/Ratings.jsx';
@@ -10,8 +12,15 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-
+      data: ''
     }
+  }
+
+  componentDidMount() {
+    axios('/test')
+      .then((res) => {
+        console.log(res);
+      })
   }
 
   render() {
