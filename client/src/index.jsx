@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+
 import Overview from './components/Overview.jsx';
 import QnA from './components/QnA.jsx';
 import Ratings from './components/Ratings.jsx';
@@ -16,24 +17,37 @@ class App extends React.Component {
     }
   }
 
+
   componentDidMount() {
-    var options = {headers : {
-                    authorization: "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"
-                  },
-                  method: 'get',
-                  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/' }
-    axios(options)
-      .then(result => {
-        console.log(result.data)
-        this.setState({
-          data: result.data
-        })
-      })
-      .catch(err => {
-        console.log('hello im back')
-        console.log(err)
-      })
+    axios.get('test')
+    .then(result => {
+      console.log(result)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
+
+  // componentDidMount() {
+  //   var options = {headers : {
+  //                   authorization: process.env.TOKEN,
+  //                 },
+  //                 method: 'get',
+  //                 url: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/' }
+  //   axios(options)
+  //     .then(result => {
+  //       console.log(result.data)
+  //       this.setState({
+  //         data: result.data
+  //       })
+  //     })
+  //     .catch(err => {
+  //       console.log('hello im back')
+  //       console.log(err)
+  //     })
+  // }
+
+
   render() {
     return (
       <div>
