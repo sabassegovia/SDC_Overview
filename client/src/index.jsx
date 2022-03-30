@@ -16,16 +16,43 @@ class App extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  //   axios('/test')
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  // }
+
   componentDidMount() {
-    axios('/test')
-      .then((res) => {
-        console.log(res);
+    var options = {headers : {
+                    authorization: "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"
+                  },
+                  method: 'get',
+                  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/' }
+
+    axios(options)
+      .then(result => {
+        console.log(result.data)
+        this.setState({
+          data: result.data
+        })
+      })
+      .catch(err => {
+        console.log('hello im back')
+        console.log(err)
       })
   }
 
+
   render() {
     return (
-      <h1>ayyyy</h1>
+      <div>
+        <h1>ayyyy</h1>
+        <Overview />
+        <QnA />
+        <Ratings />
+        <RelatedItems />
+      </div>
     );
   };
 }
