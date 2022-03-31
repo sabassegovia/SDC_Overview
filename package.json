@@ -25,9 +25,12 @@
     "@babel/preset-react": "^7.16.7",
     "axios": "^0.26.1",
     "babel-loader": "^8.2.4",
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "eslint": "^8.12.0",
+=======
+>>>>>>> fab576e9f6f286d0b31d7fe900450991b24146c5
     "express": "^4.17.3",
     "html-webpack-plugin": "^5.5.0",
     "moment": "^2.29.1",
@@ -37,5 +40,9 @@
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-plugin-react": "^7.29.4"
   }
 }
