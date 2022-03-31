@@ -8,7 +8,6 @@ class QnA extends React.Component {
 
     }
   }
-
   render() {
     return (
       <h1>ayyyy</h1>
