@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import cors from 'cors';
 
 
 import Overview from './components/Overview.jsx';
@@ -47,11 +48,22 @@ class App extends React.Component {
   //     })
   // }
 
+  test() {
+    var params = {
+      product_id: 65631
+      // sort: this.state.sort
+    }
+    axios.get("http://localhost:3000/reviews", {params: params})
+    .then(result => {
+      console.log(result.data);
+    });
+  }
 
   render() {
     return (
       <div>
         <h1>ayyyy</h1>
+        <button onClick = {this.test.bind(this)}>Test</button>
         <Overview />
         <QnA />
         <Ratings />
