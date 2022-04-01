@@ -11,7 +11,31 @@ class Ratings extends React.Component {
 
   render() {
     return (
-      <h1>ayyyy</h1>
+      <section className = "ratings-reviews-container">
+
+          <section className = "ratings-meta-container">
+            <div>RATING AND META</div>
+          </section>
+
+          <div className = "reviews-container">
+            <nav className = "reviews-header">to sort reviews</nav>
+            <section className = "review-container">
+              <div>rating</div>
+              <div>Summary</div>
+              <div>body</div>
+              <div>helpful report</div>
+
+            </section>
+
+            <section className = "review-container">
+              <div>rating</div>
+              <div>Summary</div>
+              <div>body</div>
+              <div>helpful report</div>
+
+            </section>
+          </div>
+        </section>
     );
   };
 }
