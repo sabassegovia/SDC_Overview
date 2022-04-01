@@ -4,7 +4,7 @@
   "description": "Front End Capstone",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --transformIgnorePatterns \"node_modules\" --env=jsdom",
     "client-dev": "webpack-dev-server --mode development --open --hot",
     "server-dev": "nodemon server/index.js",
     "build": "webpack --mode production"
