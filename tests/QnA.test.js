@@ -2,6 +2,8 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount, render } from 'enzyme';
+import styled from 'styled-components'
+import 'jest-styled-components'
 
 import QnA from '../client/src/components/QnA';
 
