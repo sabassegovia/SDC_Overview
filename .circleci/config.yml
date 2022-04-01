@@ -1,23 +1,31 @@
+# specific instruction in the config.yml file inside .circleci folder.
+# ./.circleci/config.yml
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
 version: 2
 jobs:
-  build:
-    working_directory: ~/FEC
-    docker:
-      - image: circleci/node:8
-    steps:
-      - checkout
-      - run:
-          name: Run npm install
-          command: npm install
-      - restore_cache:
-          key: npm-cache-v1-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install Dependencies
-          command: npm ci
-      - save_cache:
-          key: npm-cache-v1-{{ checksum "package-lock.json" }}
-          paths:
-            - /home/circleci/.npm
-      - run:
-          name: Run Tests
-          command: npm test
+build:
+docker:
+# specify the version you desire here
+- image: circleci/node:7.10
+# Specify service dependencies here if necessary
+# CircleCI maintains a library of pre-built images
+# documented at https://circleci.com/docs/2.0/circleci-images/
+# - image: circleci/mongo:3.4.4
+working_directory: ~/repo
+steps:
+- checkout
+- restore_cache: # Download and cache dependencies
+keys:
+- v1-dependencies-{{ checksum "src-view/package.json" }}
+# fallback to using the latest cache if no exact match is found
+- v1-dependencies-
+- run: cd src-view && npm install
+- save_cache:
+paths:
+- src-view/node_modules
+key: v1-dependencies-{{ checksum "src-view/package.json" }}
+# run tests!
+- run: cd src-view && npm test
