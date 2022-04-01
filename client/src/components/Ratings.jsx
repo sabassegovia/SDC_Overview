@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import StarRatingComponent from 'react-star-rating-component';
 
 import Button from '../styles/Buttons.jsx';
@@ -27,6 +27,7 @@ class Ratings extends React.Component {
 
     return (
       <div>
+      <div>
         <Wrapper>
           <Title>
             Ratings and Reviews
@@ -49,12 +50,7 @@ class Ratings extends React.Component {
           <LittleBox>This is a little box</LittleBox>
           </DescriptionBox>
           </BigBox>
-
-
-
         </div>
-
-
         <div>
           <div>
             <h3> Ratings and Review </h3>
@@ -71,6 +67,33 @@ class Ratings extends React.Component {
           </div>
         </div>
       </div>
+
+      <section className = "ratings-reviews-container">
+
+          <section className = "ratings-meta-container">
+            <div>RATING AND META</div>
+          </section>
+
+          <div className = "reviews-container">
+            <nav className = "reviews-header">to sort reviews</nav>
+            <section className = "review-container">
+              <div>rating</div>
+              <div>Summary</div>
+              <div>body</div>
+              <div>helpful report</div>
+
+            </section>
+
+            <section className = "review-container">
+              <div>rating</div>
+              <div>Summary</div>
+              <div>body</div>
+              <div>helpful report</div>
+
+            </section>
+          </div>
+        </section>
+        </div>
     );
 
 

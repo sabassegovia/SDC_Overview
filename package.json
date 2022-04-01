@@ -4,7 +4,7 @@
   "description": "Front End Capstone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "client-dev": "webpack-dev-server --mode development --open --hot",
     "server-dev": "nodemon server/index.js",
     "build": "webpack --mode production"
@@ -20,9 +20,6 @@
   },
   "homepage": "https://github.com/GOC-Targaryen/FEC#readme",
   "dependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
     "axios": "^0.26.1",
     "babel-loader": "^8.2.4",
     "cors": "^2.8.5",
@@ -34,12 +31,36 @@
     "nodemon": "^2.0.15",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "styled-components": "^5.3.5",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@testing-library/react": "^13.0.0",
+    "babel-jest": "^27.5.1",
+    "babel-plugin-styled-components": "^2.0.6",
+    "css-loader": "^6.7.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^8.12.0",
-    "eslint-plugin-react": "^7.29.4"
+    "eslint-plugin-react": "^7.29.4",
+    "jest": "^27.5.1",
+    "jest-enzyme": "^7.1.2",
+    "jest-styled-components": "^7.0.8",
+    "style-loader": "^3.3.1",
+    "stylelint": "^14.6.1",
+    "stylelint-config-recommended": "^7.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./node_modules/jest-enzyme/lib/index.js"
+    ]
   }
 }

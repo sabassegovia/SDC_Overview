@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import axios from 'axios';
 import {Axios} from "./AxiosConfig.js"
+import "./index.css"
 
 
 import Overview from './components/Overview.jsx';
@@ -66,8 +67,6 @@ class App extends React.Component {
       .then(result => {
         console.log(result.data)
       })
-
-
     // Axios.put("")
     // Axios.post("")
 
@@ -76,13 +75,58 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
-        <button onClick = {this.test.bind(this)}>Test</button>
+
+      <div className = "BIGCONTAINER">
+        <div className = "container">
+
+        <header className = "header">
+          <h1 className = "title">HEADER</h1>
+          <h2 className = "logo">LOGO</h2>
+        </header>
+
+
+        {/* <div className = "product-overview-container">
+          <div className = "image-gallery-product-description">
+            <main className = "image-gallery">
+              <section><h1>I AM IMAGE GALLERY</h1></section>
+            </main>
+            <section className = "product-description"><h3>I AM DESCRIPTION</h3></section>
+          </div>
+          <aside className = "style-selection-cart">
+            <section className = "style-selection" ><h1>I AM STYLE SELECTION</h1></section>
+            <section className = "cart"><h1>I AM CART</h1></section>
+          </aside>
+
+        </div> */}
+
+
+
+
+
+
+
         <Overview overview = {this.state.overview}/>
-        <QnA product_id = {this.state.overview.id}/>
-        <Ratings product_id = {this.state.overview.id}/>
+
         <RelatedItems product_id = {this.state.overview.id}/>
+
+        <QnA product_id = {this.state.overview.id}/>
+
+        <Ratings product_id = {this.state.overview.id}/>
+
+
+
+
+        </div>
+
+
+
+
+
+
       </div>
+
+
+
     );
   };
 }
@@ -92,3 +136,5 @@ const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(<App />);
 
 // ReactDOM.render(<App />, document.getElementById('app'));
+
+
