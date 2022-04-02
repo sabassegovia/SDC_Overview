@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import {Axios} from "./AxiosConfig.js"
 import "./index.css"
@@ -130,6 +130,9 @@ class App extends React.Component {
     );
   };
 }
+
+
+// ReactDOM.render(<App/>, document.getElementById('app'))
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
 
