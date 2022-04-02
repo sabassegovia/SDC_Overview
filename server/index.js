@@ -16,7 +16,7 @@ const port = 3000;
 app.get('/test', (req, res) => {
   console.log('im here')
   console.log(process.env.TOKEN)
-  res.status(200).send('Hello World!'+ process.env.TOKEN)
+  res.status(200).send('Hello World!')
 })
 
 
@@ -34,10 +34,10 @@ app.get("/*", (req, res) => {
 app.put("/*", (req, res) => {
    axios(configureOptions(req))
     .then((result) => {
-      res.status(200).send(result.data)
+      res.send(result.data)
     })
     .catch((err) => {
-      res.send(err)
+      res.send(err.data)
     })
 })
 app.post("/*", (req, res) => {
