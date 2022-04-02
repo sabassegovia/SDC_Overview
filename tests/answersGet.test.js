@@ -7,8 +7,6 @@ import 'jest-styled-components'
 import axios from "axios"
 import {Axios} from "../client/src/AxiosConfig.js"
 
-
-
 describe('contacting the API for answers to questions ', done => {
   let params = {
     queston_id: 573870,
