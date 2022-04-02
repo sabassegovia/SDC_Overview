@@ -17,5 +17,3 @@ describe('contacting the server test', done => {
     })
   })
 });
-
-
