@@ -16,7 +16,6 @@ class Overview extends React.Component {
     this.state = {
       styles: null,
       selectedStyle: null,
-
     }
   }
 
@@ -87,9 +86,6 @@ class Overview extends React.Component {
             selectedStyle = {selectedStyle}
             />
           </StylesSelectionCart>
-
-
-
       </div>
     );
   };
