@@ -1,4 +1,5 @@
 exports.configureOptions = (req) => {
+
   const options = {
     headers: {
       authorization: process.env.TOKEN,
@@ -8,9 +9,9 @@ exports.configureOptions = (req) => {
     // params: req.query,
     data: req.body
   }
-  // console.log(req.method)
+  console.log(req.method)
   // console.log(req.body)
 
-  // console.log(options, '<<<<<<<<<<<<<<<<<<<<<<')
+  console.log(options.url, '<<<<<<<<<<<<<<<<<<<<<<')
   return options;
 };
