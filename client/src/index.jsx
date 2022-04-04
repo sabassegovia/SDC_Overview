@@ -60,12 +60,12 @@ class App extends React.Component {
       characteristics: {"220232": 5,
                           "220230": 5,
                           "220231": 5,
-                          "220233": 5
+                          "220233": 5}
     }
-  }
-    Axios.post(`reviews/`, params)
+
+    Axios.put(`reviews/${1136187}/helpful`)
       .then(result => {
-        console.log(result.data)
+        console.log(result)
       })
     // Axios.put("")
     // Axios.post("")
@@ -81,6 +81,7 @@ class App extends React.Component {
 
         <header className = "header">
           <h1 className = "title">HEADER</h1>
+          <button onClick = {() => this.test()}>Test Button</button>
           <h2 className = "logo">LOGO</h2>
         </header>
 

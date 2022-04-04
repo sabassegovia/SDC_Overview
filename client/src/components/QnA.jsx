@@ -1,61 +1,47 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import axios from "axios"
+import { Axios } from "../AxiosConfig.js"
 
-const Button = styled.button`
-background: transparent;
-border-radius: 3px;
-border: 2px solid palevioletred;
-color: palevioletred;
-margin: 0.5em 1em;
-padding: 0.25em 1em;
+import QuestionList from './QnA Components/QuestionList.jsx';
+import QuestionSearch from './QnA Components/QuestionSearch.jsx';
 
-${props =>
-  props.primary &&
-  css`
-    background: palevioletred;
-    color: white;
-  `}
-`;
-
-const Container = styled.div`
-text-align: center;
-`
 
 class QnA extends React.Component {
   constructor(props) {
     super(props);
+    this.searchHandler = this.searchHandler.bind(this);
 
     this.state = {
-
+      test: 'test'
     }
   }
+
+  // load the questions and answers for the current product on page
+  componentDidMount() {
+    var current = this.props.product_id;
+    Axios.get('/qa/questions', {
+      product_id: current,
+    })
+      .then(result => {
+        console.log(result.data);
+        console.log(current)
+      })
+  }
+
+  searchHandler(query) {
+    console.log('searching the API for: ', query);
+  }
+
 
   render() {
     return (
       <div>
-        <section className = "qa-search-container">
-          <div className = "qa-search"><h3>I AM QUESTION SEARCH BAR</h3></div>
-          <div className = "question-answer-helpful-container">
-
-            <div className = "question-answer-container">
-              <section className = "question">I am question</section>
-              <section className = "answer">I am answer</section>
-            </div>
-            <section className = "helpful"><h3>I AM HELPFUL</h3></section>
-          </div>
-
-          <div className = "question-answer-helpful-container">
-
-            <div className = "question-answer-container">
-              <section className = "question">I am question</section>
-              <section className = "answer">I am answer</section>
-              <section className = "answer">I am answer</section>
-              <section className = "answer">I am answer</section>
-            </div>
-            <section className = "helpful"><h3>I AM HELPFUL</h3></section>
-          </div>
-
-        </section>
+        <h2>Questions & Answers</h2>
+        <QuestionSearch searchHandler={this.searchHandler} />
+        <QuestionList />
       </div>
     );
   };
