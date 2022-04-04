@@ -2,18 +2,17 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
 jobs:
-  node-install:
-    docker:
-      - image: cimg/base:stable
+  test:
+    executor: node/default
     steps:
-      - node/install-packages
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run: sudo npm install -g npm@latest
+      - run: server-dev
+      - run: client-dev
 workflows:
   setup-and-run:
     jobs:
-        - node/run:
-            pkg-manager: npm 
-            npm-run: server-dev
-        - node/run:
-            pkg-manager: npm
-            npm-run: client-dev
         - node/test
