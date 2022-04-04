@@ -13,7 +13,6 @@ const AddToCart = (props) => {
 
 
 
-
   return (
     <CartContainer>
         <h1>This the Cart</h1>
@@ -24,14 +23,10 @@ const AddToCart = (props) => {
               return <option key = {sku}> {skus[sku].size}</option>
             })}
           </select>
-
           <select>
-
             <option>Select Quantity</option>
           </select>
-
         </RowContainer>
-
         <button>Add to Cart</button>
     </CartContainer>
 

@@ -18,7 +18,6 @@ const FeaturesContainer = styled(ColumnContainer)`
   width: 30%;
   font-size:24px
 `
-
 const StylesSelectionCart = styled(ColumnContainer)`
 
   width: 30%;
@@ -28,7 +27,6 @@ const StylesSelectionCart = styled(ColumnContainer)`
   border-left:none;
   justify-content: flex-start;
 `
-
 const StyleHeader = styled(ColumnContainer)`
   height: 60%
 `
@@ -38,23 +36,19 @@ const RatingsHeader = styled(RowContainer)`
   /* justify-content: space-around; */
   font-size: 20px
 `
-
 const Thumbnail = styled.img`
 border-radius: 50%;
 width: 80px;
 height: 80px;
 background: url(${(props) => props.url || 'fallback-image.jpg' }) center;
 `
-
 const StyleThumbnail = styled.div`
 width: 21%;
 margin: 8px;
 `
-
 const StyleThumbnails = styled(RowContainer)`
 flex-wrap: wrap
 `
-
 const CartContainer = styled(ColumnContainer)`
 
   width: 100%;
@@ -62,8 +56,6 @@ const CartContainer = styled(ColumnContainer)`
   justify-content: center;
   align-items: center;
   margin: 10px;
-
 `
-
 
 export {CartContainer, RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer, SloganDescription, FeaturesContainer}
