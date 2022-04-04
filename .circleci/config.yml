@@ -22,5 +22,5 @@ jobs:
           background: true
           command: npm run server-dev
       - run:
-          name: Run test
-          command: npm test
+          background: true
+          command: npm run client-dev
