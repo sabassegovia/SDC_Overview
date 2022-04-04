@@ -9,9 +9,8 @@ exports.configureOptions = (req) => {
     // params: req.query,
     data: req.body
   }
-  console.log(req.method)
-  // console.log(req.body)
 
-  console.log(options.url, '<<<<<<<<<<<<<<<<<<<<<<')
+
+  // console.log(options.url, '<<<<<<<<<<<<<<<<<<<<<<')
   return options;
 };
