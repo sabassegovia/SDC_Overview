@@ -5,6 +5,8 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.16.0
+    environment:
+      TOKEN: github_token
     steps:
       - checkout
       - restore_cache:
