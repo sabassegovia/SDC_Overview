@@ -11,8 +11,6 @@ const AddToCart = (props) => {
   var {skus} = props.selectedStyle
   const [sku, setSku] = useState(null)
 
-
-
   return (
     <CartContainer>
         <h1>This the Cart</h1>
@@ -29,7 +27,6 @@ const AddToCart = (props) => {
         </RowContainer>
         <button>Add to Cart</button>
     </CartContainer>
-
   );
 };
 

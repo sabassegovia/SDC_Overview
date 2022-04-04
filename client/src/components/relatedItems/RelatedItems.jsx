@@ -26,7 +26,6 @@ class RelatedItems extends React.Component {
     this.getItemData = this.getItemData.bind(this);
   }
 
-  //related items rendered according to overview product
   componentDidMount() {
     console.log(this.props.overview.id);
     let {id} = this.props.overview;

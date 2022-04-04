@@ -74,10 +74,12 @@ class Overview extends React.Component {
           </div>
           <StylesSelectionCart>
             {styles === null ? <div>nothing here yet</div> : <StyleSelector
+              scrollToReviews = {this.props.scrollToReviews}
               category = {category}
               name = {name}
               styles = {styles}
               id = {id}
+              rating = {this.props.rating}
               selectedStyle = {selectedStyle}
               styleOnClick = {this.styleOnClick.bind(this)}
             /> }
@@ -92,7 +94,9 @@ class Overview extends React.Component {
 }
 
 Overview.propTypes = {
-  overview: PropTypes.object
+  overview: PropTypes.object,
+  rating: PropTypes.number,
+  scrollToReviews: PropTypes.func,
 }
 
 
