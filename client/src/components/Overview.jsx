@@ -21,16 +21,18 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
+  // console.log('IM HIT HERE 111111111111111111111111111111111111111111')
     Axios.get(`/products/${this.props.overview.id}/styles`)
       .then(result => {
+        console.log('IM HIT HERE 2222222222222222222222222222222222222222222')
         this.setState({
           styles: result.data.results,
           selectedStyle: result.data.results[0]
         })
       })
       .catch(err => {
-        console.log(err)
       })
+
   }
 
   styleOnClick(style) {

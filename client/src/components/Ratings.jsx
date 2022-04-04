@@ -3,27 +3,56 @@ import styled, { css } from 'styled-components';
 import StarRatingComponent from 'react-star-rating-component';
 
 import Button from '../styles/Buttons.jsx';
+// import styled from 'styled-components';
 import {Title, Wrapper, Header2} from '../styles/Headers.jsx';
 import {Form, Label, Input} from '../styles/Forms.jsx';
 import {DescriptionBox, BigBox, LittleBox} from '../styles/Boxes.jsx';
 
+import axios from 'axios';
+import {Axios} from "../AxiosConfig.js"
+import ReviewTile from './ReviewComponents/ReviewTile.jsx';
+import PropTypes from 'prop-types';
+
+const ReviewBox = styled(BigBox)`
+  height: 250px;
+`;
+
 class Ratings extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      rating: 4.5
+      isMounted: false,
+      rating: 4.5,
+      ratings: []
     }
+    this.onStarClick = this.onStarClick.bind(this);
   }
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
   }
 
+  componentDidMount() {
+    let params = {product_id: this.props.product_id};
+    Axios.get(`/reviews/`, {params})
+    .then(result => {
+      console.log(result.data.results);
+      this.setState({
+        isMounted: true ,
+        ratings: result.data.results
+      });
+     })
+    .catch(err => {console.log(err)})
+  }
+
 
   render() {
 
-    const { rating } = this.state;
+    // const { rating } = this.state;
+    // let review;
+    if (!this.state.isMounted) {
+      return <div></div>
+    }
 
     return (
       <div>
@@ -34,8 +63,22 @@ class Ratings extends React.Component {
           </Title>
         </Wrapper>
         <div>
+              <DescriptionBox>
+            <Header2 > Ratings and Review </Header2>
+            <h1>
+              {this.state.rating}
+              <StarRatingComponent
+                name="rate1"
+                starCount={5}
+                value={this.state.rating}
+                onStarClick={this.onStarClick}
+              />
+            </h1>
+            <p>80% of reviews recommend this product</p>
+            </DescriptionBox>
+          </div>
+        <div>
           <Header2>This is an h2 header</Header2>
-
           <Form>
             <Label>
               this is a label
@@ -45,33 +88,22 @@ class Ratings extends React.Component {
           </Form>
         </div>
         <div>
-          <BigBox>This is a big box
-          <DescriptionBox>This is a description box
-          <LittleBox>This is a little box</LittleBox>
-          </DescriptionBox>
-          </BigBox>
+          <ReviewBox>
+            <div>
+            <ReviewTile review={this.state.ratings[0]}/>
+            </div>
+
+          </ReviewBox>
         </div>
         <div>
-          <div>
-            <h3> Ratings and Review </h3>
-            <h1>
-              {rating}
-              <StarRatingComponent
-                name="rate1"
-                starCount={5}
-                value={rating}
-                onStarClick={this.onStarClick.bind(this)}
-              />
-            </h1>
-            <p>80% of reviews recommend this product</p>
-          </div>
+
         </div>
       </div>
 
       <section className = "ratings-reviews-container">
 
           <section className = "ratings-meta-container">
-            <div>RATING AND META</div>
+
           </section>
 
           <div className = "reviews-container">
@@ -98,6 +130,10 @@ class Ratings extends React.Component {
 
 
   };
+}
+
+Ratings.propTypes = {
+  product_id: PropTypes.number.isRequired,
 }
 
 export default Ratings;
