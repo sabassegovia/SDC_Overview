@@ -1,16 +1,21 @@
 version: 2.1
 orbs:
-  node: circleci/node@2.0.2
+  node: circleci/node@5.0.2
+jobs:
+  node-install:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - node/install-packages
 workflows:
+  setup-client-server:
+    jobs:
+        - node/run:
+            pkg-manager: npm 
+            npm-run: server-dev
+        - node/run:
+            pkg-manager: npm
+            npm-run: client-dev
   node-tests:
     jobs:
-      build:
-        executor:
-          name: node/default
-          tag: '10.4'
-        steps:
-          - checkout
-          - node/with-cache:
-              steps:
-                - run: npm install
-          - run: npm run test
+      - node/test
