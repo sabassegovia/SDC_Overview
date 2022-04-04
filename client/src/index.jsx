@@ -8,7 +8,7 @@ import "./index.css"
 import Overview from './components/Overview.jsx';
 import QnA from './components/QnA.jsx';
 import Ratings from './components/Ratings.jsx';
-import RelatedItems from './components/RelatedItems.jsx';
+import RelatedItems from './components/relatedItems/RelatedItems.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -107,7 +107,7 @@ class App extends React.Component {
 
         <Overview overview = {this.state.overview}/>
 
-        <RelatedItems product_id = {this.state.overview.id}/>
+        <RelatedItems overview = {this.state.overview}/>
 
         <QnA product_id = {this.state.overview.id}/>
 

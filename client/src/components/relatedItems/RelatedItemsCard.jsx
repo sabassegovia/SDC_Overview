@@ -1,4 +1,4 @@
-import React from 'react.jsx';
+import React from 'react';
 //import proptype later
 
 class RelatedItemsCard extends React.Component {
