@@ -1,7 +1,26 @@
 version: 2.1
 orbs:
-  node: circleci/node@2.0.2
-workflows:
-  node-tests:
-    jobs:
-      - node/test
+  node: circleci/node@5.0.2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.16.0
+    environment:
+      TOKEN: TOKEN
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install --force
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          background: true
+          command: npm run server-dev
+      - run:
+          background: true
+          command: npm run client-dev

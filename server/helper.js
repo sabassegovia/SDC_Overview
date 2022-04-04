@@ -13,3 +13,5 @@ exports.configureOptions = (req) => {
 
   return options;
 };
+
+//req.url adds all the params at the end...redundant
