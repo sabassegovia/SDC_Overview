@@ -27,11 +27,19 @@ class App extends React.Component {
       },
       product_id: 65632,
       rendered: false,
+      rating: 0
     }
+    this.handleRating = this.handleRating.bind(this);
   }
   componentDidMount() {
     this.getProduct()
   }
+
+  handleRating(avgRating) {
+    this.setState({rating : avgRating});
+  }
+
+
   getProduct() {
     // var params = {
     //   product_id: this.state.product_id
@@ -92,7 +100,7 @@ class App extends React.Component {
 
         <QnA product_id = {this.state.overview.id}/>
 
-        <Ratings product_id = {this.state.overview.id}/>
+        <Ratings product_id = {this.state.overview.id} handleRating={this.handleRating}/>
 
         </div>
       </div>

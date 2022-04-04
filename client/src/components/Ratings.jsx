@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import StarRatingComponent from 'react-star-rating-component';
 
+import StarRatings from 'react-star-ratings';
 import Button from '../styles/Buttons.jsx';
 // import styled from 'styled-components';
 import {Title, Wrapper, Header2} from '../styles/Headers.jsx';
@@ -22,15 +22,12 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       isMounted: false,
-      rating: 4.5,
+      rating: 0,
       ratings: []
     }
-    this.onStarClick = this.onStarClick.bind(this);
   }
 
-  onStarClick(nextValue, prevValue, name) {
-    this.setState({rating: nextValue});
-  }
+
 
   componentDidMount() {
     let params = {product_id: this.props.product_id};
@@ -39,8 +36,13 @@ class Ratings extends React.Component {
       console.log(result.data.results);
       this.setState({
         isMounted: true ,
-        ratings: result.data.results
-      });
+        ratings: result.data.results,
+        rating: parseFloat((result.data.results.reduce((x, c) => {
+          return (x + c.rating);
+        }, 0) / result.data.count).toFixed(1))
+      },
+      () => {this.props.handleRating(this.state.rating)}
+      );
      })
     .catch(err => {console.log(err)})
   }
@@ -64,15 +66,17 @@ class Ratings extends React.Component {
         </Wrapper>
         <div>
               <DescriptionBox>
-            <Header2 > Ratings and Review </Header2>
-            <h1>
-              {this.state.rating}
-              <StarRatingComponent
-                name="rate1"
-                starCount={5}
-                value={this.state.rating}
-                onStarClick={this.onStarClick}
-              />
+              <Header2 > Ratings and Review </Header2>
+              <h1>
+                {this.state.rating}
+                <StarRatings
+                  rating={this.state.rating}
+                  starRatedColor="black"
+                  numberOfStars={5}
+                  name='rating'
+                  starDimension="20px"
+                  starSpacing="0.5px"
+                />
             </h1>
             <p>80% of reviews recommend this product</p>
             </DescriptionBox>
@@ -100,31 +104,8 @@ class Ratings extends React.Component {
         </div>
       </div>
 
-      <section className = "ratings-reviews-container">
 
-          <section className = "ratings-meta-container">
 
-          </section>
-
-          <div className = "reviews-container">
-            <nav className = "reviews-header">to sort reviews</nav>
-            <section className = "review-container">
-              <div>rating</div>
-              <div>Summary</div>
-              <div>body</div>
-              <div>helpful report</div>
-
-            </section>
-
-            <section className = "review-container">
-              <div>rating</div>
-              <div>Summary</div>
-              <div>body</div>
-              <div>helpful report</div>
-
-            </section>
-          </div>
-        </section>
         </div>
     );
 
@@ -134,6 +115,9 @@ class Ratings extends React.Component {
 
 Ratings.propTypes = {
   product_id: PropTypes.number.isRequired,
+  handleRating: PropTypes.func.isRequired
 }
+
+
 
 export default Ratings;
