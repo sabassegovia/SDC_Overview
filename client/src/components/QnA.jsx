@@ -5,8 +5,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import axios from "axios"
 import { Axios } from "../AxiosConfig.js"
 
-import QuestionList from './QnA Components/QuestionList.jsx';
-import QuestionSearch from './QnA Components/QuestionSearch.jsx';
+import QuestionList from './QnA_Components/QuestionList.jsx';
+import QuestionSearch from './QnA_Components/QuestionSearch.jsx';
 
 
 class QnA extends React.Component {
@@ -15,19 +15,22 @@ class QnA extends React.Component {
     this.searchHandler = this.searchHandler.bind(this);
 
     this.state = {
-      test: 'test'
+      list: []
     }
   }
 
   // load the questions and answers for the current product on page
   componentDidMount() {
+    // eslint-disable-next-line react/prop-types
     var current = this.props.product_id;
-    Axios.get('/qa/questions', {
+    Axios.get('/qa/questions', {params: {
       product_id: current,
-    })
+      count: 2
+    }})
       .then(result => {
-        console.log(result.data);
-        console.log(current)
+        this.setState({
+          list: result.data.results
+        })
       })
   }
 
@@ -41,7 +44,7 @@ class QnA extends React.Component {
       <div>
         <h2>Questions & Answers</h2>
         <QuestionSearch searchHandler={this.searchHandler} />
-        <QuestionList />
+        <QuestionList questions={this.state.list}/>
       </div>
     );
   };
