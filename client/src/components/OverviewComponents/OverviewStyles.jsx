@@ -55,6 +55,15 @@ const StyleThumbnails = styled(RowContainer)`
 flex-wrap: wrap
 `
 
+const CartContainer = styled(ColumnContainer)`
+
+  width: 100%;
+  border-top: 3px solid rgb(117, 117, 117);
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+`
 
 
-export {RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer, SloganDescription, FeaturesContainer}
+export {CartContainer, RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer, SloganDescription, FeaturesContainer}

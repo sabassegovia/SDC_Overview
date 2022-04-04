@@ -20,5 +20,4 @@ Style.propTypes = {
   styleOnClick: PropTypes.func,
 }
 
-
 export default Style;

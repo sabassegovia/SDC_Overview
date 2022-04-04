@@ -82,6 +82,10 @@ class Overview extends React.Component {
               selectedStyle = {selectedStyle}
               styleOnClick = {this.styleOnClick.bind(this)}
             /> }
+
+            <AddToCart
+            selectedStyle = {selectedStyle}
+            />
           </StylesSelectionCart>
 
 

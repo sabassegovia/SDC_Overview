@@ -42,9 +42,7 @@ const ImageCarousel = (props) => {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {children}
-
           </div>
-
         </div>
       <button
         onClick = {next}
@@ -52,18 +50,11 @@ const ImageCarousel = (props) => {
         &gt;
       </button>
       </div>
-
-
-
     </main>
   )
-
 }
-
 ImageCarousel.propTypes = {
   selectedStyle: PropTypes.object,
   children: PropTypes.array,
 }
-
-
 export default ImageCarousel

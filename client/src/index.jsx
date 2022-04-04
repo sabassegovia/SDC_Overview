@@ -25,7 +25,7 @@ class App extends React.Component {
         created_at: '2022-03-29T15:08:08.445Z',
         updated_at: '2022-03-29T15:08:08.445Z',
       },
-      product_id: 65631,
+      product_id: 65632,
       rendered: false,
     }
   }
