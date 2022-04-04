@@ -45,32 +45,32 @@ class App extends React.Component {
       });
     });
   }
-  test() {
+  // test() {
 
-    var params = {
-      product_id: 65631,
-      // count:10,
-      rating: 4,
-      summary: "was meh",
-      body: "pretty meh i but could be better",
-      recommend: true,
-      name: "Bob Bloblaw",
-      email: "bobbloblaw@gmail.com",
-      photos: ["https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"],
-      characteristics: {"220232": 5,
-                          "220230": 5,
-                          "220231": 5,
-                          "220233": 5}
-    }
+  //   var params = {
+  //     product_id: 65631,
+  //     // count:10,
+  //     rating: 4,
+  //     summary: "was meh",
+  //     body: "pretty meh i but could be better",
+  //     recommend: true,
+  //     name: "Bob Bloblaw",
+  //     email: "bobbloblaw@gmail.com",
+  //     photos: ["https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"],
+  //     characteristics: {"220232": 5,
+  //                         "220230": 5,
+  //                         "220231": 5,
+  //                         "220233": 5}
+  //   }
 
-    Axios.put(`reviews/${1136187}/helpful`)
-      .then(result => {
-        console.log(result)
-      })
-    // Axios.put("")
-    // Axios.post("")
+  //   Axios.put(`reviews/${1136187}/helpful`)
+  //     .then(result => {
+  //       console.log(result)
+  //     })
+  //   // Axios.put("")
+  //   // Axios.post("")
 
-  }
+  // }
 
   render() {
 
@@ -81,29 +81,9 @@ class App extends React.Component {
 
         <header className = "header">
           <h1 className = "title">HEADER</h1>
-          <button onClick = {() => this.test()}>Test Button</button>
+          {/* <button onClick = {() => this.test()}>Test Button</button> */}
           <h2 className = "logo">LOGO</h2>
         </header>
-
-
-        {/* <div className = "product-overview-container">
-          <div className = "image-gallery-product-description">
-            <main className = "image-gallery">
-              <section><h1>I AM IMAGE GALLERY</h1></section>
-            </main>
-            <section className = "product-description"><h3>I AM DESCRIPTION</h3></section>
-          </div>
-          <aside className = "style-selection-cart">
-            <section className = "style-selection" ><h1>I AM STYLE SELECTION</h1></section>
-            <section className = "cart"><h1>I AM CART</h1></section>
-          </aside>
-
-        </div> */}
-
-
-
-
-
 
 
         <Overview overview = {this.state.overview}/>
