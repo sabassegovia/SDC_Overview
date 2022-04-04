@@ -35,7 +35,6 @@ class QnA extends React.Component {
     console.log('searching the API for: ', query);
   }
 
-
   render() {
     return (
       <div>

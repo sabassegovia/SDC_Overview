@@ -20,6 +20,7 @@ const StyleSelector = (props) => {
           >read all reviews</a> */}
       </RatingsHeader>
 
+
       <h3>{props.category} - {props.name} </h3>
       {sale_price ? <h3><span style={{textDecorationLine: 'line-through'}}>{`$${original_price}`}</span><span style={{color: 'red'}}>{`- SALE $${sale_price}`}</span></h3> : <h3>{`$${original_price}`}</h3>}
       <section className = "style-selection" >

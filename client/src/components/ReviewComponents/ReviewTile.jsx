@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FcOk } from 'react-icons/fc';
 import moment from 'moment';
 import StarRatings from 'react-star-ratings';
-import { Header2 } from '/Users/minggui/Immersive/FEC/client/src/styles/Headers.jsx';
+import { Header2 } from '../../styles/Headers.jsx';
 import Typography from 'react-styled-typography';
 
 class ReviewTile extends React.Component {

@@ -94,20 +94,8 @@ class App extends React.Component {
 
         <Ratings product_id = {this.state.overview.id}/>
 
-
-
-
         </div>
-
-
-
-
-
-
       </div>
-
-
-
     );
   };
 }
