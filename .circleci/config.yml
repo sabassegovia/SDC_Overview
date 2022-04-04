@@ -17,8 +17,6 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          command: npm run client-dev
-      - run:
           command: npm run server-dev
       - run:
           name: Run test
