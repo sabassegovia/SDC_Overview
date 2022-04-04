@@ -2,15 +2,24 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
 jobs:
-  test:
-    executor: node/default
+  build:
+    docker:
+      - image: circleci/node:10.16.0
     steps:
       - checkout
-      - node/install-packages:
-          override-ci-command: npm install --force
-      - run: server-dev
-      - run: client-dev
-workflows:
-  setup-and-run:
-    jobs:
-        - node/test
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install --force
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          command: npm run client-dev
+      - run:
+          command: npm run server-dev
+      - run:
+          name: Run test
+          command: npm test
