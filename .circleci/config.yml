@@ -7,9 +7,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          cache-path: ~/project/node_modules
           override-ci-command: npm install --force
-      - run: sudo npm install -g npm@latest --force
       - run: server-dev
       - run: client-dev
 workflows:
