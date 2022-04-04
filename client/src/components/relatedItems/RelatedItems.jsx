@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js"
 import RelatedItemsCarousel from './RelatedItemsCarousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
-//import proptype later
+import PropTypes from 'prop-types';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -108,6 +108,10 @@ class RelatedItems extends React.Component {
       </div>
     )
   };
+}
+
+RelatedItems.propTypes = {
+  overview: PropTypes.object.isRequired,
 }
 
 export default RelatedItems;
