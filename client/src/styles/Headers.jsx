@@ -19,4 +19,6 @@ import styled from 'styled-components';
   `;
 
 
+
+
 export {Title, Wrapper, Header2};

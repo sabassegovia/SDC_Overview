@@ -24,4 +24,15 @@ width: 30%;
 margin: 5px;
 `;
 
-export {Form, Label, Input};
+const Select = styled.select`
+width: 180px;
+height: 60px;
+background: #E5E5E5;
+border: 2px solid #AFA9A9;
+box-sizing: border-box;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+margin: 5px;
+
+`
+
+export {Form, Label, Input, Select};

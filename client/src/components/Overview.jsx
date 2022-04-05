@@ -16,15 +16,12 @@ class Overview extends React.Component {
     this.state = {
       styles: null,
       selectedStyle: null,
-
     }
   }
 
   componentDidMount() {
-  // console.log('IM HIT HERE 111111111111111111111111111111111111111111')
     Axios.get(`/products/${this.props.overview.id}/styles`)
       .then(result => {
-        console.log('IM HIT HERE 2222222222222222222222222222222222222222222')
         this.setState({
           styles: result.data.results,
           selectedStyle: result.data.results[0]
@@ -32,9 +29,7 @@ class Overview extends React.Component {
       })
       .catch(err => {
       })
-
   }
-
   styleOnClick(style) {
     this.setState({
       selectedStyle: style
@@ -42,16 +37,12 @@ class Overview extends React.Component {
   }
 
   render() {
-
-    var {description, name, slogan, features, id, styles, category} = this.props.overview;
+    var {description, name, slogan, features, id, category} = this.props.overview;
     var {styles, selectedStyle} = this.state
 
-    if (!selectedStyle) {
-      return (<div>
-      </div>)
-    } else
-
-    return (
+    if (!selectedStyle || !styles) {
+      return (<div></div>) // need to implement some loading feature
+    } else return (
       <div className = "product-overview-container">
         <div className = "image-gallery-product-description">
 
@@ -77,10 +68,12 @@ class Overview extends React.Component {
           </div>
           <StylesSelectionCart>
             {styles === null ? <div>nothing here yet</div> : <StyleSelector
+              scrollToReviews = {this.props.scrollToReviews}
               category = {category}
               name = {name}
               styles = {styles}
               id = {id}
+              rating = {this.props.rating}
               selectedStyle = {selectedStyle}
               styleOnClick = {this.styleOnClick.bind(this)}
             /> }
@@ -89,16 +82,15 @@ class Overview extends React.Component {
             selectedStyle = {selectedStyle}
             />
           </StylesSelectionCart>
-
-
-
       </div>
     );
   };
 }
 
 Overview.propTypes = {
-  overview: PropTypes.object
+  overview: PropTypes.object,
+  rating: PropTypes.number,
+  scrollToReviews: PropTypes.func,
 }
 
 

@@ -36,14 +36,18 @@ const RatingsHeader = styled(RowContainer)`
   /* justify-content: space-around; */
   font-size: 20px
 `
+
 const Thumbnail = styled.img`
 border-radius: 50%;
 width: 80px;
 height: 80px;
-background: url(${(props) => props.url || 'fallback-image.jpg' }) center;
+background: url(${(props) => props.url || `#C4C4C4`}) center;
+${({selected}) => selected && `border: 3px solid green`}
 `
+
 const StyleThumbnail = styled.div`
-width: 21%;
+position: relative
+width: 100%;
 margin: 8px;
 `
 const StyleThumbnails = styled(RowContainer)`
