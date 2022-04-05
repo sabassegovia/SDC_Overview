@@ -11,10 +11,23 @@ import {DescriptionBox, BigBox, LittleBox} from '../styles/Boxes.jsx';
 import axios from 'axios';
 import {Axios} from "../AxiosConfig.js"
 import ReviewTile from './ReviewComponents/ReviewTile.jsx';
+import AddReview from './ReviewComponents/AddReview.jsx';
 import PropTypes from 'prop-types';
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const ReviewBox = styled(BigBox)`
-  height: 250px;
+  height: 100%;
+  display: inline-block;
+`;
+
+const BreakdownBox = styled(DescriptionBox)`
+  height: 100%;
+  display: inline-block;
+`;
+
+const StarsBar = styled(ProgressBar)`
+  width: 80%;
+  display: inline-block;
 `;
 
 class Ratings extends React.Component {
@@ -52,20 +65,27 @@ class Ratings extends React.Component {
 
     // const { rating } = this.state;
     // let review;
+    const ratingPercent = (this.state.rating / this.state.ratings.length) * 100;
+    const ReviewTiles = this.state.ratings.map((review) => (
+      <ReviewBox key={review.length}>
+        <ReviewTile review={review} />
+      </ReviewBox>
+    ))
+
     if (!this.state.isMounted) {
       return <div></div>
     }
 
     return (
       <div>
-      <div>
-        <Wrapper>
-          <Title>
-            Ratings and Reviews
-          </Title>
-        </Wrapper>
         <div>
-              <DescriptionBox>
+          <Wrapper>
+            <Title>
+              Ratings and Reviews
+            </Title>
+          </Wrapper>
+          <div>
+            <BreakdownBox>
               <Header2 > Ratings and Review </Header2>
               <h1>
                 {this.state.rating}
@@ -77,38 +97,28 @@ class Ratings extends React.Component {
                   starDimension="20px"
                   starSpacing="0.5px"
                 />
-            </h1>
-            <p>80% of reviews recommend this product</p>
-            </DescriptionBox>
-          </div>
-        <div>
-          <Header2>This is an h2 header</Header2>
-          <Form>
-            <Label>
-              this is a label
-              <Input placeholder="type here..."></Input>
-            </Label>
-            <Button>Submit</Button>
-          </Form>
-        </div>
-        <div>
-          <ReviewBox>
+              </h1>
+              <p>{ratingPercent}% of reviews recommend this product</p>
+              {/* Star breakdown */}
             <div>
-            <ReviewTile review={this.state.ratings[0]}/>
+              <p>5 Stars <StarsBar completed={ratingPercent}/></p>
+              <p>4 Stars <StarsBar completed={ratingPercent}/></p>
+              <p>3 Stars <StarsBar completed={ratingPercent}/></p>
+              <p>2 Stars <StarsBar completed={ratingPercent}/></p>
+              <p>1 Stars <StarsBar completed={ratingPercent}/></p>
             </div>
-
-          </ReviewBox>
-        </div>
-        <div>
-
+          </BreakdownBox>
+          <div>
+              <div>
+                {ReviewTiles}
+              </div>
+          </div>
+          <Button>More Reviews</Button> <Button>Add a Review</Button>
+          </div>
+          <AddReview/>
         </div>
       </div>
-
-
-
-        </div>
     );
-
 
   };
 }
