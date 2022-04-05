@@ -9,6 +9,7 @@ const Style = (props) => {
     <StyleThumbnail>
       <Thumbnail
         url = {photos[0].thumbnail_url}
+        selected = {props.selected}
         onClick = {() => {props.styleOnClick(props.style)}}>
       </Thumbnail>
     </StyleThumbnail>
@@ -18,6 +19,7 @@ const Style = (props) => {
 Style.propTypes = {
   style: PropTypes.object,
   styleOnClick: PropTypes.func,
+  selected: PropTypes.bool,
 }
 
 export default Style;

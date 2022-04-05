@@ -29,9 +29,7 @@ class Overview extends React.Component {
       })
       .catch(err => {
       })
-
   }
-
   styleOnClick(style) {
     this.setState({
       selectedStyle: style
@@ -39,16 +37,12 @@ class Overview extends React.Component {
   }
 
   render() {
-
-    var {description, name, slogan, features, id, styles, category} = this.props.overview;
+    var {description, name, slogan, features, id, category} = this.props.overview;
     var {styles, selectedStyle} = this.state
 
-    if (!selectedStyle) {
-      return (<div>
-      </div>)
-    } else
-
-    return (
+    if (!selectedStyle || !styles) {
+      return (<div></div>) // need to implement some loading feature
+    } else return (
       <div className = "product-overview-container">
         <div className = "image-gallery-product-description">
 

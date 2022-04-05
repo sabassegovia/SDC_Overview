@@ -41,6 +41,7 @@ border-radius: 50%;
 width: 80px;
 height: 80px;
 background: url(${(props) => props.url || 'fallback-image.jpg' }) center;
+${({selected}) => selected && `border: 3px solid green`}
 `
 const StyleThumbnail = styled.div`
 width: 21%;
