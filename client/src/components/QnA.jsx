@@ -36,8 +36,6 @@ class QnA extends React.Component {
     console.log('searching the API for: ', query);
   }
 
-<<<<<<< HEAD
-=======
   handleMoreQuestions(event) {
     event.preventDefault();
     var current = this.props.product_id;
@@ -53,7 +51,6 @@ class QnA extends React.Component {
   }
 
 
->>>>>>> 2e114281f39bf7983c352126fca5c2433723f493
   render() {
     return (
       <div>
