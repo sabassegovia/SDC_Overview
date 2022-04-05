@@ -1,20 +1,33 @@
 import React from 'react';
-import QuestionListItemAnswer from './QuestionListItemAnswer.jsx';
+import axios from "axios"
+import { Axios } from "../../AxiosConfig.js"
+import AnswerList from './AnswerList.jsx';
 
-var QuestionListItem = (props) => {
-  var answers = Object.entries(props.question.answers);
-  return (
-    <div>
-      <div className="qa-list-item-container">
-        <section className="question">
-          Q: {props.question.question_body}
-        </section>
-        {answers.map(eachAnswer => {
-        return <QuestionListItemAnswer answer={eachAnswer[1]} key={eachAnswer[0]}/>
-        })}
-      </div>
-    </div>
-  );
+class QuestionListItem extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {}
+  }
+
+  componentDidMount(){}
+
+  render () {
+    return (
+      <div>
+       <div className="qa-list-item-container">
+         <section className="question">
+           <h3><b>Q:</b> {this.props.question.question_body}</h3>
+           <div className="question-helpfulness">
+             Helpful? Yes ({this.props.question.question_helpfulness})
+             |  Add Answer
+           </div>
+         </section>
+         <AnswerList answers={this.props.question.answers} />
+       </div>
+     </div>
+    );
+  }
 }
 
 export default QuestionListItem;

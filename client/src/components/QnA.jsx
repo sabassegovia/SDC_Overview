@@ -1,7 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import axios from "axios"
 import { Axios } from "../AxiosConfig.js"
 
@@ -13,6 +11,7 @@ class QnA extends React.Component {
   constructor(props) {
     super(props);
     this.searchHandler = this.searchHandler.bind(this);
+    this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
 
     this.state = {
       list: []
@@ -21,11 +20,10 @@ class QnA extends React.Component {
 
   // load the questions and answers for the current product on page
   componentDidMount() {
-    // eslint-disable-next-line react/prop-types
     var current = this.props.product_id;
     Axios.get('/qa/questions', {params: {
       product_id: current,
-      count: 2
+      count: 4
     }})
       .then(result => {
         this.setState({
@@ -38,6 +36,20 @@ class QnA extends React.Component {
     console.log('searching the API for: ', query);
   }
 
+  handleMoreQuestions(event) {
+    event.preventDefault();
+    var current = this.props.product_id;
+    Axios.get('/qa/questions', {params: {
+      product_id: current,
+      count: 9999
+    }})
+      .then(result => {
+        this.setState({
+          list: result.data.results
+        })
+      })
+  }
+
 
   render() {
     return (
@@ -45,6 +57,8 @@ class QnA extends React.Component {
         <h2>Questions & Answers</h2>
         <QuestionSearch searchHandler={this.searchHandler} />
         <QuestionList questions={this.state.list}/>
+        <button onClick={this.handleMoreQuestions}>More Answered Questions</button>
+        <button>Add A Question</button>
       </div>
     );
   };

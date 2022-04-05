@@ -185,6 +185,9 @@
 .answer {
   height: 60px;
 }
+.question-helpfulness {
+  text-align: right;
+}
 
 .ratings-reviews-container {
   display: flex;

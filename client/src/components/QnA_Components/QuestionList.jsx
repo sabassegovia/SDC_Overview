@@ -1,5 +1,4 @@
 import React from 'react';
-
 import QuestionListItem from './QuestionListItem.jsx';
 
 var QuestionList = (props) => {
