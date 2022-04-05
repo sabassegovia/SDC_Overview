@@ -7,7 +7,7 @@
 
 .container {
   display: flex;
-  background-color: #fffdd0;
+  background-color: #E1E1E1;
 
   flex-direction: column;
   margin: 10px;
@@ -59,6 +59,7 @@
   position: relative
 }
 
+
 .carousel-content-wrapper {
   overflow: hidden;
   width: 100%;
@@ -80,7 +81,6 @@
 
 .carousel-content > * {
   justify-content: center;
-
   width: 100%;
   object-fit: contain;
   flex-shrink: 0;
@@ -90,7 +90,7 @@
 .left-arrow, .right-arrow {
   position: absolute;
   z-index: 1;
-  top: 50%;
+  top: 85%;
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
@@ -129,7 +129,10 @@
   align-items: center;
 } */
 
+.thumbnail-checked {
+  position:absolute;
 
+}
 
 .related-products-outfits {
   display: flex;
