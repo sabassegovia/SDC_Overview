@@ -1,38 +1,53 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import axios from "axios"
 import { Axios } from "../AxiosConfig.js"
 
-import QuestionList from './QnA Components/QuestionList.jsx';
-import QuestionSearch from './QnA Components/QuestionSearch.jsx';
+import QuestionList from './QnA_Components/QuestionList.jsx';
+import QuestionSearch from './QnA_Components/QuestionSearch.jsx';
 
 
 class QnA extends React.Component {
   constructor(props) {
     super(props);
     this.searchHandler = this.searchHandler.bind(this);
+    this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
 
     this.state = {
-      test: 'test'
+      list: []
     }
   }
 
   // load the questions and answers for the current product on page
   componentDidMount() {
     var current = this.props.product_id;
-    Axios.get('/qa/questions', {
+    Axios.get('/qa/questions', {params: {
       product_id: current,
-    })
+      count: 4
+    }})
       .then(result => {
-        console.log(result.data);
-        console.log(current)
+        this.setState({
+          list: result.data.results
+        })
       })
   }
 
   searchHandler(query) {
     console.log('searching the API for: ', query);
+  }
+
+  handleMoreQuestions(event) {
+    event.preventDefault();
+    var current = this.props.product_id;
+    Axios.get('/qa/questions', {params: {
+      product_id: current,
+      count: 9999
+    }})
+      .then(result => {
+        this.setState({
+          list: result.data.results
+        })
+      })
   }
 
 
@@ -41,7 +56,9 @@ class QnA extends React.Component {
       <div>
         <h2>Questions & Answers</h2>
         <QuestionSearch searchHandler={this.searchHandler} />
-        <QuestionList />
+        <QuestionList questions={this.state.list}/>
+        <button onClick={this.handleMoreQuestions}>More Answered Questions</button>
+        <button>Add A Question</button>
       </div>
     );
   };
