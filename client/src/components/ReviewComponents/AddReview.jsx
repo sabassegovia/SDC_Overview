@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StarRatingComponent from 'react-star-rating-component';
 import Button from '../../styles/Buttons.jsx';
 import {Title, Wrapper, Header2} from '../../styles/Headers.jsx';
 import {Form, Label, Input} from '../../styles/Forms.jsx';
 import {DescriptionBox, BigBox, LittleBox} from '../../styles/Boxes.jsx';
 import styled, { css } from 'styled-components';
+import AddReviewStarRating from './AddReviewStarRating.jsx';
 
 const NewReviewBox = styled(BigBox)`
   height: 100%;
   width: 60%;
+  display: flex;
+  flex-direction: column;
 `;
 
 class AddReview extends React.Component {
@@ -22,7 +24,7 @@ class AddReview extends React.Component {
   }
 
   onStarClick(nextValue, prevValue, name) {
-                this.setState({rating: nextValue});
+    this.setState({rating: nextValue});
   }
 
   render() {
@@ -33,11 +35,8 @@ class AddReview extends React.Component {
           <Header2>Enter Your Review</Header2>
           <Form>
             <Label>Overall rating
-              <StarRatingComponent
-                name="rate1"
-                starCount={5}
-                value={this.state.rating}
-                onStarClick={this.onStarClick}
+              <AddReviewStarRating
+                // onStarClick={this.onStarClick}
               />
             </Label>
             <Label>Do you recommend this product?<input type="checkbox"/></Label>
