@@ -7,12 +7,13 @@ const Title = styled.h1`
   font-weight: 700;
   font-size: 30px;
   line-height: 35px;
-
   color: #615D5D;
 `;
 
 const Wrapper = styled.section`
-padding: 5px;
+padding: 1em;
+background: #000
+
 `;
 
 const Header2 = styled.h2`
