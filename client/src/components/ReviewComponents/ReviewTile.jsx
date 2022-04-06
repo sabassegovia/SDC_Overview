@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FcOk } from 'react-icons/fc';
 import moment from 'moment';
-import StarRatings from 'react-star-ratings';
 import { Header2 } from '../../styles/Headers.jsx';
 import Typography from 'react-styled-typography';
+import ReviewTileStarRating from './ReviewTileStarRating.jsx';
+import {ReviewTop} from '../../styles/Boxes.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -29,25 +30,20 @@ class ReviewTile extends React.Component {
 
     return (
       <div>
-        <Header2>{this.props.review.summary}</Header2>
+        <ReviewTop>
+        <ReviewTileStarRating rating={this.props.review.rating}/>
         <div>
-          <StarRatings
-            rating={this.props.review.rating}
-            starRatedColor="black"
-            numberOfStars={5}
-            name='rating'
-            starDimension="20px"
-            starSpacing="0.5px"
-          />
+          @{this.props.review.reviewer_name} {moment(this.props.review.date).format("MMM Do YYYY")}
+        </div>
+
+        </ReviewTop>
+
+        <div>
+        <Header2>{this.props.review.summary}</Header2>
         </div>
         <div>{this.props.review.body}</div>
 
-        <div>
-          @{this.props.review.reviewer_name}
-          <div>
-            {moment(this.props.review.date).format("MMM Do YYYY")}
-          </div>
-        </div>
+
         {recommend}
         <div>
           <Typography

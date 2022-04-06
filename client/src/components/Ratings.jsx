@@ -1,34 +1,28 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import StarRatings from 'react-star-ratings';
 import Button from '../styles/Buttons.jsx';
 // import styled from 'styled-components';
 import {Title, Wrapper, Header2} from '../styles/Headers.jsx';
 import {Form, Label, Input} from '../styles/Forms.jsx';
-import {DescriptionBox, BigBox, LittleBox} from '../styles/Boxes.jsx';
+import {DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewsContainer, BreakdownBox, ReallyBigBox} from '../styles/Boxes.jsx';
 
 import axios from 'axios';
 import {Axios} from "../AxiosConfig.js"
 import ReviewTile from './ReviewComponents/ReviewTile.jsx';
 import AddReview from './ReviewComponents/AddReview.jsx';
+import RatingsStarRating from './ReviewComponents/RatingsStarRating.jsx';
+import RatingsBreakdown from './ReviewComponents/RatingsBreakdown.jsx';
+
 import PropTypes from 'prop-types';
 import ProgressBar from "@ramonak/react-progress-bar";
 
-const ReviewBox = styled(BigBox)`
-  height: 100%;
-  display: inline-block;
-`;
-
-const BreakdownBox = styled(DescriptionBox)`
-  height: 100%;
-  display: inline-block;
-`;
 
 const StarsBar = styled(ProgressBar)`
   width: 80%;
   display: inline-block;
 `;
+
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -36,11 +30,16 @@ class Ratings extends React.Component {
     this.state = {
       isMounted: false,
       rating: 0,
-      ratings: []
+      ratings: [],
+      viewMoreReviews: false
     }
+    this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
 
-
+  handleMoreReviews(event) {
+    event.preventDefault();
+    this.setState({viewMoreReviews: !this.state.viewMoreReviews});
+  }
 
   componentDidMount() {
     let params = {product_id: this.props.product_id};
@@ -66,11 +65,32 @@ class Ratings extends React.Component {
     // const { rating } = this.state;
     // let review;
     const ratingPercent = (this.state.rating / this.state.ratings.length) * 100;
-    const ReviewTiles = this.state.ratings.map((review) => (
-      <ReviewBox key={review.length}>
-        <ReviewTile review={review} />
-      </ReviewBox>
-    ))
+    const ratingsStarBreakdown = {
+      five: this.state.ratings.reduce((x, c) => {if (c.rating === 5) { return (x + 1)} else {return (x + 0)}}, 0),
+      four: this.state.ratings.reduce((x, c) => {if (c.rating === 4) { return (x + 1)} else {return (x + 0)}}, 0),
+      three: this.state.ratings.reduce((x, c) => {if (c.rating === 3) { return (x + 1)} else {return (x + 0)}}, 0),
+      two: this.state.ratings.reduce((x, c) => {if (c.rating === 2) { return (x + 1)} else {return (x + 0)}}, 0),
+      one: this.state.ratings.reduce((x, c) => {if (c.rating === 1) { return (x + 1)} else {return (x + 0)}}, 0)
+    }
+
+    let ReviewTiles;
+
+    if (this.state.viewMoreReviews) {
+      ReviewTiles = this.state.ratings.map((review) => (
+        <ReviewBox key={review.length}>
+          <ReviewTile review={review} />
+        </ReviewBox>
+      ))
+
+    } else {
+      ReviewTiles = this.state.ratings.slice(0, 2).map((review) => (
+        <ReviewBox key={review.length}>
+          <ReviewTile review={review} />
+        </ReviewBox>
+      ))
+    }
+
+
 
     if (!this.state.isMounted) {
       return <div></div>
@@ -84,38 +104,29 @@ class Ratings extends React.Component {
               Ratings and Reviews
             </Title>
           </Wrapper>
-          <div>
+          <ReallyBigBox>
             <BreakdownBox>
-              <Header2 > Ratings and Review </Header2>
+              <Header2 > RATINGS &amp; REVIEWS</Header2>
               <h1>
                 {this.state.rating}
-                <StarRatings
-                  rating={this.state.rating}
-                  starRatedColor="black"
-                  numberOfStars={5}
-                  name='rating'
-                  starDimension="20px"
-                  starSpacing="0.5px"
-                />
+
+                < RatingsStarRating rating={this.state.rating} />
               </h1>
               <p>{ratingPercent}% of reviews recommend this product</p>
-              {/* Star breakdown */}
-            <div>
-              <p>5 Stars <StarsBar completed={ratingPercent}/></p>
-              <p>4 Stars <StarsBar completed={ratingPercent}/></p>
-              <p>3 Stars <StarsBar completed={ratingPercent}/></p>
-              <p>2 Stars <StarsBar completed={ratingPercent}/></p>
-              <p>1 Stars <StarsBar completed={ratingPercent}/></p>
-            </div>
-          </BreakdownBox>
-          <div>
               <div>
-                {ReviewTiles}
+                <RatingsBreakdown ratingsStarBreakdown={ratingsStarBreakdown} />
               </div>
-          </div>
-          <Button>More Reviews</Button> <Button>Add a Review</Button>
-          </div>
-          <AddReview/>
+            </BreakdownBox>
+            <div>
+              <ReviewsContainer>
+                {ReviewTiles}
+              </ReviewsContainer>
+              <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
+            </div>
+
+          </ReallyBigBox>
+          <Button>Add a Review</Button>
+          <AddReview />
         </div>
       </div>
     );
