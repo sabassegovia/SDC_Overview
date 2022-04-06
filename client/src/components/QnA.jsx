@@ -6,7 +6,6 @@ import { Axios } from "../AxiosConfig.js"
 import QuestionList from './QnA_Components/QuestionList.jsx';
 import QuestionSearch from './QnA_Components/QuestionSearch.jsx';
 
-
 class QnA extends React.Component {
   constructor(props) {
     super(props);
