@@ -31,13 +31,13 @@ class RelatedItems extends React.Component {
     let {id} = this.props.overview;
     // this.getItemData(id);
 
-    Axios.get(`/test`)
-    .then(result => {
-      console.log(result.data, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
-    })
-    .catch(err => {
-      console.log(err, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
-    })
+    // Axios.get(`/test`)
+    // .then(result => {
+    //   console.log(result.data, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+    // })
+    // .catch(err => {
+    //   console.log(err, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+    // })
   }
 
   //render when all data is retrieved
@@ -88,7 +88,8 @@ class RelatedItems extends React.Component {
     let {relatedItems} = this.state;
 
     return (
-      <div className = "related-products-outfits">
+      <div>
+        {/* <div className = "related-products-outfits">
         <section className = "related-products">
           <h1>I AM RELATED PRODUCTS</h1>
           <div>
@@ -97,14 +98,16 @@ class RelatedItems extends React.Component {
               <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
               <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
             </RelatedItemsCarousel>
-            {/* <RelatedItemsCarousel relatedItems={relatedItems} updateModal={this.updateModal}/> */}
+            <RelatedItemsCarousel relatedItems={relatedItems} updateModal={this.updateModal}/>
           </div>
         </section>
-        {/* {modal} */}
+        {modal}
         <section className = "outfits">
           <h1>I AM OUTFIT</h1>
         </section>
+      </div> */}
       </div>
+
     )
   };
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {StylesSelectionCart} from './OverviewComponents/OverviewStyles.jsx'
 import AddToCart from './OverviewComponents/AddToCart.jsx'
 import ImageCarousel from './OverviewComponents/ImageCarousel.jsx'
+import Carousel from './OverviewComponents/Carousel.jsx'
 import ImageGallery from './OverviewComponents/ImageGallery.jsx'
 import ProductInformation from './OverviewComponents/ProductInformation.jsx'
 import StyleSelector from './OverviewComponents/StyleSelector.jsx'
@@ -48,16 +49,14 @@ class Overview extends React.Component {
 
         <ImageCarousel
           style={{ maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}
-          selectedStyle = {selectedStyle}
-        >
-          {/* <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
-          <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
-          <img src="https://via.placeholder.com/1600x300" alt="placeholder" /> */}
+          selectedStyle = {selectedStyle}>
+
           {selectedStyle.photos.map(photo => {
             return <img src = {photo.url} key = {photo.url}/>
           })}
 
         </ImageCarousel>
+        {/* <Carousel selectedStyle = {selectedStyle}/> */}
 
         <ProductInformation
           description = {description}
@@ -67,7 +66,7 @@ class Overview extends React.Component {
           />
           </div>
           <StylesSelectionCart>
-            {styles === null ? <div>nothing here yet</div> : <StyleSelector
+            {styles === null ? <div></div> : <StyleSelector
               scrollToReviews = {this.props.scrollToReviews}
               category = {category}
               name = {name}
@@ -96,3 +95,6 @@ Overview.propTypes = {
 
 export default Overview;
 
+ {/* <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+          <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
+          <img src="https://via.placeholder.com/1600x300" alt="placeholder" /> */}

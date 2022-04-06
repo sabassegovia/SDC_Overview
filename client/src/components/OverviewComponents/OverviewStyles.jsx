@@ -14,10 +14,7 @@ const SloganDescription = styled(ColumnContainer)`
   width: 70%;
   font-size:20px
 `
-const FeaturesContainer = styled(ColumnContainer)`
-  width: 30%;
-  font-size:24px
-`
+
 const StylesSelectionCart = styled(ColumnContainer)`
 
   width: 30%;
@@ -56,10 +53,10 @@ flex-wrap: wrap
 const CartContainer = styled(ColumnContainer)`
 
   width: 100%;
-  border-top: 3px solid rgb(117, 117, 117);
+  /* border-top: 3px solid rgb(117, 117, 117); */
   justify-content: center;
   align-items: center;
   margin: 10px;
 `
 
-export {CartContainer, RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer, SloganDescription, FeaturesContainer}
+export {CartContainer, RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer, SloganDescription}

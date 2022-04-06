@@ -4,6 +4,8 @@ import {Thumbnail, StyleThumbnail} from './OverviewStyles.jsx'
 import { FcOk } from 'react-icons/fc';
 
 
+
+
 const Style = (props) => {
   var {photos, name, original_price, sale_price, style_id} = props.style
 

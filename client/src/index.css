@@ -7,7 +7,7 @@
 
 .container {
   display: flex;
-  background-color: #E1E1E1;
+  background-color: #FAFAFA;
 
   flex-direction: column;
   margin: 10px;
@@ -45,19 +45,20 @@
   border-top:none;
 }
 
-.carousel-container {
+/* .carousel-container {
   display:flex;
   height: 80%;
   justify-content: center;
   width: 100%;
-  border-bottom: 3px solid rgb(117, 117, 117);
+  border: 3px solid #FAFAFA;
+  background-color: #FAFAFA;
 }
 
 .carousel-wrapper {
   display: flex;
   width: 100%;
   position: relative
-}
+} */
 
 
 .carousel-content-wrapper {
@@ -87,7 +88,7 @@
   flex-grow: 1;
 }
 
-.left-arrow, .right-arrow {
+/* .left-arrow, .right-arrow {
   position: absolute;
   z-index: 1;
   top: 85%;
@@ -105,7 +106,7 @@
 
 .right-arrow {
   right: 24px;
-}
+} */
 
 .product-description {
   display:flex;
@@ -130,18 +131,17 @@
 } */
 
 .thumbnail-checked {
-  position:absolute;
+  position:relative;
+  bottom: 80%;
+  left: 75%;
 
 }
-
 .related-products-outfits {
   display: flex;
   flex-direction: column;
   height: 400px;
   border: 3px solid rgb(117, 117, 117);
   border-top: none;
-
-
 }
 
 .related-products {

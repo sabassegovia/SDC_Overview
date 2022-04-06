@@ -1,7 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {RowContainer, SloganDescription, FeaturesContainer} from './OverviewStyles.jsx';
+import {RowContainer, SloganDescription, ColumnContainer} from './OverviewStyles.jsx';
+import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
+
+const Description = styled(Header3)`
+margin: 10px;
+`
+const Features = styled(Header2)`
+margin: 5px 0 5px 20px;
+`
+const FeaturesContainer = styled(ColumnContainer)`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+  font-size:20px
+  margin: 30px;
+`
+
+const Slogan = styled(Title)`
+  margin: 5px 0px 10px 10px;
+
+`
 
 const ProductInformation = (props) => {
 
@@ -13,22 +34,22 @@ const ProductInformation = (props) => {
   } else
   return (
 
-    <section className = "product-description">
+    <ColumnContainer>
       <RowContainer>
         <SloganDescription>
-          <h2>{props.slogan}</h2>
-          <p>{props.description}</p>
+          <Slogan>{props.slogan}</Slogan>
+          <Description>{props.description}</Description>
         </SloganDescription>
 
         <FeaturesContainer>
           {props.features.map(feature => {
-            return <div key = {feature.feature + feature.value}>
+            return <Features key = {feature.feature + feature.value}>
                     {`${feature.feature} -   ${feature.value}`}
-                    </div>
+                    </Features>
           })}
         </FeaturesContainer>
       </RowContainer>
-      </section>
+      </ColumnContainer>
   )
 }
 
