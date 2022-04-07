@@ -9,6 +9,7 @@ import Overview from './components/Overview.jsx';
 import QnA from './components/QnA.jsx';
 import Ratings from './components/Ratings.jsx';
 import RelatedItems from './components/relatedItems/RelatedItems.jsx';
+import {Title, Wrapper, Header2} from './styles/Headers.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -59,8 +60,18 @@ class App extends React.Component {
       <div className = "BIGCONTAINER">
         <div className = "container">
         <header className = "header">
+<<<<<<< HEAD
           <h1 className = "title">Project Atelier</h1>
           {/* <button onClick = {()=> {this.test()}}>test</button> */}
+=======
+        <Wrapper>
+            <Title>
+              Header
+            </Title>
+          </Wrapper>
+          <h1 className = "title">HEADER</h1>
+          {/* <button onClick = {()=> {this.scrollToReviews()}}>test</button> */}
+>>>>>>> 20d457b97311e556cdcd2a1b8d912c9ef731c059
           <h2 className = "logo">LOGO</h2>
         </header>
         <Overview

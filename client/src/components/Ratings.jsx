@@ -30,8 +30,12 @@ class Ratings extends React.Component {
     this.state = {
       isMounted: false,
       rating: 0,
-      ratings: [],
-      viewMoreReviews: false
+      reviews: [],
+      ratings: {},
+      viewMoreReviews: false,
+      recommendedRatio: 0,
+      characteristics: {}
+
     }
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
@@ -42,21 +46,39 @@ class Ratings extends React.Component {
   }
 
   componentDidMount() {
-    let params = {product_id: this.props.product_id};
-    Axios.get(`/reviews/`, {params})
-    .then(result => {
-      console.log(result.data.results);
-      this.setState({
-        isMounted: true ,
-        ratings: result.data.results,
-        rating: parseFloat((result.data.results.reduce((x, c) => {
-          return (x + c.rating);
-        }, 0) / result.data.count).toFixed(1))
-      },
-      () => {this.props.handleRating(this.state.rating)}
-      );
-     })
-    .catch(err => {console.log(err)})
+    let params = { product_id: this.props.product_id, count: 5 };
+    Axios.get(`/reviews/`, { params })
+      .then(result => {
+        console.log(result.data.results);
+        const firstResults = result.data.results;
+
+        Axios.get(`/reviews/meta/`, { params })
+          .then(result => {
+            console.log(result.data);
+            const ratings = Object.values(result.data.ratings).map(x => Number(x));
+            let totalratings = ratings.reduce((x, c) => { return (x + c) }, 0);
+            let totalweighted = 0;
+            for (let key in result.data.ratings) {
+              totalweighted = totalweighted + (key * result.data.ratings[key]);
+            }
+            const productrating = parseFloat(totalweighted / totalratings).toFixed(1);
+
+            this.setState({
+              rating: productrating,
+              ratings: result.data.ratings,
+              recommendedRatio: parseFloat(Number(result.data.recommended.true) / (Number(result.data.recommended.true) + Number(result.data.recommended.false))).toFixed(2),
+              characteristics: result.data.characteristics,
+              isMounted: true,
+            })
+          })
+          .catch(err => { console.log(err) });
+        this.setState({
+
+          reviews: result.data.results
+        }, () => {this.props.handleRating(this.state.rating)}
+       );
+      })
+      .catch(err => { console.log(err) });
   }
 
 
@@ -64,27 +86,20 @@ class Ratings extends React.Component {
 
     // const { rating } = this.state;
     // let review;
-    const ratingPercent = (this.state.rating / this.state.ratings.length) * 100;
-    const ratingsStarBreakdown = {
-      five: this.state.ratings.reduce((x, c) => {if (c.rating === 5) { return (x + 1)} else {return (x + 0)}}, 0),
-      four: this.state.ratings.reduce((x, c) => {if (c.rating === 4) { return (x + 1)} else {return (x + 0)}}, 0),
-      three: this.state.ratings.reduce((x, c) => {if (c.rating === 3) { return (x + 1)} else {return (x + 0)}}, 0),
-      two: this.state.ratings.reduce((x, c) => {if (c.rating === 2) { return (x + 1)} else {return (x + 0)}}, 0),
-      one: this.state.ratings.reduce((x, c) => {if (c.rating === 1) { return (x + 1)} else {return (x + 0)}}, 0)
-    }
+    const ratingPercent = this.state.recommendedRatio * 100;
 
     let ReviewTiles;
 
     if (this.state.viewMoreReviews) {
-      ReviewTiles = this.state.ratings.map((review) => (
-        <ReviewBox key={review.length}>
+      ReviewTiles = this.state.reviews.map((review, i) => (
+        <ReviewBox key={i}>
           <ReviewTile review={review} />
         </ReviewBox>
       ))
 
     } else {
-      ReviewTiles = this.state.ratings.slice(0, 2).map((review) => (
-        <ReviewBox key={review.length}>
+      ReviewTiles = this.state.reviews.slice(0, 2).map((review, i) => (
+        <ReviewBox key={i}>
           <ReviewTile review={review} />
         </ReviewBox>
       ))
@@ -114,7 +129,7 @@ class Ratings extends React.Component {
               </h1>
               <p>{ratingPercent}% of reviews recommend this product</p>
               <div>
-                <RatingsBreakdown ratingsStarBreakdown={ratingsStarBreakdown} />
+                <RatingsBreakdown ratingsStarBreakdown={this.state.ratings} characteristics={this.state.characteristics}/>
               </div>
             </BreakdownBox>
             <div>
@@ -126,7 +141,7 @@ class Ratings extends React.Component {
 
           </ReallyBigBox>
           <Button>Add a Review</Button>
-          <AddReview />
+          <AddReview characteristics={this.state.characteristics}/>
         </div>
       </div>
     );

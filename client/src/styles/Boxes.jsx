@@ -55,14 +55,50 @@ const BreakdownBox = styled(DescriptionBox)`
   width: 330px;
   display: flex;
   flex-direction: column;
+  border: 1px dashed #000;
 `;
 
 const ReallyBigBox = styled(BigBox)`
   height: 120%;
   width: 1200px;
   display: flex;
+  border: 1px dashed #000;
+`;
+
+const CharacteristicsContainer = styled.div`
+  height: 100%;
+  width: 700px;
+  margin: 1px;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  border: 1px dashed #000;
+`;
+
+const CharacteristicsBox = styled.div`
+  height: 100%;
+  width: 650px;
+  margin: 1px;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+`;
+const CharacteristicsButtons = styled.div`
+  height: 100%;
+  width: 650px;
+  margin: 1px;
+  padding: 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const IndividualCharacteristic = styled(CharacteristicsButtons)`
+  height: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 `;
 
 
 
-export {DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox}
+export {DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic }
