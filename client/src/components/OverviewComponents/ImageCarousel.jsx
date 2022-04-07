@@ -91,6 +91,7 @@ const ImageCarousel = (props) => {
             </LeftArrow> : null }
             <CarouselContentWrapper>
               <div
+              onClick = {() => openModal()}
               className = "carousel-content"
               style={{ transform: `translateX(-${currentIndex * 100}%)`}}>
                 {children}
@@ -107,9 +108,9 @@ const ImageCarousel = (props) => {
             selectedStyle = {props.selectedStyle}
             ThumbnailOnClick = {(index) => {ThumbnailOnClick(index)}}
             /> : null }
-          <ModalButton
+          {/* <ModalButton
             onClick = {() => {openModal()}}
-            ><FaExpand/></ModalButton>
+            ><FaExpand/></ModalButton> */}
             {showModal ? <Modal
             setShowModal = {setShowModal}
             showModal = {showModal}

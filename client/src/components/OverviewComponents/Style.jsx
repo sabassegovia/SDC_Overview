@@ -14,7 +14,7 @@ const Style = (props) => {
 
       {props.selected? <FcOk className = "thumbnail-checked"/> :null}
       <Thumbnail
-        url = {photos[0].url}
+        url = {photos[0].url }
         selected = {props.selected}
         onClick = {() => {props.styleOnClick(props.style)}}>
       </Thumbnail>
