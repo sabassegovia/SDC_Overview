@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Style from './Style.jsx';
 import StarRatings from 'react-star-ratings';
+import RatingsStarRating from '../ReviewComponents/RatingsStarRating.jsx'
 
 import {StyleHeader, RowContainer, RatingsHeader, StyleThumbnails} from './OverviewStyles.jsx'
 
@@ -14,14 +15,7 @@ const StyleSelector = (props) => {
     <StyleHeader>
       {/* will need aratings component */}
       <RatingsHeader>
-        <StarRatings
-            rating={props.rating}
-            starRatedColor="black"
-            numberOfStars={5}
-            name='rating'
-            starDimension="20px"
-            starSpacing="0.5px"
-          />
+        <RatingsStarRating rating = {props.rating}/>
         <a
           onClick = {() => {props.scrollToReviews()}}
           href="#reviews"

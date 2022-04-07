@@ -17,19 +17,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 font-size: 16px;
 `
 const QuantitySelect = styled(SizeSelect)`
-
 `
-// const AddtoCartButton = styled.button`
-// width: 217px;
-// height: 63px;
-// background: #FAFAFA;
-// color: #000;
-// border: 2px solid #AFA9A9;
-// box-sizing: border-box;
-// box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-// margin: 5px;
-// `;
-
 const AddtoCartButton = styled.button`
 width: 217px;
 height: 63px;
@@ -41,7 +29,7 @@ border-radius: 3px;
 cursor: pointer;
 `;
 
-const AddtoCartText = styled.span`
+const AddtoCartText = styled.option`
   font-size: 24px;
 `
 const StyleQuantityCartContainer = styled.div`
@@ -87,13 +75,13 @@ const AddToCart = (props) => {
               ref = {selectSizeRef}
               disabled = {!stock}
               onChange = {(e) => {setSku(e.target.value); setQuantity('')}}>
-              {stock ? <option><Text>Select Size</Text></option> : <option><Text>Currently out of stock</Text></option>}
+              {stock ? <option>Select Size</option> : <option>Currently out of stock</option>}
               {stock ? skus_ids.map(sku => {
                 if (skus[sku].quantity > 0) {
                   return <option
                   key = {sku}
                   value = {sku}
-                  > <AddtoCartText>Size</AddtoCartText> - {skus[sku].size}</option>
+                  > Size - {skus[sku].size}</option>
                 }
               }) : null}
             </SizeSelect>
@@ -102,9 +90,9 @@ const AddToCart = (props) => {
               disabled = {!stock}
               onChange = {(e) => {setQuantity(e.target.value)}}
               value = {quantity}>
-              {!(skus[currentSku]) ? <option><Text>Select Quantity</Text></option> : [...Array(skus[currentSku].quantity).keys()].map(x => {
+              {!(skus[currentSku]) ? <option>Select Quantity</option> : [...Array(skus[currentSku].quantity).keys()].map(x => {
                 if (x !== 0 && x <= 15) {
-                  return <option key = {x}><Text>{x}</Text></option>
+                  return <option key = {x}>{x}</option>
                 }})}
             </ QuantitySelect>
         </StyleQuantityContainer>
@@ -113,7 +101,7 @@ const AddToCart = (props) => {
             hover = {hover}
             onMouseEnter = {() => {setHover(!hover)}}
             onMouseLeave = {() => {setHover(!hover)}}
-            ><Text>Add to Cart</Text></AddtoCartButton> : <div><Text>OUT OF STOCK</Text></div>}
+            >Add to Cart</AddtoCartButton> : <div><Text>OUT OF STOCK</Text></div>}
 
     </StyleQuantityCartContainer>
   );

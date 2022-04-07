@@ -11,9 +11,8 @@ const Title = styled.h1`
 `;
 
 const Wrapper = styled.section`
-padding: 1em;
-background: #000
-
+  padding: 1em;
+  background: #000;
 `;
 
 const Header2 = styled.h2`
@@ -22,7 +21,6 @@ const Header2 = styled.h2`
   font-weight: 600;
   font-size: 20px;
   line-height: 23px;
-
   color: #615D5D;
 `;
 

@@ -49,7 +49,7 @@ const ProductInformation = (props) => {
           })}
         </FeaturesContainer>
       </RowContainer>
-      </ColumnContainer>
+    </ColumnContainer>
   )
 }
 
