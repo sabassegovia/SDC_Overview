@@ -18,7 +18,7 @@ const AddReviewStarRating = () => {
             name="rating"
             value={ratingVal}
             onClick={() => setRating(ratingVal)}/>
-            < FaStar className="star" color={ratingVal <= rating ? "#ffc107" : "#fff"}/>
+            < FaStar className="star" color={ratingVal <= rating ? "#ffc107" : "#606165"}/>
           </label>
         );
       })}
