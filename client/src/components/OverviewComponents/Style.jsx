@@ -22,7 +22,6 @@ const Style = (props) => {
     </StyleThumbnail>
   )
 }
-
 Style.propTypes = {
   style: PropTypes.object,
   styleOnClick: PropTypes.func,
