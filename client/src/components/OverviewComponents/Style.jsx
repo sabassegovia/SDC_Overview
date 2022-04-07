@@ -13,10 +13,8 @@ const Style = (props) => {
     <StyleThumbnail>
 
       {props.selected? <FcOk className = "thumbnail-checked"/> :null}
-
       <Thumbnail
-
-        url = {photos[0].thumbnail_url}
+        url = {photos[0].url }
         selected = {props.selected}
         onClick = {() => {props.styleOnClick(props.style)}}>
       </Thumbnail>
@@ -24,7 +22,6 @@ const Style = (props) => {
     </StyleThumbnail>
   )
 }
-
 Style.propTypes = {
   style: PropTypes.object,
   styleOnClick: PropTypes.func,

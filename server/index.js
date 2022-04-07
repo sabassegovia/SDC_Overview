@@ -9,14 +9,15 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(cors())
+
+
 app.use(express.static(__dirname + "../client/src"))
-// app.use(express.static(__dirname + "../src/")) //Theresa
 
 const port = 3000;
+
+
 app.get('/test', (req, res) => {
-  console.log('im here')
-  console.log(process.env.TOKEN)
-  res.status(200).send('Hello World!')
+  res.status(200).sendFile("/home/rphpandan/hackreactor/rfp2202/GOC-FEC/FEC/client/src/index.jsx")
 })
 
 
@@ -41,7 +42,6 @@ app.put("/*", (req, res) => {
     })
 })
 app.post("/*", (req, res) => {
-  console.log('im hit here')
   // console.log(req.body)
    axios(configureOptions(req))
     .then((result) => {
@@ -53,7 +53,6 @@ app.post("/*", (req, res) => {
       res.send(err)
     })
 })
-
 app.listen(port, () => {
   console.log(`listening on port: ${port}` )
 })

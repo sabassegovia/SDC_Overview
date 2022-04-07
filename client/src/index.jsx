@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom/client';
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 import axios from 'axios';
 import {Axios} from "./AxiosConfig.js"
 import "./index.css"
@@ -16,13 +17,21 @@ class App extends React.Component {
     this.state = {
       overview: null,
       product_id: 65631,
-      rating: 0
+      rating: 0,
+      documentTitle: null,
     }
     this.ratings = React.createRef()
     this.handleRating = this.handleRating.bind(this);
     this.scrollToReviews = this.scrollToReviews.bind(this)
   }
+
+  test() {
+    console.log('im hit test')
+    Axios.get('/test');
+  }
   componentDidMount() {
+    // window.location.href = window.location.href + this.state.product_id
+
     this.getProduct()
   }
   scrollToReviews() {
@@ -34,14 +43,16 @@ class App extends React.Component {
   getProduct() {
     Axios.get(`/products/${this.state.product_id}/`)
     .then(result => {
+      // console.log(result.data)
       this.setState({
-        overview: result.data
-      });
+        overview: result.data,
+        documentTitle: `${result.data.category} - ${result.data.name}`
+      }, () => {document.title = this.state.documentTitle});
     });
   }
 
-
   render() {
+
     if (!this.state.overview) {
       return (<div></div>) // need to implement some loading feature
     } else
@@ -49,13 +60,8 @@ class App extends React.Component {
       <div className = "BIGCONTAINER">
         <div className = "container">
         <header className = "header">
-        <Wrapper>
-            <Title>
-              Header
-            </Title>
-          </Wrapper>
-          <h1 className = "title">HEADER</h1>
-          {/* <button onClick = {()=> {this.scrollToReviews()}}>test</button> */}
+          <h1 className = "title">Project Atelier</h1>
+          {/* <button onClick = {()=> {this.test()}}>test</button> */}
           <h2 className = "logo">LOGO</h2>
         </header>
         <Overview
