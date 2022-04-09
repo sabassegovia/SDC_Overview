@@ -1,47 +1,17 @@
 
-.BIGCONTAINER {
-  display:flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
-.container {
-  display: flex;
-  background-color: #FAFAFA;
 
-  flex-direction: column;
-  margin: 10px;
-  /* width: 1200px; */
-  min-width:1200px;
-  max-width:1400px;
-
-}
-
-.header {
-  display: flex;
-  border: 3px solid rgb(117, 117, 117);
-  justify-content: space-between;
-  align-content: space-around;
-  height: 70px;
-}
-.title {
-  margin: 10px
-}
-.logo {
-  margin: 10px
-}
 
 .product-overview-container {
   display:flex;
   flex-direction: row;
-  height: 1000px;
+  max-height: 1000px;
 }
 
 .image-gallery-product-description {
   display:flex;
   flex-direction: column;
   width: 70%;
-  border: 3px solid rgb(117, 117, 117);
   border-top:none;
 }
 
@@ -69,11 +39,12 @@
 
 .carousel-content {
   display: flex;
-  align-items: flex-start;
-  justify-items: auto;
+  justify-items: center;
+  max-width: 100%;
   transition: all 250ms linear;
   -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
   scrollbar-width: none;  /* hide scrollbar in Firefox */
+  position: relative;
 }
 
 .carousel-content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
@@ -82,11 +53,13 @@
 
 .carousel-content > * {
   justify-content: center;
-  width: 100%;
+  align-items: center;
   max-height:fit-content;
   object-fit: contain;
   flex-shrink: 0;
   flex-grow: 1;
+
+
 }
 
 /* .left-arrow, .right-arrow {

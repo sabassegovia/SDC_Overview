@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import {RowContainer, ColumnContainer} from './OverviewStyles.jsx'
 import { MdClose } from 'react-icons/md';
+import ReactDom from 'react-dom'
 
 
 const Background = styled.div`
@@ -73,26 +74,22 @@ const Modal = (props) => {
     }
   }
 
-
-  return (
+  return ReactDom.createPortal (
     <>
       {props.showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
           <ModalWrapper>
             <ModalContent>
-
               <ModalImg src={props.img} alt='camera' />
-
               <CloseModalButton
                 aria-label='Close modal'
                 onClick={() => props.setShowModal(prev => !prev)}
               />
             </ModalContent>
-
           </ModalWrapper>
         </Background>
       ) : null}
-    </>
+    </>, document.getElementById('portal')
   );
 }
 

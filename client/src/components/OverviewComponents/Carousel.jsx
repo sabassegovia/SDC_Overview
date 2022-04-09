@@ -5,49 +5,30 @@ import {RowContainer, ColumnContainer} from './OverviewStyles.jsx'
 import { TiArrowUpThick, TiArrowDownThick } from "react-icons/ti";
 
 const CarouselContainer = styled(ColumnContainer)`
-  height: 1000px;
-  overflow: hidden;
-  justify-content: flex-start;
+  /* height: 1000px; */
+  /* overflow: hidden; */
   position: absolute;
   z-index: 1;
   top: 0%;
   left: 0%;
+`
+const ThumbnailBackground = styled.div`
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
 
 `
+
 const ThumbnailImage = styled.img`
-  height: 60px;
-  width: 60px;
+  max-height: 80px;
+  max-width: 65px;
   margin: 10px 0px 0px 0px;
-  opacity: 60%;
+  opacity: 70%;
 `
 const NavButtons = styled.button`
   margin: 10px 0px 0px 0px;
   opacity: 25%;
-
-
 `
-// const Arrow = styled.button`
-//   position: relative;
-//   z-index: 1;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   width: 48px;
-//   height: 48px;
-//   border-radius: 24px;
-//   background-color: white;
-//   border: 1px solid #ddd;
-// `
-// const LeftArrow = styled(Arrow)`
-//   left: 24px;
-// `
-// const RightArrow = styled(Arrow)`
-//   right: 24px;
-// `
-// const CarouselContentWrapper = styled.div`
-//   overflow: hidden;
-//   width: 100%;
-//   height: 100%;
-// `
 const Carousel = (props) => {
 
   var photos = props.selectedStyle.photos.map(photo => {
@@ -73,19 +54,20 @@ const Carousel = (props) => {
       disabled = {current === 0}
       onClick = {() => prev()}><TiArrowUpThick/></NavButtons>
       {photos.map((photo, index) => {
-        if (index <= current + 2 && index >= current) {
+        if (index <= current + 6 && index >= current) {
           return (
-          <ThumbnailImage
-          key = {index}
-          name = {index}
-          onClick = {(e) => {handleThumbnailClick(index)}}
-          src = {photo} />
+            <ThumbnailBackground key = {index}>
+                <ThumbnailImage
+                name = {index}
+                onClick = {(e) => {handleThumbnailClick(index)}}
+                src = {photo} />
+            </ThumbnailBackground>
           )}
         }
       )}
       {/* <button onClick = {() => {props.ThumbnailOnClick()}}>test</button> */}
       <NavButtons
-      disabled = {current === 3}
+      disabled = {current === length - 6}
       onClick = {() => next()}><TiArrowDownThick /></NavButtons>
     </CarouselContainer>
     </div>

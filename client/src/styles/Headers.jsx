@@ -1,21 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Title = styled.h1`
+const Theme = styled.div`
+  color:  ${(props) =>
+    {
+      if (props.primary) {
+        return '#3e3e3e'
+      } else if (props.secondary) {
+        return '#e4e4e4'
+      } else {
+        return 'black'
+      }
+  }};
+    text-decoration: ${(props) => {
+    let decoration = ''
+    if (props.line_through) {
+      decoration += `line-through`
+    }
+    if (props.underline) {
+      decoration += ` underline`
+    }
+    return decoration
+  }};
+  border: ${(props) => {if (props.border) {
+    return `2px solid #3e3e3e`}}};
+`
+
+const Title = styled(Theme)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 48px;
   line-height: 35px;
-  color: #615D5D;
+
 `;
+
 
 const Wrapper = styled.section`
   padding: 1em;
   background: #000;
 `;
 
-const Header2 = styled.h2`
+const Header2 = styled(Theme)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
@@ -24,7 +50,7 @@ const Header2 = styled.h2`
   color: #615D5D;
 `;
 
-const Header3 = styled.h3`
+const Header3 = styled(Theme)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
@@ -32,7 +58,7 @@ const Header3 = styled.h3`
   line-height: 19px;
   color: #615D5D;
 `
-const Header4 = styled.h4`
+const Header4 = styled(Theme)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -40,7 +66,7 @@ const Header4 = styled.h4`
   line-height: 16px;
   color: #615D5D;
 `
-const Text = styled.p`
+const Text = styled(Theme)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -48,4 +74,4 @@ const Text = styled.p`
   line-height: 14px;
   color: #615D5D;
 `
-export {Title, Wrapper, Header2, Header3, Header4, Text};
+export {Title, Wrapper, Header2, Header3, Header4, Text, Theme};

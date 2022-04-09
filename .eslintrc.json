@@ -3,7 +3,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "plugin:react/recommended",
+    "extends": ["plugin:react/recommended", "plugin:styled-components-a11y/recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -12,7 +12,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "styled-components-a11y"
     ],
     "rules": {
     }

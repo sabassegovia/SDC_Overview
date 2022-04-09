@@ -9,11 +9,6 @@ display: flex;
 flex-direction: column;
 justify-content: space-around;
 `
-const SloganDescription = styled(ColumnContainer)`
-  justify-content: space-around;
-  width: 70%;
-  font-size:20px
-`
 
 const StylesSelectionCart = styled(ColumnContainer)`
 
@@ -59,4 +54,4 @@ const CartContainer = styled(ColumnContainer)`
   margin: 10px;
 `
 
-export {CartContainer, RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer, SloganDescription}
+export {CartContainer, RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer}

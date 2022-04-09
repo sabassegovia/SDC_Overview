@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import styled from 'styled-components';
 import {StylesSelectionCart} from './OverviewComponents/OverviewStyles.jsx'
 import AddToCart from './OverviewComponents/AddToCart.jsx'
 import ImageCarousel from './OverviewComponents/ImageCarousel.jsx'
@@ -10,6 +11,15 @@ import StyleSelector from './OverviewComponents/StyleSelector.jsx'
 import axios from 'axios';
 import {Axios} from "../AxiosConfig.js"
 
+import {RowContainer, ColumnContainer} from '../styles/Boxes.jsx'
+
+const ProductOverviewContainer = styled(RowContainer)`
+  max-height: 1000px;
+  min-height: 1000px;
+`
+const ImageGalleryProductDescription = styled(ColumnContainer)`
+  width: 70%;
+`
 
 class Overview extends React.Component {
   constructor(props) {
@@ -44,15 +54,15 @@ class Overview extends React.Component {
     if (!selectedStyle || !styles) {
       return (<div></div>) // need to implement some loading feature
     } else return (
-      <div className = "product-overview-container">
-        <div className = "image-gallery-product-description">
+      <ProductOverviewContainer>
+        <ImageGalleryProductDescription>
 
         <ImageCarousel
           style={{ maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}
           selectedStyle = {selectedStyle}>
 
           {selectedStyle.photos.map(photo => {
-            return <img src = {photo.url} key = {photo.url}/>
+            return <img src = {photo.url} key = {photo.url} alt = "placeholder"/>
           })}
 
         </ImageCarousel>
@@ -64,7 +74,7 @@ class Overview extends React.Component {
           features = {features}
           id = {id}
           />
-          </div>
+        </ImageGalleryProductDescription>
           <StylesSelectionCart>
             {styles === null ? <div></div> : <StyleSelector
               scrollToReviews = {this.props.scrollToReviews}
@@ -81,7 +91,7 @@ class Overview extends React.Component {
             selectedStyle = {selectedStyle}
             />
           </StylesSelectionCart>
-      </div>
+      </ProductOverviewContainer>
     );
   };
 }

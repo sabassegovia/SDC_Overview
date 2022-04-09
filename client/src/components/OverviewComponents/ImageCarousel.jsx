@@ -13,8 +13,7 @@ const CarouselContainer = styled.main`
   justify-content: center;
   width: 100%;
   border: 3px solid #FAFAFA;
-  background-color: #FAFAFA;
-
+  /* background-color: #AFA9A9; */
 `
 const CarouselWrapper = styled.div`
   display: flex;
@@ -43,6 +42,37 @@ const CarouselContentWrapper = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+`
+const ExtraSpace = styled.div`
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  position:absolute;
+  top:0%;
+  bottom:0%;
+
+`
+
+const BlurBackground = styled.img`
+  background-image: url(${(props) => {props.src}})
+  z-index: 1;
+  width: 100%;
+  filter:blur(20px);
+`
+const BlurBackgroundImageContainer = styled.div`
+  position:relative;
+  overflow:hidden;
+  width: 100%;
+  height: 100%;
 `
 
 const ModalButton = styled.button`
@@ -51,12 +81,12 @@ const ModalButton = styled.button`
   top: 0%;
   right: 0%;
 `
+
 const ImageCarousel = (props) => {
   const {children} = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
   const [showModal, setShowModal] = useState(false);
-
 
 
   useEffect(() => {
@@ -80,7 +110,6 @@ const ImageCarousel = (props) => {
   const ThumbnailOnClick = (index) => {
     setCurrentIndex(index)
   }
-
   return (
         <CarouselContainer>
           <CarouselWrapper>
@@ -90,13 +119,27 @@ const ImageCarousel = (props) => {
               &lt;
             </LeftArrow> : null }
             <CarouselContentWrapper>
-              <div
-              onClick = {() => openModal()}
-              className = "carousel-content"
-              style={{ transform: `translateX(-${currentIndex * 100}%)`}}>
-                {children}
+                <div
+                className = "carousel-content"
+                style={{ transform: `translateX(-${currentIndex * 100}%)`}}
+                >
+                  {children.map(child => {
+                    return (
+                      <BlurBackgroundImageContainer  key = {child.props.src}>
+                        <BlurBackground src = {child.props.src} alt = "background"/>
+                        <ExtraSpace
+                          src = {child.props.src} >
+                            <img
+                          alt = ""
+                          onClick = {() => openModal()}
+                          className = "carousel-content" src = {child.props.src} />
+                        </ExtraSpace>
 
-              </div>
+                      </BlurBackgroundImageContainer>
+                    )
+                  })}
+                </div>
+
             </CarouselContentWrapper>
             {!showModal ?<RightArrow
               disabled = {currentIndex === length - 1}
