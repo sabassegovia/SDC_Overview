@@ -53,7 +53,6 @@ const Style = (props) => {
       <StyleThumbnail>
         {props.selected ? <FcOkActive><FcOk className = "thumbnail-checked"/></FcOkActive> :null}
         <Thumbnail
-
           selected = {props.selected}
           onClick = {() => {props.styleOnClick(props.style)}}>
             <ThumbnailImage url = {photos[0].url }>

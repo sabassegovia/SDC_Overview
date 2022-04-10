@@ -17,7 +17,7 @@ const BigContainer = styled(RowContainer)`
   justify-content: center;
   min-width: 1000px;
   opacity: ${props => props.isRender ? 1 : 0};
-  transition: opacity 1s linear;
+  transition: opacity 1.5s ease-in;
 `
 const AppContainer = styled(ColumnContainer)`
   background-color: #FAFAFA;
@@ -79,9 +79,7 @@ class App extends React.Component {
   }
 
   render() {
-    // if (!this.state.overview) {
-    //   return (<div></div>) // need to implement some loading feature
-    // } else
+
     return (
       <BigContainer isRender = {this.state.isRender}>
         <AppContainer border = {true} >
@@ -109,7 +107,6 @@ class App extends React.Component {
         </React.Fragment>
         }
         </AppContainer>
-
       </BigContainer>
     );
   };
