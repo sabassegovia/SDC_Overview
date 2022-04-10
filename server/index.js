@@ -9,12 +9,18 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(cors())
-
-
-app.use(express.static(__dirname + "../client/src"))
+// app.set('view engine', 'ejs');
 
 const port = 3000;
 
+app.use(express.static(__dirname + "/../client/"))
+
+
+// app.get(`/`, (req, res) => {
+//   console.log('generic hit')
+//   res.send('hi')
+//   // res.sendFile("/home/rphpandan/hackreactor/rfp2202/GOC-FEC/FEC" + "/client/index.html")
+// })
 
 app.get('/test', (req, res) => {
   res.status(200).sendFile("/home/rphpandan/hackreactor/rfp2202/GOC-FEC/FEC/client/src/index.jsx")
@@ -22,10 +28,8 @@ app.get('/test', (req, res) => {
 
 
 app.get("/*", (req, res) => {
-  console.log(req.query, '<<<<<<<<<<<<<')
      axios(configureOptions(req))
       .then((result) => {
-        // console.log(result)
         res.status(200).send(result.data)
       })
       .catch((err) => {
@@ -42,14 +46,13 @@ app.put("/*", (req, res) => {
     })
 })
 app.post("/*", (req, res) => {
-  // console.log(req.body)
    axios(configureOptions(req))
     .then((result) => {
       console.log(result.data)
       res.send(result.data)
     })
     .catch((err) => {
-      console.log('im broken')
+      console.log('im broken asdfasdf')
       res.send(err)
     })
 })

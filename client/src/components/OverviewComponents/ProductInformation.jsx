@@ -1,55 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {RowContainer, SloganDescription, ColumnContainer} from './OverviewStyles.jsx';
 import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
 
-const Description = styled(Header3)`
-margin: 10px;
-`
-const Features = styled(Header2)`
-margin: 5px 0 5px 20px;
+import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx'
+
+
+const DescriptionSloganContainer = styled(RowContainer)`
+  max-height: 400px;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 `
 const FeaturesContainer = styled(ColumnContainer)`
-  display: flex;
-  flex-direction: column;
   justify-content: flex-start;
-  width: 30%;
-  font-size:20px
-  margin: 30px;
-`
-
-const Slogan = styled(Title)`
-  margin: 5px 0px 10px 10px;
+  height: min-content;
+  width: 25%;
 
 `
-
+const SloganDescription = styled(ColumnContainer)`
+  padding-top:10px;
+  width: 75%;
+  height: 100%;
+`
+const Features = styled(Header3)`
+  padding: 10px 0 5px 5px;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+`
 const ProductInformation = (props) => {
 
   // needs start Ratings - ask mingui for hers
   //
   if (!props.features) {
-    return <div>nothing here yet</div>
+    return <div></div>
     // will need to implement a loading screen
   } else
   return (
-
-    <ColumnContainer>
-      <RowContainer>
-        <SloganDescription>
-          <Slogan>{props.slogan}</Slogan>
-          <Description>{props.description}</Description>
+      <DescriptionSloganContainer border = {true}>
+        <SloganDescription >
+          <AlignmentWrapper>
+            <Title primary = {true} underline = {true}>{props.slogan}</Title>
+          </AlignmentWrapper>
+          <AlignmentWrapper>
+            <Header3 primary = {true}>{props.description}</Header3>
+          </AlignmentWrapper>
         </SloganDescription>
 
         <FeaturesContainer>
+          <AlignmentWrapper >
           {props.features.map(feature => {
-            return <Features key = {feature.feature + feature.value}>
-                    {`${feature.feature} -   ${feature.value}`}
-                    </Features>
+            return (
+
+              <Features border = {true} primary = {true} key = {feature.feature + feature.value}>
+                  {`${feature.feature} -   ${feature.value}`}
+                </Features>
+            )
           })}
+          </AlignmentWrapper>
         </FeaturesContainer>
-      </RowContainer>
-    </ColumnContainer>
+      </DescriptionSloganContainer>
+
   )
 }
 

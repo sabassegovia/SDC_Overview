@@ -18,6 +18,25 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
   const one = ratingsStarBreakdown["1"];
   const total = (Number(five) + Number(four) + Number(three) + Number(two) + Number(one));
 
+  const MakeInputFromCharacteristics = (characteristics) => {
+
+  return Object.keys(characteristics).map(characteristic => {
+    return (
+      <div
+        key = {characteristic}>
+          {characteristic}
+        <input type = "range"
+          name = "quantity"
+          min = "1"
+          max = "5"
+          disabled = {true}
+          defaultValue = {JSON.stringify(characteristics[characteristic].value)}>
+        </input>
+      </div>
+      )
+  })
+}
+
   return (
     <div>
       <p>5 Stars <progress max="100" value={five / total * 100}></progress> {five} reviews</p>
@@ -27,18 +46,19 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
       <p>1 Stars <progress max="100" value={one / total * 100}></progress> {one} reviews</p>
         Characteristics
       <CharContainer>
+        {MakeInputFromCharacteristics(characteristics)}
         {/* Size
         <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Size']['value'])}></input>
         Width
         <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Width']['value'])}></input> */}
-        Comfort
+        {/* Comfort
         <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Comfort']['value'])}></input>
         Quality
         <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Quality']['value'])}></input>
         Length
         <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Length']['value'])}></input>
         Fit
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Fit']['value'])}></input>
+        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Fit']['value'])}></input> */}
       </CharContainer>
 
     </div>
@@ -51,3 +71,4 @@ RatingsBreakdown.propTypes = {
 }
 
 export default RatingsBreakdown;
+

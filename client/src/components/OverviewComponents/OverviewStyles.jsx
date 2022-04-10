@@ -9,49 +9,8 @@ display: flex;
 flex-direction: column;
 justify-content: space-around;
 `
-const SloganDescription = styled(ColumnContainer)`
-  justify-content: space-around;
-  width: 70%;
-  font-size:20px
-`
 
-const StylesSelectionCart = styled(ColumnContainer)`
-
-  width: 30%;
-  border-right: 3px solid rgb(117, 117, 117);
-  border-bottom: 3px solid rgb(117, 117, 117);
-  border-top:none;
-  border-left:none;
-  justify-content: flex-start;
-`
-const StyleHeader = styled(ColumnContainer)`
-  height: 60%
-`
-
-const RatingsHeader = styled(RowContainer)`
-  align-items: center;
-  /* justify-content: space-around; */
-  font-size: 20px
-`
-
-const Thumbnail = styled.img`
-border-radius: 50%;
-width: 80px;
-height: 80px;
-background: url(${(props) => props.url || `#C4C4C4`}) center;
-${({selected}) => selected && `border: 3px solid green`}
-`
-
-const StyleThumbnail = styled.div`
-position: relative
-width: 100%;
-margin: 8px;
-`
-const StyleThumbnails = styled(RowContainer)`
-flex-wrap: wrap
-`
 const CartContainer = styled(ColumnContainer)`
-
   width: 100%;
   /* border-top: 3px solid rgb(117, 117, 117); */
   justify-content: center;
@@ -59,4 +18,4 @@ const CartContainer = styled(ColumnContainer)`
   margin: 10px;
 `
 
-export {CartContainer, RowContainer, StyleThumbnail, StyleThumbnails, Thumbnail, RatingsHeader, StyleHeader, StylesSelectionCart, ColumnContainer, SloganDescription}
+export {CartContainer, RowContainer, ColumnContainer}

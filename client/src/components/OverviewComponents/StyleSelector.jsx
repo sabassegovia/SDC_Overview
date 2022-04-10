@@ -1,44 +1,103 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Style from './Style.jsx';
 import StarRatings from 'react-star-ratings';
 import RatingsStarRating from '../ReviewComponents/RatingsStarRating.jsx'
 
-import {StyleHeader, RowContainer, RatingsHeader, StyleThumbnails} from './OverviewStyles.jsx'
+import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx'
+import {Title, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
+
+const StyleContainer = styled(ColumnContainer)`
+  height: 100%;
+  border-right: none;
+  border-left: none;
+  border-bottom:none;
+`
+const RatingsHeader = styled(RowContainer)`
+  align-items: flex-end;
+  font-size: 20px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding-bottom: 10px;
+`
+const ReviewSlider = styled(Header4)`
+  cursor: pointer;
+  &&:hover {
+    transition-duration: .3s;
+    background:#e4e4e4;
+    color: #3e3e3e;
+    transform: scale(1.1);
+  };
+`
+const StyleThumbnails = styled(RowContainer)`
+  flex-wrap: wrap;
+  justify-content: flex-start;
+`
+const PriceContainer = styled(RowContainer)`
+`
+const StyleSelectorDescription = styled(ColumnContainer)`
+  margin-bottom: 20px;
+`
+const StyleNameContaner = styled(RowContainer)`
+  width:100%;
+  padding-bottom: 20px;
+  `
+
 
 const StyleSelector = (props) => {
-
-
   var {original_price, sale_price, name, style_id} = props.selectedStyle
+
   return (
-    <StyleHeader>
-      {/* will need aratings component */}
-      <RatingsHeader>
-        <RatingsStarRating rating = {props.rating}/>
-        <a
-          onClick = {() => {props.scrollToReviews()}}
-          href="#reviews"
-          >read all reviews</a>
-      </RatingsHeader>
-      <h3>{props.category} - {props.name} </h3>
-      {sale_price ? <h3><span style={{textDecorationLine: 'line-through'}}>{`$${original_price}`}</span><span style={{color: 'red'}}>{`- SALE $${sale_price}`}</span></h3> : <h3>{`$${original_price}`}</h3>}
-      <section className = "style-selection" >
-          <h2>Style &gt; {name}</h2>
+    <StyleContainer border = {true}  >
+      <StyleSelectorDescription >
+
+        <AlignmentWrapper>
+          <RatingsHeader border = {true} >
+            <Title primary = {true}>{props.rating}</Title>
+
+            <RatingsStarRating rating = {props.rating} />
+            <ReviewSlider
+              primary = {true}
+              border = {true}
+              onClick = {() => {props.scrollToReviews()}}
+              href="#reviews"
+              >read all reviews</ReviewSlider>
+          </RatingsHeader>
+        </AlignmentWrapper>
+
+        <AlignmentWrapper>
+          <Header2>{props.category} - {props.name} </Header2>
+        </AlignmentWrapper>
+
+        <AlignmentWrapper>
+          <PriceContainer >
+            {sale_price ? <Header2 ><span style={{textDecorationLine: 'line-through'}}>{`$${original_price}`}</span><span style={{color: 'red'}}>{` SALE $${sale_price}`}</span></Header2> : <Header2>{`$${original_price}`}</Header2>}
+          </PriceContainer>
+        </AlignmentWrapper>
+      </StyleSelectorDescription>
+
+      <AlignmentWrapper>
+        <ColumnContainer >
+          <StyleNameContaner underline = {true}>
+            <Header2>Style &gt; {name}</Header2>
+          </StyleNameContaner>
           <StyleThumbnails>
             {props.styles.map(style => {
               return <Style
-                selected = {style.style_id === props.selectedStyle.style_id}
-                // selected = {props.selectedStyle.style_id}
-                key = {style.name}
-                style = {style}
-                styleOnClick = {props.styleOnClick}
-                />
+              selected = {style.style_id === props.selectedStyle.style_id}
+              // selected = {props.selectedStyle.style_id}
+              key = {style.name}
+              style = {style}
+              styleOnClick = {props.styleOnClick}
+              />
             })}
-
           </StyleThumbnails>
-      </section>
-    </StyleHeader>
+        </ColumnContainer>
+      </AlignmentWrapper>
+
+    </StyleContainer>
   );
 }
 

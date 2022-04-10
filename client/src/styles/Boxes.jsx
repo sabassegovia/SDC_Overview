@@ -1,5 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Theme} from './Headers.jsx'
+
+const RowContainer = styled(Theme)`
+  display: flex;
+  flex-direction: row;
+`
+
+const ColumnContainer = styled(Theme)`
+  display: flex;
+  flex-direction: column;
+`
+const AlignmentWrapper = styled.div`
+  margin: 10px;
+`
 
 const DescriptionBox = styled.div`
   height: 300px;
@@ -101,4 +115,4 @@ const IndividualCharacteristic = styled(CharacteristicsButtons)`
 
 
 
-export {DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic }
+export {RowContainer, ColumnContainer, AlignmentWrapper, DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic, Theme }
