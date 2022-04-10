@@ -31,21 +31,47 @@ class Ratings extends React.Component {
       isMounted: false,
       rating: 0,
       reviews: [],
+      count: 2,
       ratings: {},
-      viewMoreReviews: false,
+      // viewMoreReviews: false,
       recommendedRatio: 0,
       characteristics: {}
     }
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
+    this.getReviews = this.getReviews.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   handleMoreReviews(event) {
     event.preventDefault();
-    this.setState({viewMoreReviews: !this.state.viewMoreReviews});
+    let newCount = this.state.count + 2;
+    this.setState({count: newCount}, () => {this.getReviews();})
+  }
+
+  getReviews() {
+    let params = { product_id: this.props.product_id, count: this.state.count };
+    Axios.get(`/reviews/`, { params })
+    .then(result => {
+      console.log(result.data);
+      this.setState({ reviews: result.data.results});
+    })
+    .catch(err => {console.log(err)})
+  }
+
+  handleSort(event) {
+    event.preventDefault();
+    console.log(event.target.value);
+    let params = { product_id: this.props.product_id, count: this.state.count, sort: event.target.value };
+    Axios.get(`/reviews/`, { params })
+    .then(result => {
+      console.log(result.data);
+      this.setState({reviews: result.data.results})
+    })
+    .catch(err => {console.log(err)});
   }
 
   componentDidMount() {
-    let params = { product_id: this.props.product_id, count: 5 };
+    let params = { product_id: this.props.product_id, count: 2 };
     Axios.get(`/reviews/`, { params })
       .then(result => {
         console.log(result.data.results);
@@ -87,22 +113,11 @@ class Ratings extends React.Component {
     // let review;
     const ratingPercent = this.state.recommendedRatio * 100;
 
-    let ReviewTiles;
+    let ReviewTiles = (this.state.reviews.map((review, i) => (
+      <ReviewBox key={i}>
+        <ReviewTile review={review} />
+      </ReviewBox>)));
 
-    if (this.state.viewMoreReviews) {
-      ReviewTiles = this.state.reviews.map((review, i) => (
-        <ReviewBox key={i}>
-          <ReviewTile review={review} />
-        </ReviewBox>
-      ))
-
-    } else {
-      ReviewTiles = this.state.reviews.slice(0, 2).map((review, i) => (
-        <ReviewBox key={i}>
-          <ReviewTile review={review} />
-        </ReviewBox>
-      ))
-    }
     if (!this.state.isMounted) {
       return <div></div>
     }
@@ -125,11 +140,19 @@ class Ratings extends React.Component {
               </h1>
               <p>{ratingPercent}% of reviews recommend this product</p>
               <div>
-                <RatingsBreakdown ratingsStarBreakdown={this.state.ratings} characteristics={this.state.characteristics}/>
+                <RatingsBreakdown ratingsStarBreakdown={this.state.ratings} characteristics={this.state.characteristics} />
               </div>
             </BreakdownBox>
             <div>
               <ReviewsContainer>
+                <Title>
+                  Sort on: <select className="selectNative js-selectNative" onChange={this.handleSort}>
+                  <option >select</option>
+                  <option value="newest">newest</option>
+                  <option value="helpful">helpful</option>
+                  <option value="relevent">relevant</option>
+                </select>
+                  </Title>
                 {ReviewTiles}
               </ReviewsContainer>
               <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
@@ -137,7 +160,7 @@ class Ratings extends React.Component {
 
           </ReallyBigBox>
           <Button>Add a Review</Button>
-          <AddReview characteristics={this.state.characteristics}/>
+          <AddReview characteristics={this.state.characteristics} />
         </div>
       </div>
     );
