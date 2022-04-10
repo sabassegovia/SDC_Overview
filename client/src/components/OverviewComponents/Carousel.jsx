@@ -1,53 +1,45 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
-import {RowContainer, ColumnContainer} from './OverviewStyles.jsx'
-import { TiArrowUpThick, TiArrowDownThick } from "react-icons/ti";
+import {RowContainer, ColumnContainer} from '../../styles/Boxes.jsx'
+import { TiArrowRightThick, TiArrowLeftThick } from "react-icons/ti";
 
-const CarouselContainer = styled(ColumnContainer)`
-  height: 1000px;
-  overflow: hidden;
-  justify-content: flex-start;
+const CarouselContainer = styled(RowContainer)`
+  /* height: 1000px; */
+  /* overflow: hidden; */
   position: absolute;
-  z-index: 1;
-  top: 0%;
-  left: 0%;
+  justify-content: space-around;
+  z-index: 999;
+  bottom: 0%;
+  left: 44%;
+  width: 65px;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.05)
+  };
+`
+const ThumbnailBackground = styled.div`
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1)
+  };
 
 `
 const ThumbnailImage = styled.img`
-  height: 60px;
-  width: 60px;
-  margin: 10px 0px 0px 0px;
-  opacity: 60%;
+  max-height: 65px;
+  max-width: 65px;
+  border-radius:10%;
+  margin: 10px 5px 10px 5px;
+  border: 1px solid black;
 `
 const NavButtons = styled.button`
-  margin: 10px 0px 0px 0px;
-  opacity: 25%;
-
-
+  margin: 10px 5px 10px 5px;
+  opacity: 1;
+  border: 1px solid black;
 `
-// const Arrow = styled.button`
-//   position: relative;
-//   z-index: 1;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   width: 48px;
-//   height: 48px;
-//   border-radius: 24px;
-//   background-color: white;
-//   border: 1px solid #ddd;
-// `
-// const LeftArrow = styled(Arrow)`
-//   left: 24px;
-// `
-// const RightArrow = styled(Arrow)`
-//   right: 24px;
-// `
-// const CarouselContentWrapper = styled.div`
-//   overflow: hidden;
-//   width: 100%;
-//   height: 100%;
-// `
 const Carousel = (props) => {
 
   var photos = props.selectedStyle.photos.map(photo => {
@@ -71,22 +63,23 @@ const Carousel = (props) => {
     <CarouselContainer>
       <NavButtons
       disabled = {current === 0}
-      onClick = {() => prev()}><TiArrowUpThick/></NavButtons>
+      onClick = {() => prev()}><TiArrowLeftThick/></NavButtons>
       {photos.map((photo, index) => {
-        if (index <= current + 2 && index >= current) {
+        if (index <= current + 6 && index >= current) {
           return (
-          <ThumbnailImage
-          key = {index}
-          name = {index}
-          onClick = {(e) => {handleThumbnailClick(index)}}
-          src = {photo} />
+            <ThumbnailBackground key = {index}>
+                <ThumbnailImage
+                name = {index}
+                onClick = {(e) => {handleThumbnailClick(index)}}
+                src = {photo} />
+            </ThumbnailBackground>
           )}
         }
       )}
       {/* <button onClick = {() => {props.ThumbnailOnClick()}}>test</button> */}
       <NavButtons
-      disabled = {current === 3}
-      onClick = {() => next()}><TiArrowDownThick /></NavButtons>
+      disabled = {current === length - 6}
+      onClick = {() => next()}><TiArrowRightThick /></NavButtons>
     </CarouselContainer>
     </div>
   )

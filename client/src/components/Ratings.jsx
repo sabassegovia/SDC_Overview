@@ -36,7 +36,6 @@ class Ratings extends React.Component {
       // viewMoreReviews: false,
       recommendedRatio: 0,
       characteristics: {}
-
     }
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
@@ -90,18 +89,18 @@ class Ratings extends React.Component {
             const productrating = parseFloat(totalweighted / totalratings).toFixed(1);
 
             this.setState({
-              rating: productrating,
+              rating: Number(productrating),
               ratings: result.data.ratings,
               recommendedRatio: parseFloat(Number(result.data.recommended.true) / (Number(result.data.recommended.true) + Number(result.data.recommended.false))).toFixed(2),
               characteristics: result.data.characteristics,
               isMounted: true,
-            })
+            }, () => {this.props.handleRating(this.state.rating)})
           })
           .catch(err => { console.log(err) });
         this.setState({
 
           reviews: result.data.results
-        }, () => {this.props.handleRating(this.state.rating)}
+        }
        );
       })
       .catch(err => { console.log(err) });

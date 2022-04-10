@@ -3,18 +3,21 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components';
 import Carousel from './Carousel.jsx';
 import Modal from './Modal.jsx'
-import {RowContainer, ColumnContainer} from './OverviewStyles.jsx'
+import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx'
 import {FaExpand} from 'react-icons/fa'
 
-const CarouselContainer = styled.main`
+const CarouselContainer = styled(ColumnContainer)`
   display:flex;
   position: relative;
-  height: 80%;
   justify-content: center;
+  max-height: 1000px;
+  overflow: hidden;
   width: 100%;
-  border: 3px solid #FAFAFA;
-  background-color: #FAFAFA;
-
+  opacity: 0;
+  transition: opacity 1s;
+  ${ props => props.isRender &&`
+    opacity: 1;
+  `};
 `
 const CarouselWrapper = styled.div`
   display: flex;
@@ -24,14 +27,18 @@ const CarouselWrapper = styled.div`
 const Arrow = styled.button`
   position: absolute;
   z-index: 3;
-  top: 80%;
+  bottom: 18%;
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
   border-radius: 36px;
-  background-color: #ddd;
-  border: 1px solid #0f0f0f;
-  opacity: 0.25;
+  background-color: #747474;
+  border: 2px solid black;
+  opacity: 0.60;
+  color: #e4e4e4;
+  &&:hover {
+    background-color: #5a5a5a;
+  };
 `
 const LeftArrow = styled(Arrow)`
   left: 24px;
@@ -40,11 +47,39 @@ const RightArrow = styled(Arrow)`
   right: 24px;
 `
 const CarouselContentWrapper = styled.div`
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
   height: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
 `
-
+const ExtraSpace = styled.div`
+  display:flex;
+  flex-direction: row;
+  min-width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  position:absolute;
+  top:0%;
+  bottom:0%;
+`
+const BlurBackground = styled.img`
+  z-index: 1;
+  width: 100%;
+  height: 1000px;
+  filter:blur(20px);
+`
+const BlurBackgroundImageContainer = styled.div`
+  position:relative;
+  overflow:hidden;
+  width: 100%;
+  height: 150%;
+`
 const ModalButton = styled.button`
   position: absolute;
   background: none;
@@ -53,23 +88,24 @@ const ModalButton = styled.button`
 `
 const ImageCarousel = (props) => {
   const {children} = props;
+  const [isRender, setIsRender] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
   const [showModal, setShowModal] = useState(false);
 
 
-
   useEffect(() => {
+    setIsRender(prev => true)
     setLength(children.length)
-  }, [children])
+  }, [children, isRender])
 
   const openModal = () => {
     setShowModal(prev => !prev)
   }
-
   const next = () => {
     if (currentIndex < (length - 1)) {
       setCurrentIndex(currentIndex === length - 1 ? 0 : currentIndex + 1)
+
     }
   }
   const prev = () => {
@@ -80,9 +116,9 @@ const ImageCarousel = (props) => {
   const ThumbnailOnClick = (index) => {
     setCurrentIndex(index)
   }
-
   return (
-        <CarouselContainer>
+        <React.Fragment>
+          <CarouselContainer isRender = {isRender}>
           <CarouselWrapper>
             {!showModal ?<LeftArrow
               disabled = {currentIndex === 0}
@@ -90,13 +126,25 @@ const ImageCarousel = (props) => {
               &lt;
             </LeftArrow> : null }
             <CarouselContentWrapper>
-              <div
-              onClick = {() => openModal()}
-              className = "carousel-content"
-              style={{ transform: `translateX(-${currentIndex * 100}%)`}}>
-                {children}
-
-              </div>
+                <div
+                className = "carousel-content"
+                style={{ transform: `translateX(-${currentIndex * 100}%)`}}
+                >
+                  {children.map(child => {
+                    return (
+                      <BlurBackgroundImageContainer  key = {child.props.src}>
+                        <BlurBackground src = {child.props.src} alt = "background"/>
+                        <ExtraSpace
+                          src = {child.props.src} >
+                            <img
+                          alt = ""
+                          onClick = {() => openModal()}
+                          className = "carousel-content" src = {child.props.src} />
+                        </ExtraSpace>
+                      </BlurBackgroundImageContainer>
+                    )
+                  })}
+                </div>
             </CarouselContentWrapper>
             {!showModal ?<RightArrow
               disabled = {currentIndex === length - 1}
@@ -104,7 +152,9 @@ const ImageCarousel = (props) => {
             &gt;
           </RightArrow>:null}
           </CarouselWrapper>
-          {!showModal ?<Carousel
+            {!showModal ?
+
+          <Carousel
             selectedStyle = {props.selectedStyle}
             ThumbnailOnClick = {(index) => {ThumbnailOnClick(index)}}
             /> : null }
@@ -116,7 +166,8 @@ const ImageCarousel = (props) => {
             showModal = {showModal}
             img = {props.selectedStyle.photos[currentIndex].url}
             /> : null}
-        </CarouselContainer>
+          </CarouselContainer>
+        </React.Fragment>
   )
 }
 ImageCarousel.propTypes = {

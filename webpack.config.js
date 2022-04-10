@@ -30,4 +30,15 @@ module.exports = {
       template: path.join(__dirname, "client", "index.html"),
     }),
   ],
+  // devServer: {
+  //   onListening: (args) => {
+  //     console.log('im wacthing u', args , '<<<<<<<<<<')
+  //   },
+  //   historyApiFallback: true,
+
+  //   // static: {
+  //   //   directory: path.join(__dirname, "client/"),
+  //   //   publicPath: '/*'
+  //   // }
+  // }
 }

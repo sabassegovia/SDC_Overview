@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import {RowContainer, ColumnContainer} from './OverviewStyles.jsx'
 import { MdClose } from 'react-icons/md';
+import ReactDom from 'react-dom'
 
 
 const Background = styled.div`
@@ -17,22 +18,21 @@ const Background = styled.div`
   justify-content: center;
   align-items: center;
   border: 20px;
+  opacity: ${props => props.isRender ? 1 : 0};
+  transition: opacity 0.6s linear;
+  z-index: 999;
 `;
 
 const ModalWrapper = styled.div`
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
-  background: #fff;
   color: #000;
-  /* display: grid;
-  grid-template-columns: 1fr; */
   position: relative;
-  z-index: 20;
   border-radius: 5px;
 `;
 
 const ModalImg = styled.img`
-  max-height: 1200px;
-  max-width: 1000px;
+  max-height: 1080px;
+  max-width: 1920px;
   background: #000;
 `;
 
@@ -49,7 +49,6 @@ const ModalContent = styled.div`
   button {
     padding: 10px 24px;
     background: #141414;
-    color: #fff;
     border: none;
   }
 `;
@@ -67,32 +66,34 @@ const CloseModalButton = styled(MdClose)`
 
 const Modal = (props) => {
   const modalRef = useRef();
+  const [isRender, setIsRender] = useState(false)
+  useEffect(()=> {
+    console.log('im fired', isRender)
+    setIsRender(prev => true)
+  }, [isRender])
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
       props.setShowModal(false);
     }
+    setIsRender(prev => false)
   }
 
-
-  return (
+  return ReactDom.createPortal (
     <>
       {props.showModal ? (
-        <Background onClick={closeModal} ref={modalRef}>
+        <Background onClick={closeModal} ref={modalRef} isRender = {isRender}>
           <ModalWrapper>
-            <ModalContent>
-
+            <ModalContent >
               <ModalImg src={props.img} alt='camera' />
-
               <CloseModalButton
                 aria-label='Close modal'
                 onClick={() => props.setShowModal(prev => !prev)}
               />
             </ModalContent>
-
           </ModalWrapper>
         </Background>
       ) : null}
-    </>
+    </>, document.getElementById('portal2')
   );
 }
 
