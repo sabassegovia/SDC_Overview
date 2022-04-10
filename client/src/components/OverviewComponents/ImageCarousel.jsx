@@ -13,7 +13,11 @@ const CarouselContainer = styled(ColumnContainer)`
   max-height: 1000px;
   overflow: hidden;
   width: 100%;
-
+  opacity: 0;
+  transition: opacity 1s;
+  ${ props => props.isRender &&`
+    opacity: 1;
+  `};
 `
 const CarouselWrapper = styled.div`
   display: flex;
@@ -84,12 +88,14 @@ const ModalButton = styled.button`
 `
 const ImageCarousel = (props) => {
   const {children} = props;
+  const [isRender, setIsRender] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
+    setIsRender(prev => true)
     setLength(children.length)
-  }, [children])
+  }, [children, isRender])
 
   const openModal = () => {
     setShowModal(prev => !prev)
@@ -97,6 +103,7 @@ const ImageCarousel = (props) => {
   const next = () => {
     if (currentIndex < (length - 1)) {
       setCurrentIndex(currentIndex === length - 1 ? 0 : currentIndex + 1)
+
     }
   }
   const prev = () => {
@@ -109,7 +116,7 @@ const ImageCarousel = (props) => {
   }
   return (
         <React.Fragment>
-          <CarouselContainer >
+          <CarouselContainer isRender = {isRender}>
           <CarouselWrapper>
             {!showModal ?<LeftArrow
               disabled = {currentIndex === 0}

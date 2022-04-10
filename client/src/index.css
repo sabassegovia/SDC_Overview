@@ -39,17 +39,6 @@
 
 
 
-/*
-.cart {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-top: 3px solid rgb(117, 117, 117);
-  justify-content: center;
-  align-items: center;
-} */
-
-
 .related-products-outfits {
   display: flex;
   flex-direction: column;

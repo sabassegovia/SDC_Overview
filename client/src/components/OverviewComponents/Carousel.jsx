@@ -11,20 +11,28 @@ const CarouselContainer = styled(RowContainer)`
   justify-content: space-around;
   z-index: 999;
   bottom: 0%;
-  right: 50%;
+  left: 45%;
   width: 65px;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.05)
+  };
 `
 const ThumbnailBackground = styled.div`
   display:flex;
   flex-direction: row;
   justify-content: space-around;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1)
+  };
 
 `
 const ThumbnailImage = styled.img`
-  max-height: 60px;
-  max-width: 60px;
+  max-height: 65px;
+  max-width: 65px;
+  border-radius:10%;
   margin: 10px 5px 10px 5px;
-  opacity: 100%;
   border: 1px solid black;
 `
 const NavButtons = styled.button`

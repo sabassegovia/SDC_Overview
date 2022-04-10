@@ -19,11 +19,12 @@ const FeaturesContainer = styled(ColumnContainer)`
 
 `
 const SloganDescription = styled(ColumnContainer)`
+  padding-top:10px;
   width: 75%;
   height: 100%;
 `
 const Features = styled(Header2)`
-  padding: 0 0 5px 5px;
+  padding: 10px 0 5px 5px;
   border-top: none;
   border-bottom: none;
   border-right: none;

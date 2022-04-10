@@ -1,7 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = styled.button`
+
+const ButtonTheme = styled.button`
+  &:hover {
+  transition-duration: .3s;
+  transform: scale(1.05)
+};
+
+
+`
+
+const Button = styled(ButtonTheme)`
     background: ${props => props.primary ? "black" : "#000"};
     color: ${props => props.primary ? "white" : "#fff" };
     font-size: 1em;

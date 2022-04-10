@@ -30,6 +30,7 @@ const MainHeader = styled(RowContainer)`
   min-height: 100px;
   background-color: #2e2e2e;
   border: 5px solid #FAFAFA;
+  border-radius: 20px;
 `
 class App extends React.Component {
   constructor(props) {

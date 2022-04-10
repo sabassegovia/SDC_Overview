@@ -40,9 +40,8 @@ width: 100%;
 `
 const FcOkActive = styled.div`
   position:absolute;
-  top:13%;
+  top:9%;
   right:21%;
-  z-index: 2;
 `
 const Style = (props) => {
   var {photos, name, original_price, sale_price, style_id} = props.style

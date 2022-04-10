@@ -17,7 +17,7 @@ const RatingsHeader = styled(RowContainer)`
   border-top: none;
   border-right: none;
   border-left: none;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 `
 const ReviewSlider = styled(Header4)`
   cursor: pointer;
@@ -37,11 +37,24 @@ const PriceContainer = styled(RowContainer)`
 const StyleSelectorDescription = styled(ColumnContainer)`
   margin-bottom: 20px;
 `
-
+const SocialButonRow = styled(RowContainer)`
+  justify-content:space-around;
+`
 const StyleNameContaner = styled(RowContainer)`
   width:100%;
   padding-bottom: 20px;
 `
+const MediaButton = styled.button`
+  width: 20%;
+  height: 50px;
+  background: #e4e4e4;
+  color:  #3e3e3e;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1)
+  };
+`
+
 const StyleSelector = (props) => {
   var {original_price, sale_price, name, style_id} = props.selectedStyle
   return (
@@ -89,6 +102,14 @@ const StyleSelector = (props) => {
             })}
           </StyleThumbnails>
         </ColumnContainer>
+      </AlignmentWrapper>
+
+      <AlignmentWrapper>
+        <SocialButonRow>
+          <MediaButton>Facebook</MediaButton>
+          <MediaButton>Pinterest</MediaButton>
+          <MediaButton>Twitter</MediaButton>
+        </SocialButonRow>
       </AlignmentWrapper>
     </StyleContainer>
   );
