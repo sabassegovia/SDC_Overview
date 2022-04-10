@@ -45,18 +45,6 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
         Characteristics
       <CharContainer>
         {MakeInputFromCharacteristics(characteristics)}
-        {/* Size
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Size']['value'])}></input>
-        Width
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Width']['value'])}></input> */}
-        {/* Comfort
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Comfort']['value'])}></input>
-        Quality
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Quality']['value'])}></input>
-        Length
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Length']['value'])}></input>
-        Fit
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Fit']['value'])}></input> */}
       </CharContainer>
 
     </div>
