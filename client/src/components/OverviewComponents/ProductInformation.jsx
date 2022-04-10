@@ -7,7 +7,7 @@ import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxe
 
 
 const DescriptionSloganContainer = styled(RowContainer)`
-  min-height: 180px;
+  max-height: 400px;
   border-left: none;
   border-right: none;
   border-bottom: none;
@@ -23,7 +23,7 @@ const SloganDescription = styled(ColumnContainer)`
   width: 75%;
   height: 100%;
 `
-const Features = styled(Header2)`
+const Features = styled(Header3)`
   padding: 10px 0 5px 5px;
   border-top: none;
   border-bottom: none;

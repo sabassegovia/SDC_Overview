@@ -37,11 +37,13 @@ background: url(${(props) => props.url || `Not Availabe`}) center;
 const StyleThumbnail = styled.div`
 position: relative
 width: 100%;
+
 `
 const FcOkActive = styled.div`
   position:absolute;
-  top:9%;
-  right:21%;
+  top:11px;
+  right:19px;
+  z-index: 2;
 `
 const Style = (props) => {
   var {photos, name, original_price, sale_price, style_id} = props.style

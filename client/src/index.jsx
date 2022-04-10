@@ -16,12 +16,15 @@ import {ColumnContainer, RowContainer, AlignmentWrapper, Theme} from './styles/B
 const BigContainer = styled(RowContainer)`
   justify-content: center;
   min-width: 1000px;
+  opacity: ${props => props.isRender ? 1 : 0};
+  transition: opacity 1s linear;
 `
 const AppContainer = styled(ColumnContainer)`
   background-color: #FAFAFA;
   margin: 10px;
   min-width: 1000px;
   max-width: 1400px;
+  border-radius: 12px;
 `
 const MainHeader = styled(RowContainer)`
   justify-content: space-between;
@@ -31,6 +34,7 @@ const MainHeader = styled(RowContainer)`
   background-color: #2e2e2e;
   border: 5px solid #FAFAFA;
   border-radius: 20px;
+
 `
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +44,7 @@ class App extends React.Component {
       product_id: 65631,
       rating: 0,
       documentTitle: null,
+      isRender: false,
     }
     this.ratings = React.createRef()
     this.handleRating = this.handleRating.bind(this);
@@ -67,19 +72,20 @@ class App extends React.Component {
       // console.log(result.data)
       this.setState({
         overview: result.data,
-        documentTitle: `${result.data.category} - ${result.data.name}`
+        documentTitle: `${result.data.category} - ${result.data.name}`,
+        isRender: true,
       }, () => {document.title = this.state.documentTitle});
     });
   }
 
   render() {
-    if (!this.state.overview) {
-      return (<div></div>) // need to implement some loading feature
-    } else
+    // if (!this.state.overview) {
+    //   return (<div></div>) // need to implement some loading feature
+    // } else
     return (
-      <BigContainer>
-        <AppContainer border = {true}>
-          <MainHeader>
+      <BigContainer isRender = {this.state.isRender}>
+        <AppContainer border = {true} >
+          <MainHeader >
             <AlignmentWrapper>
               <Title secondary = {true} underline = {true}   >Project Atelier</Title>
             </AlignmentWrapper>
@@ -88,17 +94,22 @@ class App extends React.Component {
               <Title secondary = {true} >LOGO</Title>
             </AlignmentWrapper>
           </MainHeader>
-        <Overview
-        scrollToReviews = {this.scrollToReviews}
-        rating = {this.state.rating}
-        overview = {this.state.overview}/>
-        <RelatedItems overview = {this.state.overview}/>
-        <QnA product_id = {this.state.overview.id}/>
-      <div ref = {this.ratings}></div>
-        <Ratings
-          product_id = {this.state.overview.id}
-          handleRating={this.handleRating}/>
+        {!this.state.overview ? <div></div> :
+        <React.Fragment>
+          <Overview
+            scrollToReviews = {this.scrollToReviews}
+            rating = {this.state.rating}
+            overview = {this.state.overview}/>
+          <RelatedItems overview = {this.state.overview}/>
+          <QnA product_id = {this.state.overview.id}/>
+            <div ref = {this.ratings}></div>
+          <Ratings
+            product_id = {this.state.overview.id}
+            handleRating={this.handleRating}/>
+        </React.Fragment>
+        }
         </AppContainer>
+
       </BigContainer>
     );
   };

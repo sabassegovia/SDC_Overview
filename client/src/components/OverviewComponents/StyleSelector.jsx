@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Style from './Style.jsx';
@@ -10,6 +10,9 @@ import {Title, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
 
 const StyleContainer = styled(ColumnContainer)`
   height: 100%;
+  border-right: none;
+  border-left: none;
+  border-bottom:none;
 `
 const RatingsHeader = styled(RowContainer)`
   align-items: flex-end;
@@ -37,34 +40,24 @@ const PriceContainer = styled(RowContainer)`
 const StyleSelectorDescription = styled(ColumnContainer)`
   margin-bottom: 20px;
 `
-const SocialButonRow = styled(RowContainer)`
-  justify-content:space-around;
-`
 const StyleNameContaner = styled(RowContainer)`
   width:100%;
   padding-bottom: 20px;
-`
-const MediaButton = styled.button`
-  width: 20%;
-  height: 50px;
-  background: #e4e4e4;
-  color:  #3e3e3e;
-  &:hover {
-    transition-duration: .3s;
-    transform: scale(1.1)
-  };
-`
+  `
+
 
 const StyleSelector = (props) => {
   var {original_price, sale_price, name, style_id} = props.selectedStyle
+
   return (
-    <StyleContainer border = {false} >
+    <StyleContainer border = {true}  >
       <StyleSelectorDescription >
 
         <AlignmentWrapper>
           <RatingsHeader border = {true} >
             <Title primary = {true}>{props.rating}</Title>
-            <RatingsStarRating rating = {props.rating}/>
+
+            <RatingsStarRating rating = {props.rating} />
             <ReviewSlider
               primary = {true}
               border = {true}
@@ -104,13 +97,6 @@ const StyleSelector = (props) => {
         </ColumnContainer>
       </AlignmentWrapper>
 
-      <AlignmentWrapper>
-        <SocialButonRow>
-          <MediaButton>Facebook</MediaButton>
-          <MediaButton>Pinterest</MediaButton>
-          <MediaButton>Twitter</MediaButton>
-        </SocialButonRow>
-      </AlignmentWrapper>
     </StyleContainer>
   );
 }

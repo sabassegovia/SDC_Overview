@@ -11,9 +11,10 @@ import {CartContainer, RowContainer, ColumnContainer, AlignmentWrapper} from '..
 
 const StyleQuantityCartContainer = styled(ColumnContainer)`
 justify-content: space-between;
-min-height: 180px;
+max-height: 240px;
 border-left: none;
 border-right: none;
+border-top: none;
 `
 const StyleQuantityContainer = styled(RowContainer)`
 justify-content: space-between;
@@ -27,6 +28,7 @@ const SizeSelect = styled(Select)`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 16px;
   margin: 0 10px 0 0 ;
+  border-radius: 12px;
 `
 const QuantitySelect = styled(SizeSelect)`
   width: 40%;
@@ -41,11 +43,28 @@ const AddtoCartButton = styled.button`
   &:hover {
     background: #ededed
   };
+  border-radius: 12px;
+
 `;
 
 const AddtoCartText = styled.option`
   font-size: 24px;
 `
+const SocialButonRow = styled(RowContainer)`
+  justify-content:space-between;
+`
+const MediaButton = styled.button`
+  width: 20%;
+  height: 50px;
+  background: #e4e4e4;
+  color:  #3e3e3e;
+  border-radius: 12px;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1)
+  };
+`
+
 
 const AddToCart = (props) => {
   var skus_ids = Object.keys(props.selectedStyle.skus)
@@ -140,6 +159,15 @@ const AddToCart = (props) => {
         <SelectSizeModal
           setOpenSizeModal = {setOpenSizeModal}
           openSizeModal = {openSizeModal}/>
+      </AlignmentWrapper>
+
+      <AlignmentWrapper>
+        <SocialButonRow>
+            <MediaButton>Facebook</MediaButton>
+            <MediaButton>Pinterest</MediaButton>
+            <MediaButton>Twitter</MediaButton>
+        </SocialButonRow>
+
       </AlignmentWrapper>
     </StyleQuantityCartContainer>
   );

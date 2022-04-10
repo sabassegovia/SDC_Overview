@@ -35,7 +35,7 @@ const Title = styled(Theme)`
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
-  line-height: 35px;
+  line-height: 48px;
 `;
 
 

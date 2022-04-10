@@ -20,7 +20,7 @@ const Background = styled.div`
   border: 20px;
   opacity: ${props => props.isRender ? 1 : 0};
   transition: opacity 0.6s linear;
-
+  z-index: 999;
 `;
 
 const ModalWrapper = styled.div`
@@ -93,7 +93,7 @@ const Modal = (props) => {
           </ModalWrapper>
         </Background>
       ) : null}
-    </>, document.getElementById('portal')
+    </>, document.getElementById('portal2')
   );
 }
 

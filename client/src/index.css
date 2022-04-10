@@ -167,8 +167,7 @@ input[name="rating"] {
   --percent: calc(var(--ReviewRating) / 5 * 100%);
   --star-size: 20px;
   --star-color: #fff;
-  --star-background: #000;
-
+  --star-background: rgb(0, 0, 0);
   display: inline-block;
   font-size: var(--star-size);
   font-family: Times;

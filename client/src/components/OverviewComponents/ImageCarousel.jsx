@@ -27,7 +27,7 @@ const CarouselWrapper = styled.div`
 const Arrow = styled.button`
   position: absolute;
   z-index: 3;
-  top: 70%;
+  bottom: 18%;
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
@@ -36,7 +36,7 @@ const Arrow = styled.button`
   border: 2px solid black;
   opacity: 0.60;
   color: #e4e4e4;
-  &:hover {
+  &&:hover {
     background-color: #5a5a5a;
   };
 `
@@ -92,6 +92,8 @@ const ImageCarousel = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
   const [showModal, setShowModal] = useState(false);
+
+
   useEffect(() => {
     setIsRender(prev => true)
     setLength(children.length)
@@ -143,7 +145,6 @@ const ImageCarousel = (props) => {
                     )
                   })}
                 </div>
-
             </CarouselContentWrapper>
             {!showModal ?<RightArrow
               disabled = {currentIndex === length - 1}

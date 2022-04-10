@@ -11,7 +11,7 @@ const CarouselContainer = styled(RowContainer)`
   justify-content: space-around;
   z-index: 999;
   bottom: 0%;
-  left: 45%;
+  left: 44%;
   width: 65px;
   &:hover {
     transition-duration: .3s;
