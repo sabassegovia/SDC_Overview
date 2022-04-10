@@ -29,152 +29,106 @@ class AddReview extends React.Component {
       characteristics: {}
     }
     this.onReviewSubmit = this.onReviewSubmit.bind(this);
+    this.onCharSubmit = this.onCharSubmit.bind(this);
   }
-
-  componentDidMount() {
-    this.setState({characteristics: this.props.characteristics})
-  }
-
 
   onReviewSubmit(event) {
     event.preventDefault();
+    this.setState({
+      summary: event.target[0].value,
+      body: event.target[1].value,
+      name: event.target[2].value,
+      email: event.target[3].value
+    })
   }
 
+  onCharSubmit(event) {
+    event.preventDefault();
+
+    let id = event.target.name;
+    let copiedCharacteristics = this.state.characteristics;
+    copiedCharacteristics[id] = event.target.value;
+    console.log(JSON.stringify(copiedCharacteristics));
+    this.setState({ characteristics: copiedCharacteristics });
+  }
 
   render() {
-    return(
+    const MakeFormFromCharacteristics = (characteristics) => {
+
+      const formDescriptions = {
+        Fit: ["Runs tight", "Runs slightly tight", "Perfect", "Runs slightly long", "Runs long" ],
+        Length:["Runs short", "Runs slightly short", "Perfect", "Runs slightly long", "Runs long" ],
+        Comfort: ["Uncomfortable", "Slightly uncomfortable", "Ok", "Comfortable", "Perfect"],
+        Quality: ["Poor", "Below average", "What I expected", "Pretty great", "Perfect"],
+        Size: ["A size too small" , "1/2 a size too small", "Perfect" , "1/2 a size too big", "A size too wide"],
+        Width: ["Too narrow", "Slightly narrow", "Perfect", "Slightly wide", "Too wide"]
+      }
+
+      return Object.keys(characteristics).map(characteristic => {
+        return (
+          <div key={characteristic}>
+            {characteristic}
+            <CharacteristicsBox >
+            <form onChange={this.onCharSubmit}>
+              <CharacteristicsButtons>
+
+                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="1"></input>
+                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="2"></input>
+                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="3"></input>
+                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="4"></input>
+                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="5"></input>
+
+              </CharacteristicsButtons>
+              </form>
+              <IndividualCharacteristic>
+                {formDescriptions[characteristic].map(description => {
+                  return <p key={description}> {description} </p>
+                })}
+              </IndividualCharacteristic>
+
+            </CharacteristicsBox>
+          </div>
+        );
+      })
+    }
+
+    return (
       <div>
         <NewReviewBox>
-        <div>
-          <Header2>Enter Your Review</Header2>
-          <Form>
-            <Label>Overall rating
-              <AddReviewStarRating
+          <div>
+            <Header2>Enter Your Review</Header2>
+            <Form>
+              <Label>Overall rating
+                <AddReviewStarRating
                 // onStarClick={this.onStarClick}
-              />
-            </Label>
-            <Label>Do you recommend this product?<input type="checkbox"/></Label>
-            <Label>
+                />
+              </Label>
+              <Label>Do you recommend this product?<input type="checkbox" /></Label>
+              <Label>
                 <CharacteristicsContainer>Characteristics
-                  <CharacteristicsBox>
-                    Size
-                    <CharacteristicsButtons>
-                      <input type="radio" name="size" value="1"></input>
-                      <input type="radio" name="size" value="2"></input>
-                      <input type="radio" name="size" value="3"></input>
-                      <input type="radio" name="size" value="4"></input>
-                      <input type="radio" name="size" value="5"></input>
-                    </CharacteristicsButtons>
-                    <IndividualCharacteristic>
-                      <p> A size too small </p>
-                      <p> 1/2 a size too small </p>
-                      <p> Perfect </p>
-                      <p> 1/2 a size too big </p>
-                      <p> A size too wide </p>
-                    </IndividualCharacteristic>
-                  </CharacteristicsBox>
-                  Width
-                  <CharacteristicsBox>
-                    <CharacteristicsButtons>
-                      <input type="radio" name="width" value="1"></input>
-                      <input type="radio" name="width" value="2"></input>
-                      <input type="radio" name="width" value="3"></input>
-                      <input type="radio" name="width" value="4"></input>
-                      <input type="radio" name="width" value="5"></input>
-                    </CharacteristicsButtons>
-                    <IndividualCharacteristic>
-                      <p> Too narrow </p>
-                      <p> Slightly narrow </p>
-                      <p> Perfect </p>
-                      <p> Slightly wide </p>
-                      <p> Too wide </p>
-                    </IndividualCharacteristic>
-                  </CharacteristicsBox>
-                  <CharacteristicsBox>
-                    Comfort
-                    <CharacteristicsButtons>
-                      <input type="radio" name="comfort" value="1"></input>
-                      <input type="radio" name="comfort" value="2"></input>
-                      <input type="radio" name="comfort" value="3"></input>
-                      <input type="radio" name="comfort" value="4"></input>
-                      <input type="radio" name="comfort" value="5"></input>
-                    </CharacteristicsButtons>
-                    <IndividualCharacteristic>
-                      <p> Uncomfortable </p>
-                      <p> Slightly uncomfortable </p>
-                      <p> Ok </p>
-                      <p> Comfortable </p>
-                      <p> Perfect </p>
-                    </IndividualCharacteristic>
-                  </CharacteristicsBox>
-                  <CharacteristicsBox>
-                    Quality
-                    <CharacteristicsButtons>
-                      <input type="radio" name="quality" value="1"></input>
-                      <input type="radio" name="quality" value="2"></input>
-                      <input type="radio" name="quality" value="3"></input>
-                      <input type="radio" name="quality" value="4"></input>
-                      <input type="radio" name="quality" value="5"></input>
-                    </CharacteristicsButtons>
-                    <IndividualCharacteristic>
-                      <p> Poor </p>
-                      <p> Below average </p>
-                      <p> What I expected </p>
-                      <p> Pretty great </p>
-                      <p> Perfect </p>
-                    </IndividualCharacteristic>
-                  </CharacteristicsBox>
-                  <CharacteristicsBox>
-                    Length
-                    <CharacteristicsButtons>
-                      <input type="radio" name="length" value="1"></input>
-                      <input type="radio" name="length" value="2"></input>
-                      <input type="radio" name="length" value="3"></input>
-                      <input type="radio" name="length" value="4"></input>
-                      <input type="radio" name="length" value="5"></input>
-                    </CharacteristicsButtons>
-                    <IndividualCharacteristic>
-                      <p> Runs short </p>
-                      <p> Runs slightly short </p>
-                      <p> Perfect </p>
-                      <p> Runs slightly long </p>
-                      <p> Runs long </p>
-                    </IndividualCharacteristic>
-                  </CharacteristicsBox>
-                  <CharacteristicsBox>
-                    {/* Fit {JSON.stringify(this.state.characteristics["Fit"])} */}
-                    Fit
-                    <CharacteristicsButtons>
-                      <input type="radio" name="fit" value="1"></input>
-                      <input type="radio" name="fit" value="2"></input>
-                      <input type="radio" name="fit" value="3"></input>
-                      <input type="radio" name="fit" value="4"></input>
-                      <input type="radio" name="fit" value="5"></input>
-                    </CharacteristicsButtons>
-                    <IndividualCharacteristic>
-                      <p> Runs tight </p>
-                      <p> Runs slightly tight </p>
-                      <p> Perfect </p>
-                      <p> Runs slightly long </p>
-                      <p> Runs long </p>
-                    </IndividualCharacteristic>
-                  </CharacteristicsBox>
+                  {MakeFormFromCharacteristics(this.props.characteristics)}
 
                 </CharacteristicsContainer>
               </Label>
-            <Label>Summary<Input placeholder="type here..."></Input></Label>
-              <Label>Review Body<Input placeholder="type here..."></Input></Label>
+              <form onSubmit={this.onReviewSubmit}>
+                <Label>Summary<Input placeholder="type here..."></Input></Label>
+                <Label>Review Body<Input placeholder="type here..."></Input></Label>
+
+                <Label>Nickname<Input placeholder=" ex. JohnDoe"></Input></Label>
+                <Label>e-mail<Input placeholder=" ex. johndoe@gmail.com"></Input></Label>
+                <Button type="submit"> Submit</Button>
+                {/* <input type="submit" value="Submit"/> */}
+              </form>
+
               <Label>Upload your photos
                 <form action="/action_page.php">
                   <input type="file" id="myFile" name="filename"></input>
-                    <input type="submit"></input>
+                  <input type="submit"></input>
                 </form>
-            </Label>
-            <Label>Nickname<Input placeholder=" ex. JohnDoe"></Input></Label>
-            <Label>e-mail<Input placeholder=" ex. johndoe@gmail.com"></Input></Label>
-            <Button>Submit</Button>
-          </Form>
-        </div>
+              </Label>
+              <Button >Submit</Button>
+            </Form>
+          </div>
         </NewReviewBox>
       </div>
     );

@@ -18,6 +18,23 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
   const one = ratingsStarBreakdown["1"];
   const total = (Number(five) + Number(four) + Number(three) + Number(two) + Number(one));
 
+  const MakeInputFromCharacteristics = (characteristics) => {
+    return Object.keys(characteristics).map(characteristic => {
+      return (
+        <div key={characteristic}>
+          {characteristic}
+          <input
+            type="range"
+            name="quantity"
+            min="1"
+            max="100"
+            value={JSON.stringify(characteristics[characteristic].value) / 5 * 100}
+            key={characteristic}>
+          </input>
+        </div>
+      );
+    })
+  }
   return (
     <div>
       <p>5 Stars <progress max="100" value={five / total * 100}></progress> {five} reviews</p>
@@ -27,18 +44,7 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
       <p>1 Stars <progress max="100" value={one / total * 100}></progress> {one} reviews</p>
         Characteristics
       <CharContainer>
-        {/* Size
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Size']['value'])}></input>
-        Width
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Width']['value'])}></input> */}
-        Comfort
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Comfort']['value'])}></input>
-        Quality
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Quality']['value'])}></input>
-        Length
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Length']['value'])}></input>
-        Fit
-        <input type="range" name="quantity" min="1" max="5" value={JSON.stringify(characteristics['Fit']['value'])}></input>
+        {MakeInputFromCharacteristics(characteristics)}
       </CharContainer>
 
     </div>
