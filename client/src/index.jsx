@@ -85,7 +85,7 @@ class App extends React.Component {
         <AppContainer border = {true} >
           <MainHeader >
             <AlignmentWrapper>
-              <Title secondary = {true} underline = {true}   >Project Atelier</Title>
+              <Title secondary = {true} underline = {true} >Project Atelier</Title>
             </AlignmentWrapper>
             {/* <button onClick = {()=> {this.test()}}>test</button> */}
             <AlignmentWrapper>

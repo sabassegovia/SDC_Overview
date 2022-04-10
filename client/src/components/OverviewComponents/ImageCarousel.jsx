@@ -93,10 +93,15 @@ const ImageCarousel = (props) => {
   const [length, setLength] = useState(children.length);
   const [showModal, setShowModal] = useState(false);
 
-
   useEffect(() => {
+    console.log('first effect')
     setIsRender(prev => true)
     setLength(children.length)
+
+    return function clenup() {
+      console.log('second effect')
+      setIsRender(prev => false)
+    }
   }, [children, isRender])
 
   const openModal = () => {
@@ -115,6 +120,8 @@ const ImageCarousel = (props) => {
   }
   const ThumbnailOnClick = (index) => {
     setCurrentIndex(index)
+    // setIsRender(prev => false)
+    // setIsRender(prev => true)
   }
   return (
         <React.Fragment>
