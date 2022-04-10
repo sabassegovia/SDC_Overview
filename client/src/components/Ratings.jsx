@@ -24,6 +24,9 @@ const StarsBar = styled(ProgressBar)`
 `;
 
 
+
+
+
 class Ratings extends React.Component {
   constructor(props) {
     super(props);

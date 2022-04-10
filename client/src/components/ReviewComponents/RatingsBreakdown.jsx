@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {CharacteristicsContainer} from '../../styles/Boxes.jsx';
 import styled from 'styled-components';
 
+
 const CharContainer = styled(CharacteristicsContainer)`
   width: 100%;
   border: none;
