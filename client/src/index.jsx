@@ -29,6 +29,7 @@ const MainHeader = styled(RowContainer)`
   align-items: center;
   min-height: 100px;
   background-color: #2e2e2e;
+  border: 5px solid #FAFAFA;
 `
 class App extends React.Component {
   constructor(props) {
@@ -79,11 +80,11 @@ class App extends React.Component {
         <AppContainer border = {true}>
           <MainHeader>
             <AlignmentWrapper>
-              <Title secondary = {true} underline = {true}  >Project Atelier</Title>
+              <Title secondary = {true} underline = {true}   >Project Atelier</Title>
             </AlignmentWrapper>
             {/* <button onClick = {()=> {this.test()}}>test</button> */}
             <AlignmentWrapper>
-              <Title secondary = {true} underline = {true}>LOGO</Title>
+              <Title secondary = {true} >LOGO</Title>
             </AlignmentWrapper>
           </MainHeader>
         <Overview

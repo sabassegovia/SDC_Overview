@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
-import {StylesSelectionCart} from './OverviewComponents/OverviewStyles.jsx'
 import AddToCart from './OverviewComponents/AddToCart.jsx'
 import ImageCarousel from './OverviewComponents/ImageCarousel.jsx'
 import Carousel from './OverviewComponents/Carousel.jsx'
-import ImageGallery from './OverviewComponents/ImageGallery.jsx'
 import ProductInformation from './OverviewComponents/ProductInformation.jsx'
 import StyleSelector from './OverviewComponents/StyleSelector.jsx'
 import axios from 'axios';
 import {Axios} from "../AxiosConfig.js"
 
-import {RowContainer, ColumnContainer} from '../styles/Boxes.jsx'
+import {RowContainer, ColumnContainer, AlignmentWrapper} from '../styles/Boxes.jsx'
 
 const ProductOverviewContainer = styled(RowContainer)`
   max-height: 1000px;
@@ -19,6 +17,12 @@ const ProductOverviewContainer = styled(RowContainer)`
 `
 const ImageGalleryProductDescription = styled(ColumnContainer)`
   width: 70%;
+  border-left: none;
+`
+const StylesSelectionCart = styled(ColumnContainer)`
+  width: 100%
+  border-width: 10px;
+  justify-content: space-between;
 `
 
 class Overview extends React.Component {
@@ -55,7 +59,7 @@ class Overview extends React.Component {
       return (<div></div>) // need to implement some loading feature
     } else return (
       <ProductOverviewContainer>
-        <ImageGalleryProductDescription>
+        <ImageGalleryProductDescription border = {true}>
 
         <ImageCarousel
           style={{ maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}
@@ -64,7 +68,6 @@ class Overview extends React.Component {
           {selectedStyle.photos.map(photo => {
             return <img src = {photo.url} key = {photo.url} alt = "placeholder"/>
           })}
-
         </ImageCarousel>
         {/* <Carousel selectedStyle = {selectedStyle}/> */}
 
@@ -75,22 +78,21 @@ class Overview extends React.Component {
           id = {id}
           />
         </ImageGalleryProductDescription>
-          <StylesSelectionCart>
-            {styles === null ? <div></div> : <StyleSelector
-              scrollToReviews = {this.props.scrollToReviews}
-              category = {category}
-              name = {name}
-              styles = {styles}
-              id = {id}
-              rating = {this.props.rating}
+            <StylesSelectionCart >
+              {styles === null ? <div></div> : <StyleSelector
+                scrollToReviews = {this.props.scrollToReviews}
+                category = {category}
+                name = {name}
+                styles = {styles}
+                id = {id}
+                rating = {this.props.rating}
+                selectedStyle = {selectedStyle}
+                styleOnClick = {this.styleOnClick.bind(this)}
+              /> }
+              <AddToCart
               selectedStyle = {selectedStyle}
-              styleOnClick = {this.styleOnClick.bind(this)}
-            /> }
-
-            <AddToCart
-            selectedStyle = {selectedStyle}
-            />
-          </StylesSelectionCart>
+              />
+            </StylesSelectionCart>
       </ProductOverviewContainer>
     );
   };

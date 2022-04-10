@@ -1,36 +1,5 @@
 
 
-
-
-.product-overview-container {
-  display:flex;
-  flex-direction: row;
-  max-height: 1000px;
-}
-
-.image-gallery-product-description {
-  display:flex;
-  flex-direction: column;
-  width: 70%;
-  border-top:none;
-}
-
-/* .carousel-container {
-  display:flex;
-  height: 80%;
-  justify-content: center;
-  width: 100%;
-  border: 3px solid #FAFAFA;
-  background-color: #FAFAFA;
-}
-
-.carousel-wrapper {
-  display: flex;
-  width: 100%;
-  position: relative
-} */
-
-
 .carousel-content-wrapper {
   overflow: hidden;
   width: 100%;
@@ -40,11 +9,19 @@
 .carousel-content {
   display: flex;
   justify-items: center;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 40%;
   max-width: 100%;
+  max-height:100%;
+  /* min-height: 100%; */
+  min-height: fit-content;
   transition: all 250ms linear;
   -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
   scrollbar-width: none;  /* hide scrollbar in Firefox */
   position: relative;
+  object-fit: cover;
+
 }
 
 .carousel-content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
@@ -54,44 +31,13 @@
 .carousel-content > * {
   justify-content: center;
   align-items: center;
-  max-height:fit-content;
+  min-height:fit-content;
   object-fit: contain;
   flex-shrink: 0;
   flex-grow: 1;
-
-
 }
 
-/* .left-arrow, .right-arrow {
-  position: absolute;
-  z-index: 1;
-  top: 85%;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  background-color: white;
-  border: 1px solid #ddd;
-}
 
-.left-arrow {
-  left: 24px;
-}
-
-.right-arrow {
-  right: 24px;
-} */
-
-.product-description {
-  display:flex;
-  flex-direction: column;
-}
-
-.style-selection {
-  display:flex;
-  flex-direction: column;
-  height: 70%;
-}
 
 /*
 .cart {
@@ -103,12 +49,7 @@
   align-items: center;
 } */
 
-.thumbnail-checked {
-  position:relative;
-  bottom: 80%;
-  left: 75%;
 
-}
 .related-products-outfits {
   display: flex;
   flex-direction: column;
@@ -213,7 +154,7 @@ input[name="rating"] {
 :root {
   --star-size: 40px;
   --star-color: #fff;
-  --star-background: #fc0;
+  --star-background: #3e3e3e;
 }
 
 .Stars {

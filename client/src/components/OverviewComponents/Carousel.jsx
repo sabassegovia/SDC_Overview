@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
-import {RowContainer, ColumnContainer} from './OverviewStyles.jsx'
-import { TiArrowUpThick, TiArrowDownThick } from "react-icons/ti";
+import {RowContainer, ColumnContainer} from '../../styles/Boxes.jsx'
+import { TiArrowRightThick, TiArrowLeftThick } from "react-icons/ti";
 
-const CarouselContainer = styled(ColumnContainer)`
+const CarouselContainer = styled(RowContainer)`
   /* height: 1000px; */
   /* overflow: hidden; */
   position: absolute;
-  z-index: 1;
-  top: 0%;
-  left: 0%;
+  justify-content: space-around;
+  z-index: 999;
+  bottom: 0%;
+  right: 50%;
+  width: 65px;
 `
 const ThumbnailBackground = styled.div`
   display:flex;
@@ -18,16 +20,17 @@ const ThumbnailBackground = styled.div`
   justify-content: space-around;
 
 `
-
 const ThumbnailImage = styled.img`
-  max-height: 80px;
-  max-width: 65px;
-  margin: 10px 0px 0px 0px;
-  opacity: 70%;
+  max-height: 60px;
+  max-width: 60px;
+  margin: 10px 5px 10px 5px;
+  opacity: 100%;
+  border: 1px solid black;
 `
 const NavButtons = styled.button`
-  margin: 10px 0px 0px 0px;
-  opacity: 25%;
+  margin: 10px 5px 10px 5px;
+  opacity: 1;
+  border: 1px solid black;
 `
 const Carousel = (props) => {
 
@@ -52,7 +55,7 @@ const Carousel = (props) => {
     <CarouselContainer>
       <NavButtons
       disabled = {current === 0}
-      onClick = {() => prev()}><TiArrowUpThick/></NavButtons>
+      onClick = {() => prev()}><TiArrowLeftThick/></NavButtons>
       {photos.map((photo, index) => {
         if (index <= current + 6 && index >= current) {
           return (
@@ -68,7 +71,7 @@ const Carousel = (props) => {
       {/* <button onClick = {() => {props.ThumbnailOnClick()}}>test</button> */}
       <NavButtons
       disabled = {current === length - 6}
-      onClick = {() => next()}><TiArrowDownThick /></NavButtons>
+      onClick = {() => next()}><TiArrowRightThick /></NavButtons>
     </CarouselContainer>
     </div>
   )

@@ -9,7 +9,7 @@ const Theme = styled.div`
       } else if (props.secondary) {
         return '#e4e4e4'
       } else {
-        return 'black'
+        return '#3e3e3e'
       }
   }};
     text-decoration: ${(props) => {
@@ -20,19 +20,22 @@ const Theme = styled.div`
     if (props.underline) {
       decoration += ` underline`
     }
+    if (props.overline) {
+      decoration += ' overline'
+    }
     return decoration
   }};
+  font-style: ${(props) => {props.italic ? italic : null}};
   border: ${(props) => {if (props.border) {
     return `2px solid #3e3e3e`}}};
+  font-family: "Helvetica";
 `
 
 const Title = styled(Theme)`
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
   line-height: 35px;
-
 `;
 
 
@@ -42,36 +45,28 @@ const Wrapper = styled.section`
 `;
 
 const Header2 = styled(Theme)`
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 23px;
-  color: #615D5D;
 `;
 
 const Header3 = styled(Theme)`
-  font-family: 'Roboto';
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
   font-size: 16px;
   line-height: 19px;
-  color: #615D5D;
 `
 const Header4 = styled(Theme)`
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  color: #615D5D;
 `
 const Text = styled(Theme)`
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
-  color: #615D5D;
 `
 export {Title, Wrapper, Header2, Header3, Header4, Text, Theme};

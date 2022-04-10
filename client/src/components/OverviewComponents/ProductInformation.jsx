@@ -6,24 +6,28 @@ import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Head
 import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx'
 
 
+const DescriptionSloganContainer = styled(RowContainer)`
+  min-height: 180px;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+`
 const FeaturesContainer = styled(ColumnContainer)`
   justify-content: flex-start;
   height: min-content;
-  width: 30%;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  border-width: 1px;
+  width: 25%;
+
 `
 const SloganDescription = styled(ColumnContainer)`
-  width: 70%;
+  width: 75%;
   height: 100%;
 `
-const DescriptionSloganContainer = styled(RowContainer)`
-  height: 100%;
-  border-left: none;
+const Features = styled(Header2)`
+  padding: 0 0 5px 5px;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
 `
-
 const ProductInformation = (props) => {
 
   // needs start Ratings - ask mingui for hers
@@ -43,16 +47,17 @@ const ProductInformation = (props) => {
           </AlignmentWrapper>
         </SloganDescription>
 
-        <FeaturesContainer border = {true}>
+        <FeaturesContainer>
+          <AlignmentWrapper >
           {props.features.map(feature => {
             return (
-              <AlignmentWrapper key = {feature.feature + feature.value}>
-                <Header2>
+
+              <Features border = {true} primary = {true} key = {feature.feature + feature.value}>
                   {`${feature.feature} -   ${feature.value}`}
-                </Header2>
-              </AlignmentWrapper>
+                </Features>
             )
           })}
+          </AlignmentWrapper>
         </FeaturesContainer>
       </DescriptionSloganContainer>
 

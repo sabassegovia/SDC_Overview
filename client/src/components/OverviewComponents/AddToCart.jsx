@@ -7,42 +7,44 @@ import SelectSizeModal from './SelectSizeModal.jsx'
 import {Select} from '../../styles/Forms.jsx';
 import Button from '../../styles/Buttons.jsx';
 import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
-import {CartContainer, RowContainer, ColumnContainer} from './OverviewStyles.jsx';
+import {CartContainer, RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx';
 
+const StyleQuantityCartContainer = styled(ColumnContainer)`
+justify-content: space-between;
+min-height: 180px;
+border-left: none;
+border-right: none;
+`
+const StyleQuantityContainer = styled(RowContainer)`
+justify-content: space-between;
+`
 const SizeSelect = styled(Select)`
-width: 180px;
-height: 60px;
-background: #FAFAFA;
-border: 2px solid #AFA9A9;
-box-sizing: border-box;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-size: 16px;
+  height: 50px;
+  width: 60%;
+  background: #FAFAFA;
+  border: 2px solid #AFA9A9;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  margin: 0 10px 0 0 ;
 `
 const QuantitySelect = styled(SizeSelect)`
+  width: 40%;
 `
 const AddtoCartButton = styled.button`
-width: 217px;
-height: 63px;
-background:${(props) => props.hover ? `#ededed` : `#ccc`} ;
-border: 1px solid #ccc;
-padding: 10px;
-margin: 10px;
-border-radius: 3px;
-cursor: pointer;
+  height: 50px;
+  width: 40%;
+  background: #ccc ;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover {
+    background: #ededed
+  };
 `;
 
 const AddtoCartText = styled.option`
   font-size: 24px;
-`
-const StyleQuantityCartContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-`
-const StyleQuantityContainer = styled.div`
-display: flex;
-flex-direction: row
-justify-content: space-around;
 `
 
 const AddToCart = (props) => {
@@ -51,11 +53,10 @@ const AddToCart = (props) => {
   const [currentSku, setSku] = useState('Select Size')
   const [quantity, setQuantity] = useState('Select Quantity')
   const [stock , setStock] = useState(false)
-  const [hover, setHover] = useState(false)
   const [openSizeModal, setOpenSizeModal] = useState(false)
   const selectSizeRef = useRef()
 
-  var thereIsStock = skus_ids.some(sku => {
+  let thereIsStock = skus_ids.some(sku => {
     return skus[sku].quantity > 0
   })
 
@@ -75,8 +76,6 @@ const AddToCart = (props) => {
       })
     }
   }
-
-
   const test = () => {
     console.log(document.getElementById("selectSize"))
     document.getElementById("selectSize")
@@ -85,8 +84,7 @@ const AddToCart = (props) => {
   const runThis = () => {
     var dropdown = document.getElementById('selectSize');
     showDropdown(dropdown);
-};
-
+  };
   const showDropdown = (element) => {
     var event;
     event = document.createEvent('MouseEvents');
@@ -97,9 +95,9 @@ const AddToCart = (props) => {
   };
 
 
-
   return (
-    <StyleQuantityCartContainer>
+    <StyleQuantityCartContainer border = {true}>
+      <AlignmentWrapper>
         <StyleQuantityContainer>
             <SizeSelect value = {currentSku}
               id = "selectSize"
@@ -126,16 +124,23 @@ const AddToCart = (props) => {
                   return <option key = {x}>{x}</option>
                 }})}
             </ QuantitySelect>
+
         </StyleQuantityContainer>
-            {stock? <AddtoCartButton
-            onClick = {() => (postCart())}
-            hover = {hover}
-            onMouseEnter = {() => {setHover(!hover)}}
-            onMouseLeave = {() => {setHover(!hover)}}
-            >Add to Cart</AddtoCartButton> : <div><Text>OUT OF STOCK</Text></div>}
+      </AlignmentWrapper>
+
+      <AlignmentWrapper>
+        <RowContainer>
+          <AddtoCartButton
+              onClick = {() => (postCart())}
+              disabled = {!stock}
+              >{stock ? <Header3>Add to Cart</Header3> : <Header3>Out of Stock</Header3>}
+          </AddtoCartButton>
+        </RowContainer>
+
         <SelectSizeModal
           setOpenSizeModal = {setOpenSizeModal}
           openSizeModal = {openSizeModal}/>
+      </AlignmentWrapper>
     </StyleQuantityCartContainer>
   );
 };
