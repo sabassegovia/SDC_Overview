@@ -9,7 +9,6 @@ exports.configureOptions = (req) => {
     // params: req.query,
     data: req.body
   }
-  // console.log(process.env.TOKEN)
 
   return options;
 };

@@ -3,9 +3,8 @@ import styled, { css } from 'styled-components';
 
 import Button from '../styles/Buttons.jsx';
 // import styled from 'styled-components';
-import {Title, Wrapper, Header2} from '../styles/Headers.jsx';
-import {Form, Label, Input} from '../styles/Forms.jsx';
-import {DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewsContainer, BreakdownBox, ReallyBigBox} from '../styles/Boxes.jsx';
+import {Form, Label, Input, Select} from '../styles/Forms.jsx';
+import {DescriptionBox, EmptyBox, BigBox, LittleBox, ReviewBox, ReviewsContainer, BreakdownBox, ReallyBigBox} from '../styles/Boxes.jsx';
 
 import axios from 'axios';
 import {Axios} from "../AxiosConfig.js"
@@ -16,6 +15,9 @@ import RatingsBreakdown from './ReviewComponents/RatingsBreakdown.jsx';
 
 import PropTypes from 'prop-types';
 import ProgressBar from "@ramonak/react-progress-bar";
+import {RowContainer, ColumnContainer, AlignmentWrapper, BreakDownAlignment, MainHeader, RatingsReviewContainer} from '../styles/Boxes.jsx'
+import {Title, Wrapper, Header2, Header3, Span, Header4, Text} from '../styles/Headers.jsx';
+
 
 
 const StarsBar = styled(ProgressBar)`
@@ -23,6 +25,21 @@ const StarsBar = styled(ProgressBar)`
   display: inline-block;
 `;
 
+const ReviewSelect = styled(Select)`
+  height: 40px;
+  background: #FAFAFA;
+  border: 2px solid #AFA9A9;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  margin: 0 10px 0 0 ;
+  border-radius: 12px;
+`
+
+const SortHeader = styled(RowContainer)`
+  column-gap: 20px;
+  align-items: center;
+`
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -114,55 +131,69 @@ class Ratings extends React.Component {
     const ratingPercent = this.state.recommendedRatio * 100;
 
     let ReviewTiles = (this.state.reviews.map((review, i) => (
-      <ReviewBox key={i}>
-        <ReviewTile review={review} />
-      </ReviewBox>)));
-
+      <AlignmentWrapper key={i}>
+        <ReviewBox >
+          <ReviewTile review={review}  />
+        </ReviewBox>
+      </AlignmentWrapper>)));
     if (!this.state.isMounted) {
       return <div></div>
     }
 
     return (
-      <div>
-        <div>
-          <Wrapper>
-            <Title>
-              Ratings and Reviews
-            </Title>
-          </Wrapper>
-          <ReallyBigBox>
-            <BreakdownBox>
-              <Header2 > RATINGS &amp; REVIEWS</Header2>
-              <h1>
+
+      <RatingsReviewContainer border = {true}>
+        <MainHeader >
+          <AlignmentWrapper>
+            <Header2 secondary = {true} underline = {true}>
+              Ratings &amp; Reviews
+            </Header2>
+          </AlignmentWrapper>
+        </MainHeader>
+        <ReallyBigBox border = {true}>
+          <EmptyBox/>
+
+          <AlignmentWrapper>
+          <BreakdownBox border = {true}>
+              <Header2 > RATINGS </Header2>
+              <Header2>
                 {this.state.rating}
-
                 < RatingsStarRating rating={this.state.rating} />
-              </h1>
-              <p>{ratingPercent}% of reviews recommend this product</p>
-              <div>
-                <RatingsBreakdown ratingsStarBreakdown={this.state.ratings} characteristics={this.state.characteristics} />
-              </div>
-            </BreakdownBox>
-            <div>
-              <ReviewsContainer>
-                <Title>
-                  Sort on: <select className="selectNative js-selectNative" onChange={this.handleSort}>
-                  <option >select</option>
-                  <option value="newest">newest</option>
-                  <option value="helpful">helpful</option>
-                  <option value="relevent">relevant</option>
-                </select>
-                  </Title>
-                {ReviewTiles}
-              </ReviewsContainer>
-              <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
-            </div>
+              </Header2>
+              <Text underline = {true} >{ratingPercent}% of reviews recommend this product</Text>
+              <RatingsBreakdown
+                ratingsStarBreakdown={this.state.ratings}
+                characteristics={this.state.characteristics} />
+          </BreakdownBox>
+        </AlignmentWrapper>
 
-          </ReallyBigBox>
-          <Button>Add a Review</Button>
-          <AddReview characteristics={this.state.characteristics} />
-        </div>
-      </div>
+        <ReviewsContainer>
+          <AlignmentWrapper>
+            <SortHeader>
+              <Header2>Sort on:</Header2>
+              <ReviewSelect className="selectNative js-selectNative" onChange={this.handleSort}>
+                <option >select</option>
+                <option value="newest">newest</option>
+                <option value="helpful">helpful</option>
+                <option value="relevent">relevant</option>
+              </ReviewSelect>
+            </SortHeader>
+          </AlignmentWrapper>
+
+
+
+            {ReviewTiles}
+
+          <AlignmentWrapper>
+            <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
+          </AlignmentWrapper>
+        </ReviewsContainer>
+        <EmptyBox/>
+        </ReallyBigBox>
+        <Button>Add a Review</Button>
+        <AddReview characteristics={this.state.characteristics} />
+      </RatingsReviewContainer>
+
     );
 
   };
