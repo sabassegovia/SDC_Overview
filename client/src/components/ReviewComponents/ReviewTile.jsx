@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FcOk } from 'react-icons/fc';
 import moment from 'moment';
-import { Header2 } from '../../styles/Headers.jsx';
 import Typography from 'react-styled-typography';
 import ReviewTileStarRating from './ReviewTileStarRating.jsx';
-import {ReviewTop} from '../../styles/Boxes.jsx';
+import {ReviewTop, AlignmentWrapper, InnerReviewsContainer, UserMoment, RowContainer} from '../../styles/Boxes.jsx';
+import {Title, Header2, Header3, Header4, Text, Span} from '../../styles/Headers.jsx'
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -20,50 +20,57 @@ class ReviewTile extends React.Component {
 
     if (this.props.review.recommend) {
       recommend =
-      <div>
-        <p>I recommend this product </p>
+      <RowContainer>
+        <Text>I recommend this product </Text>
         <FcOk/>
-      </div>
+      </RowContainer>
     } else {
       recommend = ''
     }
 
     return (
-      <div>
-        <ReviewTop>
-        <ReviewTileStarRating rating={this.props.review.rating}/>
-        <div>
-          @{this.props.review.reviewer_name} {moment(this.props.review.date).format("MMM Do YYYY")}
-        </div>
+      <React.Fragment>
+        <AlignmentWrapper>
+          <InnerReviewsContainer>
+            <ReviewTop>
+            <ReviewTileStarRating rating={this.props.review.rating}/>
 
-        </ReviewTop>
+              <UserMoment>
+                <Header3>
+                  @{this.props.review.reviewer_name}
+                </Header3>
+                <Header3>
+                  {moment(this.props.review.date).format("MMM Do YYYY")}
+                </Header3>
+              </UserMoment>
+            </ReviewTop>
 
-        <div>
-        <Header2>{this.props.review.summary}</Header2>
-        </div>
-        <div>{this.props.review.body}</div>
+
+            <Header2>{this.props.review.summary}</Header2>
+
+            <Text>{this.props.review.body}</Text>
 
 
-        {recommend}
-        <div>
-          <Typography
-            variant="h2"
-            css={`
-              color: black;
-              font-size: 14px;
-              line-height: 16px;
-              transition: all 0s ease 0s;
-              height: 16px;
-              width: 200px;
-              display: block;
-              box-sizing: border-box;
-            `}
+            {recommend}
+            <div>
+              <Typography
+                variant="h2"
+                css={`
+                  color: black;
+                  font-size: 14px;
+                  line-height: 16px;
+                  transition: all 0s ease 0s;
+                  height: 16px;
+                  width: 200px;
+                  display: block;
+                  box-sizing: border-box;
+                  `}
+              >Helpful? Yes ({this.props.review.helpfulness}) No (0)</Typography>
+            </div>
+          </InnerReviewsContainer>
+        </AlignmentWrapper>
+      </React.Fragment>
 
-          >Helpful? Yes ({this.props.review.helpfulness}) No (0)</Typography>
-
-        </div>
-
-      </div>
 
     );
   }

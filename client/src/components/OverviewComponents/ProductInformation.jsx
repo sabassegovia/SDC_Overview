@@ -3,24 +3,24 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
 
-import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx'
+import {RowContainer, ColumnContainer, AlignmentWrapper, EmptyBox} from '../../styles/Boxes.jsx'
 
 
 const DescriptionSloganContainer = styled(RowContainer)`
-  max-height: 400px;
+  justify-content: flex-start;
   border-left: none;
   border-right: none;
   border-bottom: none;
+  padding: 40px 0 40px 0;
 `
 const FeaturesContainer = styled(ColumnContainer)`
   justify-content: flex-start;
   height: min-content;
-  width: 25%;
-
+  width: 15%;
 `
 const SloganDescription = styled(ColumnContainer)`
   padding-top:10px;
-  width: 75%;
+  width: 65%;
   height: 100%;
 `
 const Features = styled(Header3)`
@@ -29,6 +29,7 @@ const Features = styled(Header3)`
   border-bottom: none;
   border-right: none;
 `
+
 const ProductInformation = (props) => {
 
   // needs start Ratings - ask mingui for hers
@@ -39,9 +40,10 @@ const ProductInformation = (props) => {
   } else
   return (
       <DescriptionSloganContainer border = {true}>
+        <EmptyBox />
         <SloganDescription >
           <AlignmentWrapper>
-            <Title primary = {true} underline = {true}>{props.slogan}</Title>
+            <Header2 primary = {true} underline = {true}>{props.slogan}</Header2>
           </AlignmentWrapper>
           <AlignmentWrapper>
             <Header3 primary = {true}>{props.description}</Header3>
