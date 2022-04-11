@@ -135,7 +135,7 @@ class Ratings extends React.Component {
     let ReviewTiles = (this.state.reviews.map((review, i) => (
       <AlignmentWrapper key={i}>
         <ReviewBox >
-          <ReviewTile review={review}  />
+          <ReviewTile review={review} getReviews={this.getReviews} />
         </ReviewBox>
       </AlignmentWrapper>)));
     if (!this.state.isMounted) {
@@ -163,6 +163,7 @@ class Ratings extends React.Component {
                 < RatingsStarRating rating={this.state.rating} />
               </Header2>
               <Text underline = {true} >{ratingPercent}% of reviews recommend this product</Text>
+              <Header2><Text>Rating Breakdown</Text></Header2>
               <RatingsBreakdown
                 ratingsStarBreakdown={this.state.ratings}
                 characteristics={this.state.characteristics} />
