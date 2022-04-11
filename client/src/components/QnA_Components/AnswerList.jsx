@@ -6,6 +6,7 @@ import { Axios } from "../../AxiosConfig.js"
 class AnswerList extends React.Component {
   constructor(props) {
     super(props);
+    this.moreAnswers = this.moreAnswers.bind(this);
 
     this.state = {
       answers: []
@@ -39,11 +40,19 @@ class AnswerList extends React.Component {
   }
 
   render() {
+    var loadMore;
+    var ans = this.props.answers
+    if (Object.keys(ans).length > 2) {
+      loadMore = <button onClick={this.moreAnswers}>Load more answers</button>
+    } else {
+      loadMore = <b>button forgot to load?</b>
+    }
     return (
       <div>
         {this.state.answers.map(eachAnswer => {
         return <AnswerListItem answer={eachAnswer} key={eachAnswer.answer_id} id={eachAnswer.answer_id}/>
         })}
+        {loadMore}
       </div>
     )
   }
