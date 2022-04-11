@@ -25,9 +25,10 @@ const Background = styled.div`
 
 const ModalWrapper = styled.div`
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
-  color: #000;
   position: relative;
   border-radius: 5px;
+  border: 3px solid #fffffff0;
+  color: #fffffff0;
 `;
 
 const ModalImg = styled.img`
@@ -62,13 +63,15 @@ const CloseModalButton = styled(MdClose)`
   height: 32px;
   padding: 0;
   z-index: 10;
+  background: #141414;
+  color: #fff;
+  border-radius: 50%;
 `;
 
 const Modal = (props) => {
   const modalRef = useRef();
   const [isRender, setIsRender] = useState(false)
   useEffect(()=> {
-    console.log('im fired', isRender)
     setIsRender(prev => true)
   }, [isRender])
   const closeModal = (e) => {

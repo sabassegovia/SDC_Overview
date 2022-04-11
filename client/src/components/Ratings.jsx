@@ -194,7 +194,9 @@ class Ratings extends React.Component {
         <EmptyBox/>
         </ReallyBigBox>
         <Button>Add a Review</Button>
-        <AddReview characteristics={this.state.characteristics} />
+        <AddReview
+          product_id = {this.state.product_id}
+          characteristics={this.state.characteristics} />
       </RatingsReviewContainer>
 
     );
