@@ -86,7 +86,7 @@ const InnerReviewsContainer = styled(ColumnContainer)`
 
 const ReviewBox = styled(ColumnContainer)`
   display: flex;
-  border: 1px dashed #000;
+  border: 1px dashed rgb(199, 197, 197);
 `;
 
 const ReviewTop = styled(RowContainer)`
@@ -140,7 +140,7 @@ const ReviewImages = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
 
 `;
 

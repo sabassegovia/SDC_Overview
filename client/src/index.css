@@ -198,24 +198,24 @@ input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;
   width: 80%;
+
 }
 input[type=range]:focus {
   outline: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
   width: 80%;
-  height: 4px;
-  background: #0a0a0a;
+  height: 5px;
+  /* background: #0a0a0a; */
+  background: linear-gradient(to right, rgb(199, 197, 197) 30%, white 2% 32%, rgb(199, 197, 197) 30% 72%, white 2% 74%, rgb(199, 197, 197) 30%);
   border-radius: 25px;
 }
 input[type=range]::-webkit-slider-thumb {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
+  height: 0;
+  width: 0;
+  border: 12px solid transparent;
+  border-top: 12px solid rgb(0, 0, 0);
   -webkit-appearance: none;
-  margin-top: -8px;
 }
 
 .selectNative {
