@@ -10,8 +10,6 @@ class QuestionListItem extends React.Component {
     this.state = {}
   }
 
-  componentDidMount(){}
-
   render () {
     return (
       <div>
@@ -23,7 +21,7 @@ class QuestionListItem extends React.Component {
              |  Add Answer
            </div>
          </section>
-         <AnswerList answers={this.props.question.answers} />
+         <AnswerList answers={this.props.question.answers} question_id={this.props.id}/>
        </div>
      </div>
     );
