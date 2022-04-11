@@ -52,6 +52,7 @@ class AddReview extends React.Component {
       photos: [],
       characteristics: {}
     }
+    this.onTotalSubmit = this.onTotalSubmit.bind(this);
     this.onStarClick = this.onStarClick.bind(this);
     this.onRecommend = this.onRecommend.bind(this);
     this.onReviewSubmit = this.onReviewSubmit.bind(this);
@@ -72,8 +73,9 @@ class AddReview extends React.Component {
 
   onRecommend(event) {
     event.preventDefault();
+    var bool = event.target.value === "true" ? true: false;
     // console.log(event.target.value);
-    this.setState({ recommend: event.target.value }, () => {
+    this.setState({ recommend: bool }, () => {
       console.log(this.state.recommend);
     })
   }
@@ -100,7 +102,7 @@ class AddReview extends React.Component {
     event.preventDefault();
     let id = event.target.name;
     let copiedCharacteristics = this.state.characteristics;
-    copiedCharacteristics[id] = event.target.value;
+    copiedCharacteristics[id] = Number(event.target.value);
     this.setState({ characteristics: copiedCharacteristics }, () => {
       console.log(JSON.stringify(this.state.characteristics))
     });
@@ -111,7 +113,6 @@ class AddReview extends React.Component {
     //getting error of "state is undefined??"
     const params = {
       product_id: this.state.product_id,
-      count: this.state.count,
       rating: this.state.rating,
       summary: this.state.summary,
       body: this.state.body,
@@ -121,7 +122,9 @@ class AddReview extends React.Component {
       photos: this.state.photos,
       characteristics: this.state.characteristics
     }
-    Axios.post(`/reviews/`, { params })
+
+    console.log(params)
+    Axios.post(`/reviews`,  params )
     .then(result => {console.log(result.data)})
     .catch(err => {console.log(err)})
   }
