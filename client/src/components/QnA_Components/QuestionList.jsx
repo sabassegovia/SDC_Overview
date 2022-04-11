@@ -5,7 +5,7 @@ var QuestionList = (props) => {
   return (
     <div className="qa-list-container">
       {props.questions.map(eachQuestion => {
-        return <QuestionListItem question={eachQuestion} key={eachQuestion.question_id}/>
+        return <QuestionListItem question={eachQuestion} key={eachQuestion.question_id} id={eachQuestion.question_id}/>
         })}
     </div>
   );
