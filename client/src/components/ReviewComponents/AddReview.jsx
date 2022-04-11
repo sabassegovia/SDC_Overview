@@ -7,49 +7,123 @@ import {DescriptionBox, BigBox, LittleBox, CharacteristicsContainer, Characteris
 import styled, { css } from 'styled-components';
 import AddReviewStarRating from './AddReviewStarRating.jsx';
 
+import axios from 'axios';
+import {Axios} from "../../AxiosConfig.js"
+
 const NewReviewBox = styled(BigBox)`
   height: 100%;
   width: 60%;
   display: flex;
   flex-direction: column;
 `;
+const SummaryInput = styled(Input)`
+  width: 70%;
+  inline-size: 400px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  height: 25px;
+`;
+
+const BodyInput = styled(Input)`
+  width: 70%;
+  inline-size: 500px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  height: 60px;
+`;
+const FadedLabel = styled(Label)`
+margin-top: 0px;
+margin-bottom: 0.5em;
+color: #989898;
+`;
 
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: null,
+      productId: 0,
+      count: 10,
       rating: 0,
       summary: '',
       body: '',
-      recommend: false,
+      recommend: '',
       name: '',
       email: '',
       photos: [],
       characteristics: {}
     }
+    this.onStarClick = this.onStarClick.bind(this);
+    this.onRecommend = this.onRecommend.bind(this);
     this.onReviewSubmit = this.onReviewSubmit.bind(this);
+    this.onImageUpload = this.onImageUpload.bind(this);
     this.onCharSubmit = this.onCharSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({product_id: this.props.product_id}, () => {
+      console.log(this.state.product_id)})
+  }
+
+  onStarClick(starRating) {
+    this.setState({rating: starRating}, () => {
+      console.log(this.state.rating);
+    })
+  }
+
+  onRecommend(event) {
+    event.preventDefault();
+    // console.log(event.target.value);
+    this.setState({ recommend: event.target.value }, () => {
+      console.log(this.state.recommend);
+    })
   }
 
   onReviewSubmit(event) {
     event.preventDefault();
     this.setState({
-      summary: event.target[0].value,
-      body: event.target[1].value,
-      name: event.target[2].value,
-      email: event.target[3].value
+      [Object.values(event.target)[1].name]: event.target.value}, () => {
+      console.log(this.state[Object.values(event.target)[1].name])
     })
+  }
+
+  onImageUpload(event) {
+    event.preventDefault();
+    // console.log(event.target.value);
+    let copyPhotos = this.state.photos;
+    copyPhotos.push(event.target.value);
+    this.setState({photos: copyPhotos}, () => {
+      console.log(JSON.stringify(this.state.photos))
+    });
   }
 
   onCharSubmit(event) {
     event.preventDefault();
-
     let id = event.target.name;
     let copiedCharacteristics = this.state.characteristics;
     copiedCharacteristics[id] = event.target.value;
-    console.log(JSON.stringify(copiedCharacteristics));
-    this.setState({ characteristics: copiedCharacteristics });
+    this.setState({ characteristics: copiedCharacteristics }, () => {
+      console.log(JSON.stringify(this.state.characteristics))
+    });
+  }
+
+  onTotalSubmit(event) {
+    event.preventDefault();
+    //getting error of "state is undefined??"
+    const params = {
+      product_id: this.state.product_id,
+      count: this.state.count,
+      rating: this.state.rating,
+      summary: this.state.summary,
+      body: this.state.body,
+      recommend: this.state.recommend,
+      name: this.state.name,
+      email: this.state.email,
+      photos: this.state.photos,
+      characteristics: this.state.characteristics
+    }
+    Axios.post(`/reviews/`, { params })
+    .then(result => {console.log(result.data)})
+    .catch(err => {console.log(err)})
   }
 
   render() {
@@ -85,7 +159,6 @@ class AddReview extends React.Component {
                   return <p key={description}> {description} </p>
                 })}
               </IndividualCharacteristic>
-
             </CharacteristicsBox>
           </div>
         );
@@ -97,36 +170,49 @@ class AddReview extends React.Component {
         <NewReviewBox>
           <div>
             <Header2>Enter Your Review</Header2>
-            <Form>
+            <Form onSubmit={this.onTotalSubmit}>
               <Label>Overall rating
-                <AddReviewStarRating
-                // onStarClick={this.onStarClick}
-                />
+                <AddReviewStarRating onStarClick={this.onStarClick} />
               </Label>
-              <Label>Do you recommend this product?<input type="checkbox" /></Label>
+              <Label onChange={this.onRecommend}>
+                Do you recommend this product?
+                Yes
+                <input type="radio" name="recommend" value="true" />
+                No
+                <input type="radio" name="recommend" value="false" />
+              </Label>
               <Label>
                 <CharacteristicsContainer>Characteristics
                   {MakeFormFromCharacteristics(this.props.characteristics)}
 
                 </CharacteristicsContainer>
               </Label>
-              <form onSubmit={this.onReviewSubmit}>
-                <Label>Summary<Input placeholder="type here..."></Input></Label>
-                <Label>Review Body<Input placeholder="type here..."></Input></Label>
+              <form onChange={this.onReviewSubmit}>
+                <Label>
+                  Summary
+                  <SummaryInput type="text" name="summary" placeholder="Example: Best purchase ever!" maxLength="60"/>
+                </Label>
+                <Label>
+                  Review Body
+                  <BodyInput type="text" name="body" placeholder="minimum 50 characters" minLength="50"/>
+                </Label>
+                <Label>Nickname<Input type="text" name="name" placeholder=" Example: jackson11!" maxLength="60"></Input>
+                </Label>
+                <FadedLabel>For privacy reasons, do not use your full name or email address</FadedLabel>
 
-                <Label>Nickname<Input placeholder=" ex. JohnDoe"></Input></Label>
-                <Label>e-mail<Input placeholder=" ex. johndoe@gmail.com"></Input></Label>
-                <Button type="submit"> Submit</Button>
-                {/* <input type="submit" value="Submit"/> */}
-              </form>
+                <Label>e-mail<Input type="text" name="email" placeholder=" Example: jackson11@email.com" maxLength="60"></Input></Label>
+                <FadedLabel>For authentication reasons, you will not be emailed</FadedLabel>
+
+                </form>
 
               <Label>Upload your photos
-                <form action="/action_page.php">
-                  <input type="file" id="myFile" name="filename"></input>
-                  <input type="submit"></input>
-                </form>
+                <Form action="/action_page.php" onChange={this.onImageUpload}>
+                  <input type="file" id="myFile" name="filename" accept="image/gif, image/jpeg, image/png"></input>
+                  {/* <input type="submit"></input> */}
+                </Form>
               </Label>
-              <Button >Submit</Button>
+
+              <Button onClick={this.onTotalSubmit}> Submit</Button>
             </Form>
           </div>
         </NewReviewBox>
@@ -137,6 +223,7 @@ class AddReview extends React.Component {
 
 AddReview.propTypes = {
   characteristics: PropTypes.object.isRequired,
+  product_id: PropTypes.number.isRequired,
 }
 
 

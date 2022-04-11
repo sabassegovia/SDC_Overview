@@ -28,6 +28,7 @@ class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      product_id: null,
       isMounted: false,
       rating: 0,
       reviews: [],
@@ -89,6 +90,7 @@ class Ratings extends React.Component {
             const productrating = parseFloat(totalweighted / totalratings).toFixed(1);
 
             this.setState({
+              product_id: Number(result.data.product_id),
               rating: Number(productrating),
               ratings: result.data.ratings,
               recommendedRatio: parseFloat(Number(result.data.recommended.true) / (Number(result.data.recommended.true) + Number(result.data.recommended.false))).toFixed(2),
@@ -160,7 +162,7 @@ class Ratings extends React.Component {
 
           </ReallyBigBox>
           <Button>Add a Review</Button>
-          <AddReview characteristics={this.state.characteristics} />
+          <AddReview characteristics={this.state.characteristics} product_id={this.state.product_id}/>
         </div>
       </div>
     );
