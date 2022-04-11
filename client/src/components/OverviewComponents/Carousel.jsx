@@ -26,7 +26,6 @@ const ThumbnailBackground = styled.div`
     transition-duration: .3s;
     transform: scale(1.1)
   };
-
 `
 const ThumbnailImage = styled.img`
   max-height: 65px;
@@ -65,7 +64,7 @@ const Carousel = (props) => {
       disabled = {current === 0}
       onClick = {() => prev()}><TiArrowLeftThick/></NavButtons>
       {photos.map((photo, index) => {
-        if (index <= current + 6 && index >= current) {
+        // if (index <= current + 6 && index >= current) {
           return (
             <ThumbnailBackground key = {index}>
                 <ThumbnailImage
@@ -73,7 +72,8 @@ const Carousel = (props) => {
                 onClick = {(e) => {handleThumbnailClick(index)}}
                 src = {photo} />
             </ThumbnailBackground>
-          )}
+          )
+        // }
         }
       )}
       {/* <button onClick = {() => {props.ThumbnailOnClick()}}>test</button> */}
