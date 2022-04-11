@@ -34,6 +34,7 @@ const ReviewSlider = styled(Header4)`
 const StyleThumbnails = styled(RowContainer)`
   flex-wrap: wrap;
   justify-content: flex-start;
+  gap: 10px;
 `
 const PriceContainer = styled(RowContainer)`
 `
@@ -73,7 +74,7 @@ const StyleSelector = (props) => {
 
         <AlignmentWrapper>
           <PriceContainer >
-            {sale_price ? <Header2 ><span style={{textDecorationLine: 'line-through'}}>{`$${original_price}`}</span><span style={{color: 'red'}}>{` SALE $${sale_price}`}</span></Header2> : <Header2>{`$${original_price}`}</Header2>}
+            {sale_price ? <Header3 ><span style={{textDecorationLine: 'line-through'}}>{`$${original_price}`}</span><span style={{color: 'red'}}>{` SALE $${sale_price}`}</span></Header3> : <Header3>{`$${original_price}`}</Header3>}
           </PriceContainer>
         </AlignmentWrapper>
       </StyleSelectorDescription>

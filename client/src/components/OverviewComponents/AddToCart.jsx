@@ -41,17 +41,21 @@ const AddtoCartButton = styled.button`
   border-radius: 3px;
   cursor: pointer;
   &:hover {
-    background: #ededed
+    background: #ededed;
+    transition-duration: 2s linear;
+    transform: scale(1.1);
   };
   border-radius: 12px;
-
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const AddtoCartText = styled.option`
   font-size: 24px;
+
 `
 const SocialButonRow = styled(RowContainer)`
-  justify-content:space-between;
+  justify-content:flex-start;
+  column-gap: 20px;
 `
 const MediaButton = styled.button`
   width: 20%;
@@ -150,9 +154,10 @@ const AddToCart = (props) => {
       <AlignmentWrapper>
         <RowContainer>
           <AddtoCartButton
-              onClick = {() => (postCart())}
-              disabled = {!stock}
-              >{stock ? <Header3>Add to Cart</Header3> : <Header3>Out of Stock</Header3>}
+            primary = {true}
+            onClick = {() => (postCart())}
+            disabled = {!stock}
+            >{stock ? <Header3 secondary = {true}>Add to Cart</Header3> : <Header3>Out of Stock</Header3>}
           </AddtoCartButton>
         </RowContainer>
 

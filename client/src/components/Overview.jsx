@@ -17,10 +17,10 @@ const ProductOverviewContainer = styled(RowContainer)`
 `
 const ImageGalleryProductDescription = styled(ColumnContainer)`
   width: 70%;
+  min-width: 1000px;
   border-left: none;
 `
 const StylesSelectionCart = styled(ColumnContainer)`
-  width: 100%
   border-width: 10px;
   justify-content: space-between;
 `

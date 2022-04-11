@@ -13,11 +13,6 @@ const CarouselContainer = styled(ColumnContainer)`
   max-height: 1000px;
   overflow: hidden;
   width: 100%;
-  opacity: 0;
-  transition: opacity 1s;
-  ${ props => props.isRender &&`
-    opacity: 1;
-  `};
 `
 const CarouselWrapper = styled.div`
   display: flex;
@@ -67,6 +62,7 @@ const ExtraSpace = styled.div`
   position:absolute;
   top:0%;
   bottom:0%;
+
 `
 const BlurBackground = styled.img`
   z-index: 1;
@@ -79,6 +75,16 @@ const BlurBackgroundImageContainer = styled.div`
   overflow:hidden;
   width: 100%;
   height: 150%;
+  ${props => props.isRender&&`
+    transition: opacity 2s;
+  `};
+  /* transition: opacity 2s; */
+  opacity: ${ props => {if (props.isRender) {
+      return 1
+    } else {
+      return 0
+    }
+  }};
 `
 const ModalButton = styled.button`
   position: absolute;
@@ -95,12 +101,12 @@ const ImageCarousel = (props) => {
 
   useEffect(() => {
     console.log('first effect')
-    setIsRender(prev => true)
+    setIsRender(true)
     setLength(children.length)
 
-    return function clenup() {
+    return function cleanup() {
       console.log('second effect')
-      setIsRender(prev => false)
+      setIsRender(false)
     }
   }, [children, isRender])
 
@@ -125,7 +131,7 @@ const ImageCarousel = (props) => {
   }
   return (
         <React.Fragment>
-          <CarouselContainer isRender = {isRender}>
+          <CarouselContainer >
           <CarouselWrapper>
             {!showModal ?<LeftArrow
               disabled = {currentIndex === 0}
@@ -139,9 +145,12 @@ const ImageCarousel = (props) => {
                 >
                   {children.map(child => {
                     return (
-                      <BlurBackgroundImageContainer  key = {child.props.src}>
+                      <BlurBackgroundImageContainer
+                        isRender = {isRender}
+                        key = {child.props.src}>
                         <BlurBackground src = {child.props.src} alt = "background"/>
                         <ExtraSpace
+
                           src = {child.props.src} >
                             <img
                           alt = ""

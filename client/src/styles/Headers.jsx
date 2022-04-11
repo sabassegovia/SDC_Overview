@@ -2,16 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Theme = styled.div`
-  color:  ${(props) =>
-    {
+  color:  ${(props) => {
       if (props.primary) {
         return '#3e3e3e'
       } else if (props.secondary) {
-        return '#e4e4e4'
+        return '#fffffff0'
       } else {
         return '#3e3e3e'
       }
   }};
+  /* background-color: ${(props) => {
+    if (props.primary) {
+      return '#fffffff0'
+    } else if (props.secondary) {
+      return '#3e3e3e'
+    } else {
+      return '#fffffff0'
+    }
+  }}; */
     text-decoration: ${(props) => {
     let decoration = ''
     if (props.line_through) {
@@ -47,7 +55,7 @@ const Wrapper = styled.section`
 const Header2 = styled(Theme)`
   font-style: normal;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 27px;
   line-height: 23px;
 `;
 
@@ -69,4 +77,7 @@ const Text = styled(Theme)`
   font-size: 14px;
   line-height: 14px;
 `
+
+
+
 export {Title, Wrapper, Header2, Header3, Header4, Text, Theme};

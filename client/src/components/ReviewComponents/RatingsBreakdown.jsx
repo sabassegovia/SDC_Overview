@@ -3,12 +3,37 @@ import PropTypes from 'prop-types';
 
 import {CharacteristicsContainer} from '../../styles/Boxes.jsx';
 import styled from 'styled-components';
-
+import {Title, Wrapper, Header2, Header3, Header4, Text, Theme} from '../../styles/Headers.jsx'
+import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx'
 
 const CharContainer = styled(CharacteristicsContainer)`
   width: 100%;
   border: none;
 `;
+
+const RatingsTallyContainer = styled(ColumnContainer)`
+  gap: 10px;
+`
+const TallyCharacteristicsContainer = styled(ColumnContainer)`
+  gap: 10px;
+`
+const CharacteristicName = styled(Header4)`
+  width: 15%;
+  padding: 10px 0 10px 0;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+`
+const Characteristic = styled(RowContainer)`
+  column-gap: 10px;
+
+`
+
+const CharacteristicContainer = styled(ColumnContainer)`
+  border-left: none;
+  border-bottom: none;
+  padding: 0 15px 0 0;
+`
 
 const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
 
@@ -20,35 +45,44 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
   const total = (Number(five) + Number(four) + Number(three) + Number(two) + Number(one));
 
   const MakeInputFromCharacteristics = (characteristics) => {
+
     return Object.keys(characteristics).map(characteristic => {
+      console.log(characteristic, characteristics[characteristic].value)
       return (
-        <div key={characteristic}>
-          {characteristic}
+
+        <Characteristic key={characteristic} >
+          <CharacteristicName border = {true}>
+            {characteristic}
+          </CharacteristicName >
           <input
             type="range"
             name="quantity"
             min="1"
             max="100"
-            value={JSON.stringify(characteristics[characteristic].value) / 5 * 100}
+            defaultValue={(characteristics[characteristic].value) / 5 * 100}
             key={characteristic}>
           </input>
-        </div>
+        </Characteristic>
       );
     })
   }
   return (
-    <div>
-      <p>5 Stars <progress max="100" value={five / total * 100}></progress> {five} reviews</p>
-      <p>4 Stars <progress max="100" value={four / total * 100}></progress> {four} reviews</p>
-      <p>3 Stars <progress max="100" value={three / total * 100}></progress> {three} reviews</p>
-      <p>2 Stars <progress max="100" value={two / total * 100}></progress> {two} reviews</p>
-      <p>1 Stars <progress max="100" value={one / total * 100}></progress> {one} reviews</p>
-        Characteristics
+    <TallyCharacteristicsContainer>
+      <RatingsTallyContainer>
+        <Text>5 Stars <progress max="100" value={five / total * 100}></progress> {five} reviews</Text>
+        <Text>4 Stars <progress max="100" value={four / total * 100}></progress> {four} reviews</Text>
+        <Text>3 Stars <progress max="100" value={three / total * 100}></progress> {three} reviews</Text>
+        <Text>2 Stars <progress max="100" value={two / total * 100}></progress> {two} reviews</Text>
+        <Text>1 Stars <progress max="100" value={one / total * 100}></progress> {one} reviews</Text>
+      </RatingsTallyContainer>
+        <Header3>Characteristics</Header3>
       <CharContainer>
-        {MakeInputFromCharacteristics(characteristics)}
+        <CharacteristicContainer border = {true}>
+          {MakeInputFromCharacteristics(characteristics)}
+        </CharacteristicContainer>
       </CharContainer>
 
-    </div>
+    </TallyCharacteristicsContainer>
   )
 }
 

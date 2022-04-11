@@ -3,9 +3,8 @@ import styled, { css } from 'styled-components';
 
 import Button from '../styles/Buttons.jsx';
 // import styled from 'styled-components';
-import {Title, Wrapper, Header2} from '../styles/Headers.jsx';
 import {Form, Label, Input} from '../styles/Forms.jsx';
-import {DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewsContainer, BreakdownBox, ReallyBigBox} from '../styles/Boxes.jsx';
+import {DescriptionBox, EmptyBox, BigBox, LittleBox, ReviewBox, ReviewsContainer, BreakdownBox, ReallyBigBox} from '../styles/Boxes.jsx';
 
 import axios from 'axios';
 import {Axios} from "../AxiosConfig.js"
@@ -16,16 +15,15 @@ import RatingsBreakdown from './ReviewComponents/RatingsBreakdown.jsx';
 
 import PropTypes from 'prop-types';
 import ProgressBar from "@ramonak/react-progress-bar";
+import {RowContainer, ColumnContainer, AlignmentWrapper, BreakDownAlignment, MainHeader, RatingsReviewContainer} from '../styles/Boxes.jsx'
+import {Title, Wrapper, Header2, Header3, Span, Header4, Text} from '../styles/Headers.jsx';
+
 
 
 const StarsBar = styled(ProgressBar)`
   width: 80%;
   display: inline-block;
 `;
-
-
-
-
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -126,46 +124,54 @@ class Ratings extends React.Component {
     }
 
     return (
-      <div>
-        <div>
-          <Wrapper>
-            <Title>
-              Ratings and Reviews
-            </Title>
-          </Wrapper>
-          <ReallyBigBox>
-            <BreakdownBox>
-              <Header2 > RATINGS &amp; REVIEWS</Header2>
-              <h1>
-                {this.state.rating}
 
+      <RatingsReviewContainer border = {true}>
+        <MainHeader >
+          <AlignmentWrapper>
+            <Header2 secondary = {true} underline = {true}>
+              Ratings &amp; Reviews
+            </Header2>
+          </AlignmentWrapper>
+        </MainHeader>
+        <ReallyBigBox border = {true}>
+          <EmptyBox/>
+
+          <AlignmentWrapper>
+          <BreakdownBox border = {true}>
+              <Header2 > RATINGS </Header2>
+              <Header2>
+                {this.state.rating}
                 < RatingsStarRating rating={this.state.rating} />
-              </h1>
-              <p>{ratingPercent}% of reviews recommend this product</p>
-              <div>
-                <RatingsBreakdown ratingsStarBreakdown={this.state.ratings} characteristics={this.state.characteristics} />
-              </div>
-            </BreakdownBox>
-            <div>
+              </Header2>
+              <Text underline = {true} >{ratingPercent}% of reviews recommend this product</Text>
+              <RatingsBreakdown
+                ratingsStarBreakdown={this.state.ratings}
+                characteristics={this.state.characteristics} />
+          </BreakdownBox>
+        </AlignmentWrapper>
+
+          <ColumnContainer>
+            <AlignmentWrapper>
               <ReviewsContainer>
-                <Title>
+                <Header2>
                   Sort on: <select className="selectNative js-selectNative" onChange={this.handleSort}>
                   <option >select</option>
                   <option value="newest">newest</option>
                   <option value="helpful">helpful</option>
                   <option value="relevent">relevant</option>
                 </select>
-                  </Title>
+                  </Header2>
                 {ReviewTiles}
-              </ReviewsContainer>
               <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
-            </div>
+              </ReviewsContainer>
+            </AlignmentWrapper>
+          </ColumnContainer>
 
-          </ReallyBigBox>
-          <Button>Add a Review</Button>
-          <AddReview characteristics={this.state.characteristics} />
-        </div>
-      </div>
+        </ReallyBigBox>
+        <Button>Add a Review</Button>
+        <AddReview characteristics={this.state.characteristics} />
+      </RatingsReviewContainer>
+
     );
 
   };

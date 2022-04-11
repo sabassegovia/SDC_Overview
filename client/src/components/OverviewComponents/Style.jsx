@@ -7,8 +7,6 @@ import {ColumnContainer, RowContainer, AlignmentWrapper} from '../../styles/Boxe
 const ThumbnailContainer = styled(ColumnContainer)`
   display:flex;
   position: relative;
-  padding: 5px;
-  width:22%;
   border-top: none;
   border-right: none;
   border-left: none;
@@ -17,13 +15,9 @@ const ThumbnailContainer = styled(ColumnContainer)`
 const Thumbnail = styled.div`
 border-radius: 50%;
 cursor: pointer;
-width: 80px;
-height: 80px;
-border: ${({selected}) => { return selected ? `3px solid green` : `2px solid #3e3e3e` }};
 ${({selected}) => selected && `transform: scale(1.1)`};
 &:hover {
   transition-duration: .3s;
-  color: #3e3e3e;
   transform: scale(1.1);
 };
 `
@@ -31,6 +25,7 @@ const ThumbnailImage = styled.img`
 border-radius: 50%;
 width:80px;
 height:80px;
+border: ${({selected}) => { return selected ? `2px solid green` : `2px solid #3e3e3e` }};
 background: url(${(props) => props.url || `Not Availabe`}) center;
 `
 
@@ -38,11 +33,12 @@ const StyleThumbnail = styled.div`
 position: relative
 width: 100%;
 
+
 `
 const FcOkActive = styled.div`
   position:absolute;
-  top:11px;
-  right:19px;
+  top:0px;
+  right:16px;
   z-index: 2;
 `
 const Style = (props) => {
@@ -53,9 +49,9 @@ const Style = (props) => {
       <StyleThumbnail>
         {props.selected ? <FcOkActive><FcOk className = "thumbnail-checked"/></FcOkActive> :null}
         <Thumbnail
-          selected = {props.selected}
+
           onClick = {() => {props.styleOnClick(props.style)}}>
-            <ThumbnailImage url = {photos[0].url }>
+            <ThumbnailImage url = {photos[0].url } selected = {props.selected}>
 
             </ThumbnailImage>
         </Thumbnail>

@@ -11,13 +11,13 @@ import RelatedItems from './components/relatedItems/RelatedItems.jsx';
 import {Title, Wrapper, Header2} from './styles/Headers.jsx';
 import styled from 'styled-components';
 
-import {ColumnContainer, RowContainer, AlignmentWrapper, Theme} from './styles/Boxes.jsx'
+import {ColumnContainer, RowContainer, AlignmentWrapper, Theme, MainHeader} from './styles/Boxes.jsx'
 
 const BigContainer = styled(RowContainer)`
   justify-content: center;
   min-width: 1000px;
-  opacity: ${props => props.isRender ? 1 : 0};
-  transition: opacity 1.5s ease-in;
+  /* opacity: ${props => props.isRender ? 1 : 0};
+  transition: opacity 1.5s ease-in; */
 `
 const AppContainer = styled(ColumnContainer)`
   background-color: #FAFAFA;
@@ -26,16 +26,7 @@ const AppContainer = styled(ColumnContainer)`
   max-width: 1400px;
   border-radius: 12px;
 `
-const MainHeader = styled(RowContainer)`
-  justify-content: space-between;
-  align-content: space-around;
-  align-items: center;
-  min-height: 100px;
-  background-color: #2e2e2e;
-  border: 5px solid #FAFAFA;
-  border-radius: 20px;
 
-`
 class App extends React.Component {
   constructor(props) {
     super(props);
