@@ -60,6 +60,7 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
             name="quantity"
             min="1"
             max="100"
+            disabled = {true}
             defaultValue={(characteristics[characteristic].value) / 5 * 100}
             key={characteristic}>
           </input>

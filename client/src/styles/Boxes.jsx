@@ -135,6 +135,13 @@ const IndividualCharacteristic = styled(CharacteristicsButtons)`
   padding-bottom: 0px;
 `;
 
+const ReviewImages = styled.div`
+  height: 130px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
+`;
 
-export {MainHeader, EmptyBox, BreakDownAlignment, InnerReviewsContainer, RatingsReviewContainer, RowContainer, ColumnContainer, AlignmentWrapper, DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic, Theme, UserMoment }
+export {MainHeader, EmptyBox, BreakDownAlignment, InnerReviewsContainer, RatingsReviewContainer, RowContainer, ColumnContainer, AlignmentWrapper, DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic, Theme, UserMoment, ReviewImages }

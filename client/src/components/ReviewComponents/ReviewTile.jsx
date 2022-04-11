@@ -4,7 +4,7 @@ import { FcOk } from 'react-icons/fc';
 import moment from 'moment';
 import Typography from 'react-styled-typography';
 import ReviewTileStarRating from './ReviewTileStarRating.jsx';
-import {ReviewTop, AlignmentWrapper, InnerReviewsContainer, UserMoment, RowContainer} from '../../styles/Boxes.jsx';
+import {ReviewTop, AlignmentWrapper, InnerReviewsContainer, UserMoment, RowContainer, ReviewImages} from '../../styles/Boxes.jsx';
 import {Title, Header2, Header3, Header4, Text, Span} from '../../styles/Headers.jsx'
 import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js";
@@ -52,7 +52,7 @@ class ReviewTile extends React.Component {
     let images = (
       this.props.review.photos.map(photo => (
         <div key={photo.id}>
-          <img src={photo.url} alt={photo.id} width="20%" height="15%"/>
+          <img src={photo.url} alt={photo.id} width="80%" height="100%"/>
         </div>
       ))
     )
@@ -93,7 +93,9 @@ class ReviewTile extends React.Component {
               {this.props.review.body}
               {/* {reviewbody} */}
             </Text>
+            <ReviewImages>
             {images}
+            </ReviewImages>
             {recommend}
             <div>
               <Typography
