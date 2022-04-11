@@ -1,5 +1,7 @@
 import React from 'react';
 import AnswerListItem from './AnswerListItem.jsx';
+import axios from "axios"
+import { Axios } from "../../AxiosConfig.js"
 
 class AnswerList extends React.Component {
   constructor(props) {
@@ -11,19 +13,37 @@ class AnswerList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      answers: this.props.answers
-    })
+    var current = this.props.question_id;
+    Axios.get(`/qa/questions/${current}/answers`, {params: {
+      question_id: current,
+      count: 2
+    }})
+      .then(result => {
+        this.setState({
+          answers: result.data.results
+        })
+      })
+  }
+
+  moreAnswers() {
+    var current = this.props.question_id;
+    Axios.get(`/qa/questions/${current}/answers`, {params: {
+      question_id: current,
+      count: 999
+    }})
+      .then(result => {
+        this.setState({
+          answers: result.data.results
+        })
+      })
   }
 
   render() {
-    var list = Object.keys(this.state.answers).map(id => {
-      return <AnswerListItem answer={this.state.answers[id]} key={id}/>;
-    });
-
     return (
       <div>
-        {list}
+        {this.state.answers.map(eachAnswer => {
+        return <AnswerListItem answer={eachAnswer} key={eachAnswer.answer_id} id={eachAnswer.answer_id}/>
+        })}
       </div>
     )
   }
