@@ -15,14 +15,14 @@ import {ColumnContainer, RowContainer, AlignmentWrapper, Theme, MainHeader} from
 
 const BigContainer = styled(RowContainer)`
   justify-content: center;
-  min-width: 1000px;
+  min-width: 1400px;
   opacity: ${props => props.isRender ? 1 : 0};
   transition: opacity 1.5s ease-in;
 `
 const AppContainer = styled(ColumnContainer)`
   background-color: #FAFAFA;
   margin: 10px;
-  min-width: 1000px;
+  min-width: 1400px;
   max-width: 1400px;
   border-radius: 12px;
 `
@@ -32,7 +32,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       overview: null,
-      product_id: 65660,
+      product_id: 65650,
       rating: 0,
       documentTitle: null,
       isRender: false,

@@ -63,7 +63,7 @@ class ReviewTile extends React.Component {
       recommend =
       <RowContainer>
         <Text>I recommend this product </Text>
-        <FcOk/>
+        <FcOk></FcOk>
       </RowContainer>
     } else {
       recommend = ''

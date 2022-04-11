@@ -48,7 +48,7 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
   const MakeInputFromCharacteristics = (characteristics) => {
 
     return Object.keys(characteristics).map(characteristic => {
-      console.log(characteristic, characteristics[characteristic].value)
+      // console.log(characteristic, characteristics[characteristic].value)
       return (
 
         <Characteristic key={characteristic} >
