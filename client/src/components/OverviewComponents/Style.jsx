@@ -20,21 +20,26 @@ ${({selected}) => selected && `transform: scale(1.1)`};
   transition-duration: .3s;
   transform: scale(1.1);
 };
+width:80px;
+height:80px;
 `
 const ThumbnailImage = styled.img`
 border-radius: 50%;
 width:80px;
 height:80px;
+object-fit: contain;
 border: ${({selected}) => { return selected ? `2px solid green` : `2px solid #3e3e3e` }};
-background: url(${(props) => props.url || `Not Availabe`}) center;
-`
-
-const StyleThumbnail = styled.div`
-position: relative
-width: 100%;
-
+transition: border .3s linear;
+background: url(${(props) => props.url}) center;
 
 `
+
+// const StyleThumbnail = styled.div`
+// position: relative
+// width: 100%;
+
+
+// `
 const FcOkActive = styled.div`
   position:absolute;
   top:0px;
@@ -46,17 +51,18 @@ const Style = (props) => {
 
   return (
     <ThumbnailContainer border = {false}>
-      <StyleThumbnail>
+      {/* <StyleThumbnail> */}
         {props.selected ? <FcOkActive><FcOk className = "thumbnail-checked"/></FcOkActive> :null}
         <Thumbnail
-
           onClick = {() => {props.styleOnClick(props.style)}}>
-            <ThumbnailImage url = {photos[0].url } selected = {props.selected}>
+            <ThumbnailImage
+            url = {photos[0].url || "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640" }
+            selected = {props.selected}>
 
             </ThumbnailImage>
         </Thumbnail>
 
-      </StyleThumbnail>
+      {/* </StyleThumbnail> */}
     </ThumbnailContainer>
   )
 }

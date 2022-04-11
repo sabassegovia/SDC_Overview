@@ -72,7 +72,7 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
     };
 
     return Object.keys(characteristics).map(characteristic => {
-      console.log(characteristic, characteristics[characteristic].value)
+      // console.log(characteristic, characteristics[characteristic].value)
       return (
         <div key={characteristic}>
           <Characteristic  >

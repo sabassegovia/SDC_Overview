@@ -66,7 +66,7 @@ class Overview extends React.Component {
           selectedStyle = {selectedStyle}>
 
           {selectedStyle.photos.map(photo => {
-            return <img src = {photo.url} key = {photo.url} alt = "placeholder"/>
+            return <img src = {photo.url || "https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png"} key = {photo.url} alt = "https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png"/>
           })}
         </ImageCarousel>
         {/* <Carousel selectedStyle = {selectedStyle}/> */}

@@ -66,14 +66,16 @@ const ExtraSpace = styled.div`
 `
 const BlurBackground = styled.img`
   z-index: 1;
-  width: 100%;
-  height: 1000px;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
   filter:blur(20px);
 `
 const BlurBackgroundImageContainer = styled.div`
   position:relative;
   overflow:hidden;
-  width: 100%;
+  min-width: ;
+
   height: 150%;
   ${props => props.isRender&&`
     transition: opacity 2s;
@@ -100,12 +102,12 @@ const ImageCarousel = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    console.log('first effect')
+    // console.log('first effect')
     setIsRender(true)
     setLength(children.length)
 
     return function cleanup() {
-      console.log('second effect')
+      // console.log('second effect')
       setIsRender(false)
     }
   }, [children, isRender])
@@ -133,7 +135,7 @@ const ImageCarousel = (props) => {
         <React.Fragment>
           <CarouselContainer >
           <CarouselWrapper>
-            {!showModal ?<LeftArrow
+            {!showModal || !props.selectedStyle.photos[currentIndex].url ?<LeftArrow
               disabled = {currentIndex === 0}
               onClick = {prev}>
               &lt;
@@ -150,7 +152,6 @@ const ImageCarousel = (props) => {
                         key = {child.props.src}>
                         <BlurBackground src = {child.props.src} alt = "background"/>
                         <ExtraSpace
-
                           src = {child.props.src} >
                             <img
                           alt = ""
@@ -162,13 +163,13 @@ const ImageCarousel = (props) => {
                   })}
                 </div>
             </CarouselContentWrapper>
-            {!showModal ?<RightArrow
+            {!showModal || !props.selectedStyle.photos[currentIndex].url ?<RightArrow
               disabled = {currentIndex === length - 1}
               onClick = {next}>
             &gt;
           </RightArrow>:null}
           </CarouselWrapper>
-            {!showModal ?
+            {!showModal || !props.selectedStyle.photos[currentIndex].url ?
 
           <Carousel
             selectedStyle = {props.selectedStyle}
@@ -177,7 +178,7 @@ const ImageCarousel = (props) => {
           {/* <ModalButton
             onClick = {() => {openModal()}}
             ><FaExpand/></ModalButton> */}
-            {showModal ? <Modal
+            {showModal && props.selectedStyle.photos[currentIndex].url != null ? <Modal
             setShowModal = {setShowModal}
             showModal = {showModal}
             img = {props.selectedStyle.photos[currentIndex].url}

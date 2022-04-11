@@ -53,12 +53,15 @@ const ProductInformation = (props) => {
         <FeaturesContainer>
           <AlignmentWrapper >
           {props.features.map(feature => {
-            return (
+            if (feature.value) {
 
-              <Features border = {true} primary = {true} key = {feature.feature + feature.value}>
-                  {`${feature.feature} -   ${feature.value}`}
-                </Features>
-            )
+              return (
+
+                <Features border = {true} primary = {true} key = {feature.feature + feature.value}>
+                    {`${feature.feature} -   ${feature.value}`}
+                  </Features>
+              )
+            }
           })}
           </AlignmentWrapper>
         </FeaturesContainer>
