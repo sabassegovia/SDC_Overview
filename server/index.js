@@ -28,6 +28,7 @@ app.get('/test', (req, res) => {
 
 
 app.get("/*", (req, res) => {
+  console.log(req.body)
      axios(configureOptions(req))
       .then((result) => {
         res.status(200).send(result.data)
@@ -46,6 +47,8 @@ app.put("/*", (req, res) => {
     })
 })
 app.post("/*", (req, res) => {
+  console.log('im here in post')
+  console.log(req.body)
    axios(configureOptions(req))
     .then((result) => {
       console.log(result.data)
