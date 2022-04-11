@@ -43,7 +43,7 @@ background: url(${(props) => props.url}) center;
 const FcOkActive = styled.div`
   position:absolute;
   top:0px;
-  right:16px;
+  right:8px;
   z-index: 2;
 `
 const Style = (props) => {

@@ -9,8 +9,6 @@ import {Title, Header2, Text} from '../../styles/Headers.jsx';
 import Button from '../../styles/Buttons.jsx'
 
 
-
-
 const SizeModalBackground = styled(ColumnContainer)`
   justify-content: flex-start;
   align-items: center;
@@ -18,7 +16,7 @@ const SizeModalBackground = styled(ColumnContainer)`
   position: absolute;
   border-radius: 12px;
   top: ${(props) => props.selectSizePosition.y}px;
-  left: ${(props) => props.selectSizePosition.x-215}px;
+  left: ${(props) => props.selectSizePosition.x-318}px;
   z-index: 222;
   opacity: ${props => props.isRender ? 1 : 0};
   transition: opacity 0.6s linear;
@@ -57,7 +55,6 @@ const CloseModalButton = styled(MdClose)`
   padding: 0;
 `;
 
-
 const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, settingSku}) => {
   // var skus_ids = Object.keys(props.selectedStyle.skus)
   // var {skus} = props.selectedStyle
@@ -69,7 +66,6 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
       setOpenSizeModal(false)
     }
   }
-
   useEffect(() => {
     setIsRender(prev => true)
     // console.log(selectSizeRef.current.getBoundingClientRect())
@@ -79,7 +75,10 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
     }
   }, [selectSizeRef])
 
-
+  const handleResize = () => {
+    setOpenSizeModal(false)
+  }
+  window.addEventListener('resize', handleResize)
 
   return ReactDom.createPortal(
     <div>
