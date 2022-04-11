@@ -155,7 +155,7 @@ class Ratings extends React.Component {
 
           <AlignmentWrapper>
           <BreakdownBox border = {true}>
-              <Header2 > Ratings </Header2>
+              <Header2 > RATINGS </Header2>
               <Header2>
                 {this.state.rating}
                 < RatingsStarRating rating={this.state.rating} />
