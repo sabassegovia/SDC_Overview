@@ -197,7 +197,7 @@ progress[value]::-webkit-progress-bar {
 input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;
-  width: 80%;
+  width: 100%;
 
 }
 input[type=range]:focus {
@@ -223,4 +223,13 @@ input[type=range]::-webkit-slider-thumb {
   width: 80px;
   height: 30px;
   display: inline-block;
+}
+
+.reviewImage {
+  cursor: pointer;
+}
+
+.reviewImage:hover {
+  -webkit-transform: scale(1.2);
+	transform: scale(1.2);
 }

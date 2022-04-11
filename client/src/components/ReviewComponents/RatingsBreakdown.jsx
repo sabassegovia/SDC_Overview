@@ -13,6 +13,14 @@ const BreakdownText = styled(Text)`
   font-size: 12px;
   line-height: 12px;
 `;
+const OtherRowContainer = styled(RowContainer)`
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const OtherColumnContainer = styled(ColumnContainer)`
+  width: 100%;
+`;
 
 const CharContainer = styled(CharacteristicsContainer)`
   width: 100%;
@@ -26,7 +34,7 @@ const TallyCharacteristicsContainer = styled(ColumnContainer)`
   gap: 10px;
 `
 const CharacteristicName = styled(Header4)`
-  width: 15%;
+  width: 20%;
   padding: 10px 0 10px 0;
   border-left: none;
   border-top: none;
@@ -35,7 +43,6 @@ const CharacteristicName = styled(Header4)`
 `
 const Characteristic = styled(RowContainer)`
   column-gap: 10px;
-
 `
 
 const CharacteristicContainer = styled(ColumnContainer)`
@@ -58,7 +65,7 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
     const textdescription = {
       Fit: ["too tight", "perfect", "too loose"],
       Length: ["too short", "perfect" ,"too long"],
-      Comfort: ["uncomfortable", "ok" ,"perfect"],
+      Comfort: ["awkward", "alright" ,"perfect"],
       Quality: ["poor", "average" ,"perfect"],
       Size: ["too small", "perfect" ,"too big"],
       Width: ["too narrow", "perfect" ,"too wide"]
@@ -68,27 +75,29 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
       console.log(characteristic, characteristics[characteristic].value)
       return (
         <div key={characteristic}>
-        <Characteristic  >
-          <CharacteristicName border = {true}>
-            {characteristic}
-          </CharacteristicName >
-          <input
-            type="range"
-            name="quantity"
-            min="1"
-            max="5"
-            disabled = {true}
-            defaultValue={(characteristics[characteristic].value)}
-            key={characteristic}>
+          <Characteristic  >
+            <CharacteristicName border={true}>
+              {characteristic}
+            </CharacteristicName >
+            <OtherColumnContainer >
+              <input
+                type="range"
+                name="quantity"
+                min="1"
+                max="5"
+                disabled={true}
+                defaultValue={(characteristics[characteristic].value)}
+                key={characteristic}>
 
-          </input>
-        </Characteristic>
-        <BreakdownText>
-        <BreakdownText></BreakdownText>
-        <BreakdownText>{textdescription[characteristic][0]}</BreakdownText>
-        <BreakdownText>{textdescription[characteristic][1]}</BreakdownText>
-        <BreakdownText>{textdescription[characteristic][2]}</BreakdownText>
-        </BreakdownText>
+              </input>
+              <OtherRowContainer>
+                <BreakdownText>{textdescription[characteristic][0]}</BreakdownText>
+                <BreakdownText>{textdescription[characteristic][1]}</BreakdownText>
+                <BreakdownText>{textdescription[characteristic][2]}</BreakdownText>
+              </OtherRowContainer>
+            </OtherColumnContainer>
+          </Characteristic>
+
         </div>
       );
     })
