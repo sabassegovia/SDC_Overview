@@ -23,6 +23,7 @@ const CharacteristicName = styled(Header4)`
   border-left: none;
   border-top: none;
   border-bottom: none;
+  border-width: 1px;
 `
 const Characteristic = styled(RowContainer)`
   column-gap: 10px;

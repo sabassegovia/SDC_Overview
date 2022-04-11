@@ -46,7 +46,6 @@ const StyleNameContaner = styled(RowContainer)`
   padding-bottom: 20px;
   `
 
-
 const StyleSelector = (props) => {
   var {original_price, sale_price, name, style_id} = props.selectedStyle
 

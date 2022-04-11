@@ -80,26 +80,26 @@ const ReviewsContainer = styled(ColumnContainer)`
   width: 100%;
 `;
 
-const ReviewBox = styled(BigBox)`
-  height: 100%;
+const InnerReviewsContainer = styled(ColumnContainer)`
+  row-gap: 10px;
+`
+
+const ReviewBox = styled(ColumnContainer)`
   display: flex;
   border: 1px dashed #000;
-  flex-direction: column;
 `;
-const ReviewTop = styled.div`
-  height: 20px;
-  width: 550px;
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
+
+const ReviewTop = styled(RowContainer)`
   justify-content: space-between;
 `;
 
 const EmptyBox = styled(ColumnContainer)`
   width: 45px;
 `
-
+const UserMoment = styled(RowContainer)`
+  min-width: 250px;
+  justify-content: space-between;
+`
 
 const CharacteristicsContainer = styled.div`
   height: 100%;
@@ -137,4 +137,4 @@ const IndividualCharacteristic = styled(CharacteristicsButtons)`
 
 
 
-export {MainHeader, EmptyBox, BreakDownAlignment, RatingsReviewContainer, RowContainer, ColumnContainer, AlignmentWrapper, DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic, Theme }
+export {MainHeader, EmptyBox, BreakDownAlignment, InnerReviewsContainer, RatingsReviewContainer, RowContainer, ColumnContainer, AlignmentWrapper, DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic, Theme, UserMoment }
