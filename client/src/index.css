@@ -252,9 +252,9 @@ input[id="AddReviewRadio"] {
   height: 1px;
   margin-bottom: 15px;
   width: 100%;
-color: rgb(0, 0, 0);
-border-bottom-color: rgb(0, 0, 0);
-border-bottom-style: solid;
-border-bottom-width: 1px;
-padding: 2px;
+  color: rgb(0, 0, 0);
+  border-bottom-color: rgb(0, 0, 0);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  padding: 2px;
 }
