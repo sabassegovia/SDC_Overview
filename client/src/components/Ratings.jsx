@@ -79,7 +79,7 @@ class Ratings extends React.Component {
   handleSort(event) {
     event.preventDefault();
     console.log(event.target.value);
-    let params = { product_id: this.props.product_id, count: this.state.count, sort: event.target.value };
+    let params = { product_id: this.props.product_id, sort: event.target.value };
     Axios.get(`/reviews/`, { params })
     .then(result => {
       console.log(result.data);

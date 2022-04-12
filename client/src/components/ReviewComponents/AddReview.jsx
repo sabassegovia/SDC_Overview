@@ -177,8 +177,9 @@ class AddReview extends React.Component {
             <Form onSubmit={this.onTotalSubmit}>
                 <Header3>Your overall rating</Header3>
               <AddReviewStarRating onStarClick={this.onStarClick} />
+
+              <Header3>Would you recommend this product?</Header3>
               <Label onChange={this.onRecommend}>
-                <Header3>Would you recommend this product?</Header3>
                 Yes
                 <input type="radio" id="AddReviewRadio" name="recommend" value="true" />
                 No
@@ -200,7 +201,7 @@ class AddReview extends React.Component {
 
 
                   <BodyInput type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5">
-                
+
                   </BodyInput>
 
 
