@@ -12,6 +12,7 @@ const Label = styled.label`
 margin-bottom: 0.5em;
 color: #000;
 display: block;
+padding: 5px;
 `;
 
 const Input = styled.input`
