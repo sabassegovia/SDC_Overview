@@ -15,18 +15,17 @@ import {ShoppingCart} from './styles/Icons.jsx'
 
 const BigContainer = styled(RowContainer)`
   justify-content: center;
-  min-width: 1000px;
+  min-width: 1400px;
   opacity: ${props => props.isRender ? 1 : 0};
   transition: opacity 1.5s ease-in;
 `
 const AppContainer = styled(ColumnContainer)`
   background-color: #FAFAFA;
   margin: 10px;
-  min-width: 1000px;
+  min-width: 1400px;
   max-width: 1400px;
   border-radius: 12px;
 `
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -76,11 +75,11 @@ class App extends React.Component {
         <AppContainer border = {true} >
           <MainHeader >
             <AlignmentWrapper>
-              <Title secondary = {true} underline = {true} ><em>Atelier</em></Title>
+              <Title  underline = {true} ><em>Atelier</em></Title>
             </AlignmentWrapper>
             {/* <button onClick = {()=> {this.test()}}>test</button> */}
             <AlignmentWrapper>
-              <ShoppingCart big ={true} secondary = {true} />
+              <ShoppingCart big ={true}  />
             </AlignmentWrapper>
           </MainHeader>
 

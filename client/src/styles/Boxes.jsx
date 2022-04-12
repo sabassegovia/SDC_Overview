@@ -18,6 +18,8 @@ const RatingsReviewContainer = styled(ColumnContainer)`
   border-radius: 12px;
 `
 
+
+
 const MainHeader = styled(RowContainer)`
   justify-content: space-between;
   align-content: space-around;
