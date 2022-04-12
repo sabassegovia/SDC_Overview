@@ -15,12 +15,19 @@ class AddAnswer extends React.Component {
     this.onImageUpload = this.onImageUpload.bind(this);
 
     this.state = {
+      question_id: 0,
       body: '',
       name: '',
       email: '',
       photos: []
     }
   };
+
+  componentDidMount() {
+    this.setState({
+      question_id: this.props.question_id
+    })
+  }
 
   handleBody(event) {
     this.setState({
@@ -51,14 +58,22 @@ class AddAnswer extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('submitting answer!')
+    var params = {
+      body: this.state.body,
+      name: this.state.name,
+      email: this.state.email,
+      photos: this.state.photos
+    }
+    Axios.post(`/qa/questions/${this.state.question_id}/answers`,  params )
+    .then(result => {console.log(result.data)})
+    .catch(err => {console.log(err)})
   }
 
   render() {
     return (
       <div>
         <Header2>Submit your Answer</Header2>
-        <Header3>[Product Name]: [Question Body]</Header3>
+        <Header3>{this.props.name}: {this.props.body}</Header3>
         <form>
           <Header3>Your Answer</Header3>
           <Input type="text" name="question" maxLength="1000" onChange={this.handleBody}/>

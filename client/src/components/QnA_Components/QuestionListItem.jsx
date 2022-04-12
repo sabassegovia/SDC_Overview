@@ -3,14 +3,19 @@ import axios from "axios"
 import { Axios } from "../../AxiosConfig.js"
 import AnswerList from './AnswerList.jsx';
 import Typography from 'react-styled-typography';
+import AddAnswer from './AddAnswer.jsx';
 
 class QuestionListItem extends React.Component {
   constructor(props) {
     super(props);
     this.onHelpfulClick = this.onHelpfulClick.bind(this);
     this.onReportClick = this.onReportClick.bind(this);
-
-    this.state = {}
+    this.handleAddAnswerButton = this.handleAddAnswerButton.bind(this);
+    this.state = {showAddAnswer: false}
+  }
+  handleAddAnswerButton(event) {
+    event.preventDefault();
+    this.setState({showAddAnswer: !this.state.showAddAnswer})
   }
 
   onHelpfulClick(event) {
@@ -28,6 +33,13 @@ class QuestionListItem extends React.Component {
   }
 
   render () {
+    let AddAnswerThing;
+    if (this.state.showAddAnswer) {
+      AddAnswerThing =  <AddAnswer question_id={574113} name={this.props.name} body={this.props.question.question_body}/>
+    } else {
+      AddAnswerThing = ''
+    }
+
     return (
       <div>
        <div className="qa-list-item-container">
@@ -74,12 +86,14 @@ class QuestionListItem extends React.Component {
                     cursor: pointer;
                   }
                   `} underline="true"
-              onClick={this.onReportClick}>Report</Typography>
+                  onClick={this.onReportClick}>Report</Typography>
+                <tag onClick={this.handleAddAnswerButton}>Add An Answer</tag>
+                {AddAnswerThing}
+              </div>
             </div>
-          </div>
-         </section>
-         <AnswerList answers={this.props.question.answers} question_id={this.props.id} getQuestions={this.props.getQuestions}/>
-       </div>
+          </section>
+          <AnswerList answers={this.props.question.answers} question_id={this.props.id} getQuestions={this.props.getQuestions} />
+        </div>
      </div>
     );
   }

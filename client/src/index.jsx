@@ -31,7 +31,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       overview: null,
-      product_id: 65636,
+      product_id: 65660,
       rating: 0,
       documentTitle: null,
       isRender: false,
@@ -91,7 +91,7 @@ class App extends React.Component {
             rating = {this.state.rating}
             overview = {this.state.overview}/>
           <RelatedItems overview = {this.state.overview}/>
-          <QnA product_id = {this.state.overview.id}/>
+          <QnA product_id = {this.state.overview.id} name={this.state.overview.name}/>
             <div ref = {this.ratings}></div>
           <Ratings
             product_id = {this.state.overview.id}
