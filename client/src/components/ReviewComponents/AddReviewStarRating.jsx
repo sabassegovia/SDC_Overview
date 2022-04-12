@@ -12,6 +12,12 @@ const StarMeaning = styled(Label)`
   display: flex;
   flex-direction: row;
   padding-left: 10px;
+  font-style: normal;
+  font-weight: 550;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 5px;
+  padding: 5px;
 `;
 
 const AddReviewStarRating = ({onStarClick}) => {

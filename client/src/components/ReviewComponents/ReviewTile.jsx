@@ -24,7 +24,7 @@ class ReviewTile extends React.Component {
     this.onImageClick = this.onImageClick.bind(this);
     this.onHelpfulClick = this.onHelpfulClick.bind(this);
     this.onReportClick = this.onReportClick.bind(this);
-    this.hindeModal = this.hideModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   onImageClick(event) {
@@ -101,7 +101,7 @@ class ReviewTile extends React.Component {
             </Text>
             <ReviewImages>
             {images}
-            {/* {this.showImage ? <ReviewImageModal show={this.showImage} handleClose={this.hideModal} img={this.modalImage}/> : null} */}
+            {/* {this.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.modalImage}/> : null} */}
             </ReviewImages>
             {recommend}
             <div>

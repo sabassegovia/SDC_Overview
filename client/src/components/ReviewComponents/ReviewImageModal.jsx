@@ -26,8 +26,8 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalImg = styled.img`
-  max-height: 500px;
-  max-width: 400px;
+  max-height: 400px;
+  max-width: 300px;
   background: #000;
 `;
 
