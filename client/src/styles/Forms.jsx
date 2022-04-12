@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Form = styled.div`
 color: #98999b;
 display: block;
-widthL 300px;
-marginL 50px auto;
+border: ${(props) => {if (props.border) {
+    return `2px solid #3e3e3e`}}};
 `;
 
 const Label = styled.label`

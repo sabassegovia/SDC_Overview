@@ -131,7 +131,7 @@ const AddToCart = (props) => {
 
 
   return (
-    <StyleQuantityCartContainer border = {true}>
+    <StyleQuantityCartContainer border = {false}>
       <AlignmentWrapper>
         <StyleQuantityContainer>
             <SizeSelect value = {currentSku}

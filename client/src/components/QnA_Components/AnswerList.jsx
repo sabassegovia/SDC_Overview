@@ -48,7 +48,7 @@ class AnswerList extends React.Component {
     return (
       <div>
         {this.state.answers.map(eachAnswer => {
-        return <AnswerListItem answer={eachAnswer} key={eachAnswer.answer_id} id={eachAnswer.answer_id}/>
+        return <AnswerListItem answer={eachAnswer} key={eachAnswer.answer_id} id={eachAnswer.answer_id} getQuestions={this.props.getQuestions}/>
         })}
         {loadMore}
       </div>

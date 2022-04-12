@@ -26,13 +26,12 @@ const AppContainer = styled(ColumnContainer)`
   max-width: 1400px;
   border-radius: 12px;
 `
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       overview: null,
-      product_id: 65660,
+      product_id: 65636,
       rating: 0,
       documentTitle: null,
       isRender: false,
@@ -76,11 +75,11 @@ class App extends React.Component {
         <AppContainer border = {true} >
           <MainHeader >
             <AlignmentWrapper>
-              <Title secondary = {true} underline = {true} ><em>Atelier</em></Title>
+              <Title  secondary = "true" underline = {true} ><em>Atelier</em></Title>
             </AlignmentWrapper>
             {/* <button onClick = {()=> {this.test()}}>test</button> */}
             <AlignmentWrapper>
-              <ShoppingCart big ={true} secondary = {true} />
+              <ShoppingCart secondary = "true" large = "true"  />
             </AlignmentWrapper>
           </MainHeader>
 
