@@ -54,6 +54,8 @@ class AddQuestion extends React.Component {
       email: this.state.email
     }
     console.log('submitting question!')
+    console.log(typeof params.body)
+    console.log(typeof params.product_id)
     Axios.post(`/qa/questions`,  params )
     .then(result => {console.log(result.data)})
     .catch(err => {console.log(err)})
@@ -63,7 +65,7 @@ class AddQuestion extends React.Component {
     return (
       <div>
         <Header2>Ask Your Question</Header2>
-        <Header3>About the [Product Name Here]</Header3>
+        <Header3>About the {this.props.name}</Header3>
         <form>
           <Header3>What is your question in one sentence?</Header3>
           <Input type="text" name="question" maxLength="1000" onChange={this.handleBody}/>

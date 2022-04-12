@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import axios from "axios"
 import { Axios } from "../../AxiosConfig.js"
+import AddAnswer from "./AddAnswer.jsx";
 
 class AnswerListItem extends React.Component {
   constructor(props) {
@@ -11,8 +12,14 @@ class AnswerListItem extends React.Component {
     this.onReportClick = this.onReportClick.bind(this);
 
     this.state = {
-
+      question_id: 0,
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      question_id: this.props.id
+    })
   }
 
   sellerHandler() {
@@ -41,17 +48,20 @@ class AnswerListItem extends React.Component {
     //   for (i = 0; i < this.props.answer.photos.length; i++) {
     //     return <img src="`${this.props.answer.photos[i]}`"></img>
     //   }
+
     return (
       <div>
-        <section className="answer"><b>A: </b>{this.props.answer.body}
-          <div className="qa-list-item-helpful-container">
-            <section className="helpful">
+        <section ><b>A: </b>{this.props.answer.body}
+          <div >
+            <section >
               <div>
                 by {this.props.answer.answerer_name}{this.sellerHandler}
                 , {moment(this.props.answer.date).format('MMMM Do YYYY')}
                 |  Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.answer.helpfulness})
                 |  <tag onClick={this.onReportClick}>Report</tag>
+
               </div>
+
             </section>
           </div>
         </section>
