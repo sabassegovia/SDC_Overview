@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import axios from "axios"
 import { Axios } from "../AxiosConfig.js"
+import PropTypes from 'prop-types';
 
 import QuestionList from './QnA_Components/QuestionList.jsx';
 import QuestionSearch from './QnA_Components/QuestionSearch.jsx';
@@ -40,7 +41,6 @@ const MoreQuestionsButton = styled.button`
 
 const ButtonsRow = styled(RowContainer)`
   width: 100%;
-
 `
 
 class QnA extends React.Component {
@@ -111,17 +111,28 @@ class QnA extends React.Component {
             <Header2 secondary = {true}>Questions &amp; Answers</Header2>
           </AlignmentWrapper>
         </QnAHeader>
-      <ButtonsRow>
-        <QuestionSearch searchHandler={this.searchHandler} />
-        <QuestionList questions={this.state.list} getQuestions={this.getQuestions} name={this.props.name}/>
-        <button onClick={this.handleMoreQuestions}>More Answered Questions</button>
-        <button onClick={this.handleAddQuestion}>Add A Question</button>
 
-       </ButtonsRow>
-       {AddQuestionThing}
+        <QuestionSearch searchHandler={this.searchHandler} />
+
+
+      <QuestionList questions={this.state.list} getQuestions={this.getQuestions} name={this.props.name}/>
+
+        <ButtonsRow>
+
+          <MoreQuestionsButton onClick={this.handleMoreQuestions}>More Answered Questions</MoreQuestionsButton>
+          <MoreQuestionsButton onClick={this.handleAddQuestion}>Add A Question</MoreQuestionsButton>
+
+        </ButtonsRow>
+        {AddQuestionThing}
+
       </QnAContainer>
     );
   };
+}
+
+QnA.propTypes = {
+  product_id: PropTypes.number,
+
 }
 
 export default QnA;

@@ -73,7 +73,6 @@ const MediaButton = styled.button`
     color: #e4e4e4;
   };
 `
-
 const AddToCart = (props) => {
   var skus_ids = Object.keys(props.selectedStyle.skus)
   var {skus} = props.selectedStyle

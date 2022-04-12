@@ -3,6 +3,14 @@ import axios from "axios"
 import { Axios } from "../../AxiosConfig.js"
 
 import AnswerListItem from './AnswerListItem.jsx';
+import PropTypes from 'prop-types';
+
+import styled from 'styled-components'
+import {RowContainer, ColumnContainer, AlignmentWrapper, EmptyBox} from '../../styles/Boxes.jsx'
+import {Title, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
+
+
+
 
 class AnswerList extends React.Component {
   constructor(props) {

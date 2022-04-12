@@ -51,9 +51,9 @@ class AnswerListItem extends React.Component {
 
     return (
       <div>
-        <section className="answer"><b>A: </b>{this.props.answer.body}
-          <div className="qa-list-item-helpful-container">
-            <section className="helpful">
+        <section ><b>A: </b>{this.props.answer.body}
+          <div >
+            <section >
               <div>
                 by {this.props.answer.answerer_name}{this.sellerHandler}
                 , {moment(this.props.answer.date).format('MMMM Do YYYY')}
