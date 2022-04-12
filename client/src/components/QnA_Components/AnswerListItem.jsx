@@ -36,6 +36,11 @@ class AnswerListItem extends React.Component {
   }
 
   render() {
+    // console.log(this.props.answer.photos)
+    // var imageHandler = () => {
+    //   for (i = 0; i < this.props.answer.photos.length; i++) {
+    //     return <img src="`${this.props.answer.photos[i]}`"></img>
+    //   }
     return (
       <div>
         <section className="answer"><b>A: </b>{this.props.answer.body}
