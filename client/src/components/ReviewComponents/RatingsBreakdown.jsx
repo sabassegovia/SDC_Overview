@@ -9,9 +9,9 @@ import {RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxe
 const BreakdownText = styled(Text)`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   font-size: 12px;
   line-height: 12px;
+  justify-content: space-between;
 `;
 const OtherRowContainer = styled(RowContainer)`
   width: 100%;
@@ -53,11 +53,11 @@ const CharacteristicContainer = styled(ColumnContainer)`
 
 const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
 
-  const five = ratingsStarBreakdown["5"];
-  const four = ratingsStarBreakdown["4"];
-  const three = ratingsStarBreakdown["3"];
-  const two = ratingsStarBreakdown["2"];
-  const one = ratingsStarBreakdown["1"];
+  const five = ratingsStarBreakdown["5"] || 0 ;
+  const four = ratingsStarBreakdown["4"] || 0 ;
+  const three = ratingsStarBreakdown["3"] || 0;
+  const two = ratingsStarBreakdown["2"] || 0;
+  const one = ratingsStarBreakdown["1"] || 0;
   const total = (Number(five) + Number(four) + Number(three) + Number(two) + Number(one));
 
   const MakeInputFromCharacteristics = (characteristics) => {
@@ -105,11 +105,11 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
   return (
     <TallyCharacteristicsContainer>
       <RatingsTallyContainer>
-        <Text>5 Stars <progress max="100" value={five / total * 100}></progress> {five || 0} reviews</Text>
-        <Text>4 Stars <progress max="100" value={four / total * 100}></progress> {four || 0} reviews</Text>
-        <Text>3 Stars <progress max="100" value={three / total * 100}></progress> {three || 0} reviews</Text>
-        <Text>2 Stars <progress max="100" value={two / total * 100}></progress> {two || 0} reviews</Text>
-        <Text>1 Stars <progress max="100" value={one / total * 100}></progress> {one || 0} reviews</Text>
+        <Text>5 Stars <progress max="100" value={five / total * 100}></progress> {five} reviews</Text>
+        <Text>4 Stars <progress max="100" value={four / total * 100}></progress> {four} reviews</Text>
+        <Text>3 Stars <progress max="100" value={three / total * 100}></progress> {three} reviews</Text>
+        <Text>2 Stars <progress max="100" value={two / total * 100}></progress> {two} reviews</Text>
+        <Text>1 Stars <progress max="100" value={one / total * 100}></progress> {one} reviews</Text>
       </RatingsTallyContainer>
         <Header3>Characteristics</Header3>
       <CharContainer>

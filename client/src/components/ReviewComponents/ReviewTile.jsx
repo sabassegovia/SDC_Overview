@@ -10,7 +10,7 @@ import {Title, Header2, Header3, Header4, Text, Span} from '../../styles/Headers
 import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js";
 import {Button} from '../../styles/Buttons.jsx';
-// import ReviewImageModal from './ReviewImageModal.jsx';
+import ReviewImageModal from './ReviewImageModal.jsx';
 
 
 class ReviewTile extends React.Component {
@@ -25,12 +25,19 @@ class ReviewTile extends React.Component {
     this.onHelpfulClick = this.onHelpfulClick.bind(this);
     this.onReportClick = this.onReportClick.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.onImageKeyDown = this.onImageKeyDown.bind(this);
   }
 
   onImageClick(event) {
     event.preventDefault();
     console.log(event.target.src);
     this.setState({showImage: true, modalImage: event.target.src});
+  }
+  onImageKeyDown(event) {
+    event.preventDefault();
+    if(event.keyCode === 13) {
+      this.onImageClick();
+    }
   }
 
   hideModal(event) {
@@ -54,14 +61,20 @@ class ReviewTile extends React.Component {
 
   render() {
 
-    let images = (
-      this.props.review.photos.map(photo => (
+    let images;
+    if (this.props.review.photos.length === 0) {
+      images = <div></div>
+    } else {
+    images = (
+      <ReviewImages>
+      {this.props.review.photos.map(photo => (
         <div key={photo.id}>
-          <img src={photo.url} alt={photo.id} onClick={this.onImageClick} width="80%" height="100%" className="reviewImage"/>
+          <img src={photo.url} alt={photo.id} onClick={this.onImageClick} onKeyDown={this.onImageKeyDown} width="80%" height="100%" className="reviewImage" role="presentation"/>
         </div>
-      ))
-
+      ))}
+      </ReviewImages>
     )
+    }
 
     let recommend;
 
@@ -97,12 +110,11 @@ class ReviewTile extends React.Component {
 
             <Text>
               {this.props.review.body}
-              {/* {reviewbody} */}
             </Text>
-            <ReviewImages>
+
             {images}
-            {/* {this.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.modalImage}/> : null} */}
-            </ReviewImages>
+            {this.state.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.state.modalImage}/> : null}
+
             {recommend}
             <div>
               <Typography
