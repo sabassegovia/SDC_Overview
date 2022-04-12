@@ -200,9 +200,9 @@ class AddReview extends React.Component {
                   <Header3>Tell other people more about the product.</Header3>
 
 
-                  <BodyInput type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5">
+                  <textarea type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5">
 
-                  </BodyInput>
+                  </textarea>
 
 
                 <Header3>Nickname</Header3>
