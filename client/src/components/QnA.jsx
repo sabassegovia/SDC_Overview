@@ -55,8 +55,8 @@ class QnA extends React.Component {
     event.preventDefault();
     this.setState({
       count: 9999
-    })
-    this.getQuestions();
+    },
+    () => {this.getQuestions()})
   }
 
 
@@ -71,7 +71,7 @@ class QnA extends React.Component {
 
         <QuestionSearch searchHandler={this.searchHandler} />
         <QuestionList questions={this.state.list} getQuestions={this.getQuestions}/>
-        <button onClick={this.handleMoreQuestions}>More Answered Questions</button>
+        <button as="a" href="#" onClick={this.handleMoreQuestions}>More Answered Questions</button>
         <button>Add A Question</button>
       </QnAContainer>
     );
