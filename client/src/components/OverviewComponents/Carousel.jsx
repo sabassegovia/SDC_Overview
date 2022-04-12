@@ -71,6 +71,7 @@ const Carousel = (props) => {
         disabled = {current === 0}
         onClick = {() => prev()}><TiArrowLeftThick/></NavButtons>
         {photos.map((photo, index) => {
+          if (index >= current &&  index < current + 7) {
             return (
               <ThumbnailBackground key = {index}>
                   <ThumbnailImage
@@ -80,9 +81,11 @@ const Carousel = (props) => {
               </ThumbnailBackground>
             )
           }
+
+          }
         )}
         <NavButtons
-        disabled = {current === length - 6}
+        disabled = {current === length - 7}
         onClick = {() => next()}><TiArrowRightThick /></NavButtons>
       </CarouselContainer>
     </CarouselFooter>

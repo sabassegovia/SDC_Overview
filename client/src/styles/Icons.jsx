@@ -19,8 +19,8 @@ const ShoppingCart = styled(FiShoppingCart)`
     transition-duration: 2s linear;
     transform: scale(1.1);
   }; */
-  width: ${props => props.big ? '80px' : '40px'};
-  height: ${props => props.big ? '80px' : '40px'};
+  width: ${props => props.large ? '80px' : '40px'};
+  height: ${props => props.large ? '80px' : '40px'};
 
   /* ${(props) => {props.big&&`
     width:100px;

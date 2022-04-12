@@ -19,7 +19,6 @@ const RatingsReviewContainer = styled(ColumnContainer)`
 `
 
 
-
 const MainHeader = styled(RowContainer)`
   justify-content: space-between;
   align-content: space-around;

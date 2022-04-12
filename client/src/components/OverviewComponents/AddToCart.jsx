@@ -11,7 +11,6 @@ import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Head
 import {CartContainer, RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx';
 import {ShoppingCart} from '../../styles/Icons.jsx'
 
-
 const StyleQuantityCartContainer = styled(ColumnContainer)`
 justify-content: space-between;
 max-height: 240px;
@@ -132,7 +131,7 @@ const AddToCart = (props) => {
 
 
   return (
-    <StyleQuantityCartContainer border = {true}>
+    <StyleQuantityCartContainer border = {false}>
       <AlignmentWrapper>
         <StyleQuantityContainer>
             <SizeSelect value = {currentSku}

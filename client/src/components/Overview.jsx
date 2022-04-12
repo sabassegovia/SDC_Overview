@@ -19,6 +19,7 @@ const ImageGalleryProductDescription = styled(ColumnContainer)`
   width: 70%;
   min-width: 1000px;
   border-left: none;
+  border-bottom: none;
 `
 const StylesSelectionCart = styled(ColumnContainer)`
   border-width: 10px;
