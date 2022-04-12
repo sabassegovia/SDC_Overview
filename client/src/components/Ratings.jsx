@@ -14,16 +14,9 @@ import RatingsStarRating from './ReviewComponents/RatingsStarRating.jsx';
 import RatingsBreakdown from './ReviewComponents/RatingsBreakdown.jsx';
 
 import PropTypes from 'prop-types';
-import ProgressBar from "@ramonak/react-progress-bar";
 import {RowContainer, ColumnContainer, AlignmentWrapper, BreakDownAlignment, MainHeader, RatingsReviewContainer} from '../styles/Boxes.jsx'
 import {Title, Wrapper, Header2, Header3, Span, Header4, Text} from '../styles/Headers.jsx';
 
-
-
-const StarsBar = styled(ProgressBar)`
-  width: 80%;
-  display: inline-block;
-`;
 
 const ReviewSelect = styled(Select)`
   height: 40px;
@@ -53,9 +46,11 @@ class Ratings extends React.Component {
       ratings: {},
       // viewMoreReviews: false,
       recommendedRatio: 0,
-      characteristics: {}
+      characteristics: {},
+      showAddReview: false
     }
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
+    this.handleAddReview = this.handleAddReview.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.handleSort = this.handleSort.bind(this);
   }
@@ -64,6 +59,11 @@ class Ratings extends React.Component {
     event.preventDefault();
     let newCount = this.state.count + 2;
     this.setState({count: newCount}, () => {this.getReviews();})
+  }
+
+  handleAddReview(event) {
+    event.preventDefault();
+    this.setState({showAddReview: !this.state.showAddReview});
   }
 
   getReviews() {
@@ -79,7 +79,7 @@ class Ratings extends React.Component {
   handleSort(event) {
     event.preventDefault();
     console.log(event.target.value);
-    let params = { product_id: this.props.product_id, count: this.state.count, sort: event.target.value };
+    let params = { product_id: this.props.product_id, sort: event.target.value };
     Axios.get(`/reviews/`, { params })
     .then(result => {
       console.log(result.data);
@@ -128,8 +128,14 @@ class Ratings extends React.Component {
 
   render() {
 
-    // const { rating } = this.state;
-    // let review;
+    let AddReviewForm;
+    if (this.state.showAddReview) {
+      AddReviewForm = (<AddReview characteristics={this.state.characteristics}
+      product_id ={this.state.product_id}/>)
+    } else {
+      AddReviewForm = <div></div>
+    }
+
     const ratingPercent = this.state.recommendedRatio * 100;
 
     let ReviewTiles = (this.state.reviews.map((review, i) => (
@@ -183,22 +189,17 @@ class Ratings extends React.Component {
             </SortHeader>
           </AlignmentWrapper>
 
-
-
             {ReviewTiles}
 
           <AlignmentWrapper>
-            <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
+            <Button as="a" href="#" onClick={this.handleAddReviews}>More Reviews</Button>
+            <Button as="a" href="#" onClick={this.handleAddReview}>Add a Review</Button>
           </AlignmentWrapper>
         </ReviewsContainer>
         <EmptyBox/>
         </ReallyBigBox>
-        <Button>Add a Review</Button>
-        <AddReview characteristics={this.state.characteristics}
-                    product_id ={this.state.product_id}
-        />
+        {AddReviewForm}
       </RatingsReviewContainer>
-
     );
 
   };

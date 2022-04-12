@@ -5,6 +5,8 @@ import { Axios } from "../AxiosConfig.js"
 
 import QuestionList from './QnA_Components/QuestionList.jsx';
 import QuestionSearch from './QnA_Components/QuestionSearch.jsx';
+import AddQuestion from './QnA_Components/AddQuestion.jsx';
+import AddAnswer from './QnA_Components/AddAnswer.jsx';
 import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader} from '../styles/Boxes.jsx'
 import {Title, Header2, Header3, Text} from '../styles/Headers.jsx';
 
@@ -79,8 +81,8 @@ class QnA extends React.Component {
     event.preventDefault();
     this.setState({
       count: 9999
-    })
-    this.getQuestions();
+    },
+    () => {this.getQuestions()})
   }
 
 
@@ -95,10 +97,10 @@ class QnA extends React.Component {
 
         <QuestionSearch searchHandler={this.searchHandler} />
         <QuestionList questions={this.state.list} getQuestions={this.getQuestions}/>
-
-
-        <MoreQuestionsButton onClick={this.handleMoreQuestions}>More Answered Questions</MoreQuestionsButton>
-        <MoreQuestionsButton>Add A Question</MoreQuestionsButton>
+        <button onClick={this.handleMoreQuestions}>More Answered Questions</button>
+        <button>Add A Question</button>
+        <AddQuestion id={this.props.product_id}/>
+        <AddAnswer />
       </QnAContainer>
     );
   };
