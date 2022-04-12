@@ -1,24 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { FcOk } from 'react-icons/fc';
 import moment from 'moment';
 import Typography from 'react-styled-typography';
 import ReviewTileStarRating from './ReviewTileStarRating.jsx';
-import {ReviewTop, AlignmentWrapper, InnerReviewsContainer, UserMoment, RowContainer} from '../../styles/Boxes.jsx';
+import {ReviewTop, AlignmentWrapper, InnerReviewsContainer, UserMoment, RowContainer, ReviewImages} from '../../styles/Boxes.jsx';
 import {Title, Header2, Header3, Header4, Text, Span} from '../../styles/Headers.jsx'
 import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js";
 import {Button} from '../../styles/Buttons.jsx';
+// import ReviewImageModal from './ReviewImageModal.jsx';
+
 
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tile: '',
-      showImage: false
+      showImage: false,
+      modalImage: ''
     }
+    this.onImageClick = this.onImageClick.bind(this);
     this.onHelpfulClick = this.onHelpfulClick.bind(this);
     this.onReportClick = this.onReportClick.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+  }
+
+  onImageClick(event) {
+    event.preventDefault();
+    console.log(event.target.src);
+    this.setState({showImage: true, modalImage: event.target.src});
+  }
+
+  hideModal(event) {
+    event.preventDefault();
+    this.setState({showImage: false})
   }
 
   onHelpfulClick(event) {
@@ -37,24 +54,13 @@ class ReviewTile extends React.Component {
 
   render() {
 
-    // let reviewbody;
-    // if (this.props.review.body.length <= 250) {
-    //   reviewbody = <Text>{this.props.review.body}</Text>
-    // } else {
-    //   reviewbody =
-    //   (
-    //   <Text>
-    //     {this.props.review.body.substring(0, 249)}
-    //     <button>show more</button>
-    //   </Text>
-    //   );
-    // }
     let images = (
       this.props.review.photos.map(photo => (
         <div key={photo.id}>
-          <img src={photo.url} alt={photo.id} width="20%" height="15%"/>
+          <img src={photo.url} alt={photo.id} onClick={this.onImageClick} width="80%" height="100%" className="reviewImage"/>
         </div>
       ))
+
     )
 
     let recommend;
@@ -93,7 +99,10 @@ class ReviewTile extends React.Component {
               {this.props.review.body}
               {/* {reviewbody} */}
             </Text>
+            <ReviewImages>
             {images}
+            {/* {this.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.modalImage}/> : null} */}
+            </ReviewImages>
             {recommend}
             <div>
               <Typography

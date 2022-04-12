@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../styles/Buttons.jsx';
-import {Title, Wrapper, Header2} from '../../styles/Headers.jsx';
+import {Title, Wrapper, Header2, Header3, Header4} from '../../styles/Headers.jsx';
 import {Form, Label, Input} from '../../styles/Forms.jsx';
 import {DescriptionBox, BigBox, LittleBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic} from '../../styles/Boxes.jsx';
 import styled, { css } from 'styled-components';
@@ -12,15 +12,15 @@ import {Axios} from "../../AxiosConfig.js"
 
 const NewReviewBox = styled(BigBox)`
   height: 100%;
-  width: 60%;
+  width: 55%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 10px;
 `;
+
 const SummaryInput = styled(Input)`
   width: 70%;
   inline-size: 400px;
-  overflow-wrap: break-word;
-  word-break: break-all;
   height: 25px;
 `;
 
@@ -35,6 +35,8 @@ const FadedLabel = styled(Label)`
 margin-top: 0px;
 margin-bottom: 0.5em;
 color: #989898;
+font-size: 14px;
+padding: 0px;
 `;
 
 class AddReview extends React.Component {
@@ -144,22 +146,23 @@ class AddReview extends React.Component {
       return Object.keys(characteristics).map(characteristic => {
         return (
           <div key={characteristic}>
-            {characteristic}
+            <span className="radioSpan"></span>
+            <Header3>{characteristic}</Header3>
             <CharacteristicsBox >
             <form onChange={this.onCharSubmit}>
-              <CharacteristicsButtons>
 
-                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="1"></input>
-                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="2"></input>
-                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="3"></input>
-                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="4"></input>
-                <input type="radio" name={JSON.stringify(characteristics[characteristic].id)} value="5"></input>
+              <CharacteristicsButtons>
+                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)}  value="1"></input>
+                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="2"></input>
+                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="3"></input>
+                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="4"></input>
+                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="5"></input>
 
               </CharacteristicsButtons>
               </form>
               <IndividualCharacteristic>
                 {formDescriptions[characteristic].map(description => {
-                  return <p key={description}> {description} </p>
+                  return <Header4 key={description}> {description} </Header4>
                 })}
               </IndividualCharacteristic>
             </CharacteristicsBox>
@@ -169,57 +172,60 @@ class AddReview extends React.Component {
     }
 
     return (
-      <div>
         <NewReviewBox>
           <div>
-            <Header2>Enter Your Review</Header2>
+            <Header2>WRITE YOUR REVIEW</Header2>
             <Form onSubmit={this.onTotalSubmit}>
-              <Label>Overall rating
-                <AddReviewStarRating onStarClick={this.onStarClick} />
-              </Label>
+                <Header3>Your overall rating</Header3>
+              <AddReviewStarRating onStarClick={this.onStarClick} />
               <Label onChange={this.onRecommend}>
-                Do you recommend this product?
+                <Header3>Would you recommend this product?</Header3>
                 Yes
-                <input type="radio" name="recommend" value="true" />
+                <input type="radio" id="AddReviewRadio" name="recommend" value="true" />
                 No
-                <input type="radio" name="recommend" value="false" />
+                <input type="radio" id="AddReviewRadio" name="recommend" value="false" />
               </Label>
-              <Label>
-                <CharacteristicsContainer>Characteristics
+
+                <CharacteristicsContainer>
+                  <Header3>Characteristics</Header3>
                   {MakeFormFromCharacteristics(this.props.characteristics)}
-
                 </CharacteristicsContainer>
-              </Label>
-              <form onChange={this.onReviewSubmit}>
-                <Label>
-                  Summary
-                  <SummaryInput type="text" name="summary" placeholder="Example: Best purchase ever!" maxLength="60"/>
-                </Label>
-                <Label>
-                  Review Body
-                  <BodyInput type="text" name="body" placeholder="minimum 50 characters" minLength="50"/>
-                </Label>
-                <Label>Nickname<Input type="text" name="name" placeholder=" Example: jackson11!" maxLength="60"></Input>
-                </Label>
-                <FadedLabel>For privacy reasons, do not use your full name or email address</FadedLabel>
 
-                <Label>e-mail<Input type="text" name="email" placeholder=" Example: jackson11@email.com" maxLength="60"></Input></Label>
-                <FadedLabel>For authentication reasons, you will not be emailed</FadedLabel>
+              <form onChange={this.onReviewSubmit}>
+                  <Header3>What is your experience in one sentence?</Header3>
+                  <SummaryInput type="text" name="summary" placeholder="Example: Best purchase ever!" maxLength="60"/>
+
+
+
+                  <Header3>Tell other people more about the product.</Header3>
+                  <BodyInput type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5">
+
+                  </BodyInput>
+
+
+                <Header3>Nickname</Header3>
+
+                  <Input type="text" name="name" placeholder=" Example: jackson11!" maxLength="60"></Input>
+
+                <Header4>For privacy reasons, do not use your full name or email address</Header4>
+                <Header3>e-mail</Header3>
+
+                <Input type="text" name="email" placeholder=" Example: jackson11@email.com" maxLength="60"></Input>
+                <Header4>For authentication reasons, you will not be emailed</Header4>
 
                 </form>
 
-              <Label>Upload your photos
+              <Header3>Upload your photos
                 <Form action="/action_page.php" onChange={this.onImageUpload}>
                   <input type="file" id="myFile" name="filename" accept="image/gif, image/jpeg, image/png"></input>
                   {/* <input type="submit"></input> */}
                 </Form>
-              </Label>
+              </Header3>
 
               <Button onClick={this.onTotalSubmit}> Submit</Button>
             </Form>
           </div>
         </NewReviewBox>
-      </div>
     );
   }
 }
