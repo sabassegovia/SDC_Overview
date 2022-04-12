@@ -23,12 +23,12 @@ app.use(express.static(__dirname + "/../client/"))
 // })
 
 app.get('/test', (req, res) => {
-  res.status(200).sendFile("/home/rphpandan/hackreactor/rfp2202/GOC-FEC/FEC/client/src/index.jsx")
+  res.send("Hello World!")
 })
 
 
 app.get("/*", (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
      axios(configureOptions(req))
       .then((result) => {
         res.status(200).send(result.data)
@@ -47,15 +47,15 @@ app.put("/*", (req, res) => {
     })
 })
 app.post("/*", (req, res) => {
-  console.log('im here in post')
-  console.log(req.body)
+  // console.log('im here in post')
+  // console.log(req.body)
    axios(configureOptions(req))
     .then((result) => {
-      console.log(result.data)
+      // console.log(result.data)
       res.send(result.data)
     })
     .catch((err) => {
-      console.log('im broken asdfasdf')
+      console.log('im broken')
       res.send(err)
     })
 })

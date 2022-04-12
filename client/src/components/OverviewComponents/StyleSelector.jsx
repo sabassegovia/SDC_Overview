@@ -84,11 +84,11 @@ const StyleSelector = (props) => {
             <Header2>Style &gt; {name}</Header2>
           </StyleNameContaner>
           <StyleThumbnails>
-            {props.styles.map(style => {
+            {props.styles.map((style, index) => {
               return <Style
               selected = {style.style_id === props.selectedStyle.style_id}
               // selected = {props.selectedStyle.style_id}
-              key = {style.name}
+              key = {style.name + index}
               style = {style}
               styleOnClick = {props.styleOnClick}
               />

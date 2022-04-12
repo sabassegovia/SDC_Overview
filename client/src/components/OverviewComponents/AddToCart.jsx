@@ -9,13 +9,7 @@ import Button from '../../styles/Buttons.jsx';
 import {FiShoppingCart} from 'react-icons/fi';
 import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
 import {CartContainer, RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx';
-
-
-const ShoppingCart = styled(FiShoppingCart)`
-  width: 24px;
-  height: 24px;
-  padding: 0;
-`;
+import {ShoppingCart} from '../../styles/Icons.jsx'
 
 
 const StyleQuantityCartContainer = styled(ColumnContainer)`
@@ -38,6 +32,10 @@ const SizeSelect = styled(Select)`
   font-size: 16px;
   margin: 0 10px 0 0 ;
   border-radius: 12px;
+  &:hover {
+    transition: all .3s linear;
+    transform: scale(1.1);
+    };
 `
 const QuantitySelect = styled(SizeSelect)`
   width: 40%;
@@ -51,9 +49,8 @@ const AddtoCartButton = styled.button`
   font-size:20px;
   cursor: pointer;
   &:hover {
-    background: #3e3e3e;
-    color: #e4e4e4;
-    transition-duration: 2s linear;
+
+    transition: all .3s linear;
     transform: scale(1.1);
   };
   border-radius: 12px;

@@ -8,10 +8,10 @@ import Overview from './components/Overview.jsx';
 import QnA from './components/QnA.jsx';
 import Ratings from './components/Ratings.jsx';
 import RelatedItems from './components/relatedItems/RelatedItems.jsx';
-import {Title, Wrapper, Header2} from './styles/Headers.jsx';
+import {Title, Wrapper, Header2, Header3, Header4, Text} from './styles/Headers.jsx';
 import styled from 'styled-components';
-
 import {ColumnContainer, RowContainer, AlignmentWrapper, Theme, MainHeader} from './styles/Boxes.jsx'
+import {ShoppingCart} from './styles/Icons.jsx'
 
 const BigContainer = styled(RowContainer)`
   justify-content: center;
@@ -76,13 +76,15 @@ class App extends React.Component {
         <AppContainer border = {true} >
           <MainHeader >
             <AlignmentWrapper>
-              <Title secondary = {true} underline = {true} >Project Atelier</Title>
+              <Title secondary = {true} underline = {true} ><em>Atelier</em></Title>
             </AlignmentWrapper>
             {/* <button onClick = {()=> {this.test()}}>test</button> */}
             <AlignmentWrapper>
-              <Title secondary = {true} >LOGO</Title>
+              <ShoppingCart big ={true} secondary = {true} />
             </AlignmentWrapper>
           </MainHeader>
+
+          <Text />
         {!this.state.overview ? <div></div> :
         <React.Fragment>
           <Overview

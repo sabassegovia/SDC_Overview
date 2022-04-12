@@ -26,7 +26,7 @@ const MainHeader = styled(RowContainer)`
   background-color: #3e3e3e;
   border: 5px solid #FAFAFA;
   border-radius: 20px;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 30px 0;
 `
 
 const DescriptionBox = styled.div`
@@ -86,7 +86,7 @@ const InnerReviewsContainer = styled(ColumnContainer)`
 
 const ReviewBox = styled(ColumnContainer)`
   display: flex;
-  border: 1px dashed #000;
+  border: 1px dashed rgb(199, 197, 197);
 `;
 
 const ReviewTop = styled(RowContainer)`
@@ -135,6 +135,13 @@ const IndividualCharacteristic = styled(CharacteristicsButtons)`
   padding-bottom: 0px;
 `;
 
+const ReviewImages = styled.div`
+  height: 130px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 
+`;
 
-export {MainHeader, EmptyBox, BreakDownAlignment, InnerReviewsContainer, RatingsReviewContainer, RowContainer, ColumnContainer, AlignmentWrapper, DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic, Theme, UserMoment }
+export {MainHeader, EmptyBox, BreakDownAlignment, InnerReviewsContainer, RatingsReviewContainer, RowContainer, ColumnContainer, AlignmentWrapper, DescriptionBox, BigBox, LittleBox, ReviewBox, ReviewTop, ReviewsContainer, BreakdownBox, ReallyBigBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic, Theme, UserMoment, ReviewImages }
