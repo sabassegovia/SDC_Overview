@@ -1,36 +1,37 @@
 import React from 'react';
-import AnswerListItem from './AnswerListItem.jsx';
 import axios from "axios"
 import { Axios } from "../../AxiosConfig.js"
+
+import AnswerListItem from './AnswerListItem.jsx';
 
 class AnswerList extends React.Component {
   constructor(props) {
     super(props);
     this.moreAnswers = this.moreAnswers.bind(this);
+    this.getAnswers = this.getAnswers.bind(this);
 
     this.state = {
-      answers: []
+      answers: [],
+      count: 2
     }
   }
 
   componentDidMount() {
-    var current = this.props.question_id;
-    Axios.get(`/qa/questions/${current}/answers`, {params: {
-      question_id: current,
-      count: 2
-    }})
-      .then(result => {
-        this.setState({
-          answers: result.data.results
-        })
-      })
+    this.getAnswers();
   }
 
   moreAnswers() {
+    this.setState({
+      count: 999
+    },
+    () => {this.getAnswers()})
+  }
+
+  getAnswers() {
     var current = this.props.question_id;
     Axios.get(`/qa/questions/${current}/answers`, {params: {
       question_id: current,
-      count: 999
+      count: this.state.count
     }})
       .then(result => {
         this.setState({
@@ -48,7 +49,7 @@ class AnswerList extends React.Component {
     return (
       <div>
         {this.state.answers.map(eachAnswer => {
-        return <AnswerListItem answer={eachAnswer} key={eachAnswer.answer_id} id={eachAnswer.answer_id} getQuestions={this.props.getQuestions}/>
+        return <AnswerListItem answer={eachAnswer} key={eachAnswer.answer_id} id={eachAnswer.answer_id} getAnswers={this.getAnswers}/>
         })}
         {loadMore}
       </div>

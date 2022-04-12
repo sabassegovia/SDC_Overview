@@ -24,18 +24,23 @@ class AnswerListItem extends React.Component {
   onHelpfulClick(event) {
     event.preventDefault();
     Axios.put(`/qa/answers/${this.props.id}/helpful`)
-    .then(result => {console.log(result); this.props.getQuestions();})
+    .then(result => {console.log(result); this.props.getAnswers();})
     .catch(err => {console.log(err)})
   }
 
   onReportClick(event) {
     event.preventDefault();
-    Axios.put(`/qa/questions/${this.props.id}/report`)
-    .then(result => {console.log(result); this.props.getQuestions();})
+    Axios.put(`/qa/answers/${this.props.id}/report`)
+    .then(result => {console.log(result); this.props.getAnswers();})
     .catch(err => {console.log(err)})
   }
 
   render() {
+    // console.log(this.props.answer.photos)
+    // var imageHandler = () => {
+    //   for (i = 0; i < this.props.answer.photos.length; i++) {
+    //     return <img src="`${this.props.answer.photos[i]}`"></img>
+    //   }
     return (
       <div>
         <section className="answer"><b>A: </b>{this.props.answer.body}
