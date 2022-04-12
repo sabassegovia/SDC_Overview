@@ -26,7 +26,7 @@ const MainHeader = styled(RowContainer)`
   background-color: #3e3e3e;
   border: 5px solid #FAFAFA;
   border-radius: 20px;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 30px 0;
 `
 
 const DescriptionBox = styled.div`

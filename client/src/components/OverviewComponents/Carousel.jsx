@@ -4,20 +4,27 @@ import styled from 'styled-components';
 import {RowContainer, ColumnContainer} from '../../styles/Boxes.jsx'
 import { TiArrowRightThick, TiArrowLeftThick } from "react-icons/ti";
 
+
+const CarouselFooter = styled(RowContainer)`
+  position: absolute;
+  justify-content: space-between;
+  z-index: 999;
+  bottom: 0%;
+`
+
 const CarouselContainer = styled(RowContainer)`
   /* height: 1000px; */
   /* overflow: hidden; */
-  position: absolute;
+  position: relative;
   justify-content: space-around;
   z-index: 999;
-  bottom: 0%;
-  left: 44%;
   width: 65px;
-  &:hover {
+  /* &:hover {
     transition-duration: .3s;
     transform: scale(1.05)
-  };
+  }; */
 `
+
 const ThumbnailBackground = styled.div`
   display:flex;
   flex-direction: row;
@@ -58,30 +65,28 @@ const Carousel = (props) => {
     props.ThumbnailOnClick(index)
   }
   return (
-    <div>
-    <CarouselContainer>
-      <NavButtons
-      disabled = {current === 0}
-      onClick = {() => prev()}><TiArrowLeftThick/></NavButtons>
-      {photos.map((photo, index) => {
-        // if (index <= current + 6 && index >= current) {
-          return (
-            <ThumbnailBackground key = {index}>
-                <ThumbnailImage
-                name = {index}
-                onClick = {(e) => {handleThumbnailClick(index)}}
-                src = {photo} />
-            </ThumbnailBackground>
-          )
-        // }
-        }
-      )}
-      {/* <button onClick = {() => {props.ThumbnailOnClick()}}>test</button> */}
-      <NavButtons
-      disabled = {current === length - 6}
-      onClick = {() => next()}><TiArrowRightThick /></NavButtons>
-    </CarouselContainer>
-    </div>
+    <CarouselFooter>
+      <CarouselContainer>
+        <NavButtons
+        disabled = {current === 0}
+        onClick = {() => prev()}><TiArrowLeftThick/></NavButtons>
+        {photos.map((photo, index) => {
+            return (
+              <ThumbnailBackground key = {index}>
+                  <ThumbnailImage
+                  name = {index}
+                  onClick = {(e) => {handleThumbnailClick(index)}}
+                  src = {photo} />
+              </ThumbnailBackground>
+            )
+          }
+        )}
+        <NavButtons
+        disabled = {current === length - 6}
+        onClick = {() => next()}><TiArrowRightThick /></NavButtons>
+      </CarouselContainer>
+    </CarouselFooter>
+
   )
 
 }

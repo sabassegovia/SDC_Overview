@@ -16,7 +16,6 @@ const DescriptionSloganContainer = styled(RowContainer)`
 const FeaturesContainer = styled(ColumnContainer)`
   justify-content: flex-start;
   height: min-content;
-  width: 15%;
 `
 const SloganDescription = styled(ColumnContainer)`
   padding-top:10px;
@@ -29,7 +28,6 @@ const Features = styled(Header3)`
   border-bottom: none;
   border-right: none;
 `
-
 const ProductInformation = (props) => {
 
   // needs start Ratings - ask mingui for hers
