@@ -41,11 +41,9 @@ class AnswerList extends React.Component {
 
   render() {
     var loadMore;
-    var ans = this.props.answers
+    var ans = this.props.answers;
     if (Object.keys(ans).length > 2) {
       loadMore = <button onClick={this.moreAnswers}>Load more answers</button>
-    } else {
-      loadMore = <b>button forgot to load?</b>
     }
     return (
       <div>
