@@ -13,6 +13,12 @@ const ShoppingCart = styled(FiShoppingCart)`
         return '#3e3e3e'
       }
   }};
+    /* &:hover {
+    background: #3e3e3e;
+    color: #e4e4e4;
+    transition-duration: 2s linear;
+    transform: scale(1.1);
+  }; */
   width: ${props => props.big ? '80px' : '40px'};
   height: ${props => props.big ? '80px' : '40px'};
 

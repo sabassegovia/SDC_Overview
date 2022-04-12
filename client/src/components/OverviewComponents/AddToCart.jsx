@@ -32,6 +32,10 @@ const SizeSelect = styled(Select)`
   font-size: 16px;
   margin: 0 10px 0 0 ;
   border-radius: 12px;
+  &:hover {
+    transition: all .3s linear;
+    transform: scale(1.1);
+    };
 `
 const QuantitySelect = styled(SizeSelect)`
   width: 40%;
@@ -45,9 +49,8 @@ const AddtoCartButton = styled.button`
   font-size:20px;
   cursor: pointer;
   &:hover {
-    background: #3e3e3e;
-    color: #e4e4e4;
-    transition-duration: 2s linear;
+
+    transition: all .3s linear;
     transform: scale(1.1);
   };
   border-radius: 12px;

@@ -11,7 +11,6 @@ const ThumbnailContainer = styled(ColumnContainer)`
   border-right: none;
   border-left: none;
 `
-
 const Thumbnail = styled.div`
 border-radius: 50%;
 cursor: pointer;
@@ -40,11 +39,13 @@ background: url(${(props) => props.url}) center;
 
 
 // `
-const FcOkActive = styled.div`
+const FcOkActive = styled(FcOk)`
   position:absolute;
   top:0px;
-  right:8px;
+  right:4px;
   z-index: 2;
+  height: 20px;
+  width: 20px;
 `
 const Style = (props) => {
   var {photos, name, original_price, sale_price, style_id} = props.style
@@ -52,7 +53,7 @@ const Style = (props) => {
   return (
     <ThumbnailContainer border = {false}>
       {/* <StyleThumbnail> */}
-        {props.selected ? <FcOkActive><FcOk className = "thumbnail-checked"/></FcOkActive> :null}
+        {props.selected ? <FcOkActive/>:null}
         <Thumbnail
           onClick = {() => {props.styleOnClick(props.style)}}>
             <ThumbnailImage
