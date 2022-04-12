@@ -108,7 +108,7 @@ const CharacteristicsContainer = styled.div`
   padding: 1px;
   display: flex;
   flex-direction: column;
-  border: 1px dashed #000;
+  border: none;
 `;
 
 const CharacteristicsBox = styled.div`

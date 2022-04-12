@@ -46,9 +46,11 @@ class Ratings extends React.Component {
       ratings: {},
       // viewMoreReviews: false,
       recommendedRatio: 0,
-      characteristics: {}
+      characteristics: {},
+      showAddReview: false
     }
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
+    this.handleAddReview = this.handleAddReview.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.handleSort = this.handleSort.bind(this);
   }
@@ -57,6 +59,11 @@ class Ratings extends React.Component {
     event.preventDefault();
     let newCount = this.state.count + 2;
     this.setState({count: newCount}, () => {this.getReviews();})
+  }
+
+  handleAddReview(event) {
+    event.preventDefault();
+    this.setState({showAddReview: !this.state.showAddReview});
   }
 
   getReviews() {
@@ -121,8 +128,14 @@ class Ratings extends React.Component {
 
   render() {
 
-    // const { rating } = this.state;
-    // let review;
+    let AddReviewForm;
+    if (this.state.showAddReview) {
+      AddReviewForm = (<AddReview characteristics={this.state.characteristics}
+      product_id ={this.state.product_id}/>)
+    } else {
+      AddReviewForm = <div></div>
+    }
+
     const ratingPercent = this.state.recommendedRatio * 100;
 
     let ReviewTiles = (this.state.reviews.map((review, i) => (
@@ -176,22 +189,17 @@ class Ratings extends React.Component {
             </SortHeader>
           </AlignmentWrapper>
 
-
-
             {ReviewTiles}
 
           <AlignmentWrapper>
-            <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
+            <Button as="a" href="#" onClick={this.handleAddReviews}>More Reviews</Button>
+            <Button as="a" href="#" onClick={this.handleAddReview}>Add a Review</Button>
           </AlignmentWrapper>
         </ReviewsContainer>
         <EmptyBox/>
         </ReallyBigBox>
-        <Button>Add a Review</Button>
-        <AddReview characteristics={this.state.characteristics}
-                    product_id ={this.state.product_id}
-        />
+        {AddReviewForm}
       </RatingsReviewContainer>
-
     );
 
   };

@@ -151,7 +151,7 @@ class AddReview extends React.Component {
             <form onChange={this.onCharSubmit}>
 
               <CharacteristicsButtons>
-                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)}  value="1"></input>
+                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="1"></input>
                 <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="2"></input>
                 <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="3"></input>
                 <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="4"></input>
