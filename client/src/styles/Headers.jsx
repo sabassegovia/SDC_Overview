@@ -45,8 +45,6 @@ const Title = styled(Theme)`
   font-size: 48px;
   line-height: 48px;
 `;
-
-
 const Wrapper = styled.section`
   padding: 1em;
   background: #000;
@@ -57,8 +55,6 @@ const Header2 = styled(Theme)`
   font-weight: 600;
   font-size: 27px;
   line-height: 23px;
-  margin: 5px;
-  padding: 5px;
 `;
 
 const Header3 = styled(Theme)`
@@ -66,15 +62,12 @@ const Header3 = styled(Theme)`
   font-weight: 550;
   font-size: 16px;
   line-height: 19px;
-  margin: 5px;
-  padding: 5px;
 `
 const Header4 = styled(Theme)`
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  padding: 5px;
 `
 const Text = styled(Theme)`
   font-style: normal;
