@@ -28,7 +28,6 @@ const BodyInput = styled(Input)`
   width: 70%;
   inline-size: 500px;
   overflow-wrap: break-word;
-  word-break: break-all;
   height: 60px;
 `;
 const FadedLabel = styled(Label)`
@@ -198,8 +197,10 @@ class AddReview extends React.Component {
 
 
                   <Header3>Tell other people more about the product.</Header3>
-                  <BodyInput type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5">
 
+
+                  <BodyInput type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5">
+                
                   </BodyInput>
 
 
