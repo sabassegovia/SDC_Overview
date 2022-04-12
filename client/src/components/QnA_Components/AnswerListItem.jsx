@@ -1,10 +1,14 @@
 import React from 'react';
 import moment from 'moment';
+import axios from "axios"
+import { Axios } from "../../AxiosConfig.js"
 
 class AnswerListItem extends React.Component {
   constructor(props) {
     super(props);
     this.sellerHandler = this.sellerHandler.bind(this);
+    this.onHelpfulClick = this.onHelpfulClick.bind(this);
+    this.onReportClick = this.onReportClick.bind(this);
 
     this.state = {
 
@@ -17,6 +21,20 @@ class AnswerListItem extends React.Component {
     }
   }
 
+  onHelpfulClick(event) {
+    event.preventDefault();
+    Axios.put(`/qa/answers/${this.props.id}/helpful`)
+    .then(result => {console.log(result); this.props.getQuestions();})
+    .catch(err => {console.log(err)})
+  }
+
+  onReportClick(event) {
+    event.preventDefault();
+    Axios.put(`/qa/questions/${this.props.id}/report`)
+    .then(result => {console.log(result); this.props.getQuestions();})
+    .catch(err => {console.log(err)})
+  }
+
   render() {
     return (
       <div>
@@ -26,8 +44,8 @@ class AnswerListItem extends React.Component {
               <div>
                 by {this.props.answer.answerer_name}{this.sellerHandler}
                 , {moment(this.props.answer.date).format('MMMM Do YYYY')}
-                |  Helpful? Yes ({this.props.answer.helpfulness})
-                |  Report
+                |  Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.answer.helpfulness})
+                |  <tag onClick={this.onReportClick}>Report</tag>
               </div>
             </section>
           </div>

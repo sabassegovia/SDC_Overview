@@ -5,29 +5,44 @@ import { Axios } from "../AxiosConfig.js"
 
 import QuestionList from './QnA_Components/QuestionList.jsx';
 import QuestionSearch from './QnA_Components/QuestionSearch.jsx';
+import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader} from '../styles/Boxes.jsx'
+import {Title, Header2, Header3, Text} from '../styles/Headers.jsx';
+
+const QnAContainer = styled(ColumnContainer)`
+  border-radius: 12px;
+  row-gap:10px;
+`
 
 class QnA extends React.Component {
   constructor(props) {
     super(props);
     this.searchHandler = this.searchHandler.bind(this);
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
 
     this.state = {
-      list: []
+      list: [],
+      count: 4
     }
   }
 
-  // load the questions and answers for the current product on page
   componentDidMount() {
+    this.getQuestions();
+  }
+
+  getQuestions() {
     var current = this.props.product_id;
     Axios.get('/qa/questions', {params: {
       product_id: current,
-      count: 4
+      count: this.state.count
     }})
       .then(result => {
         this.setState({
           list: result.data.results
         })
+      })
+      .catch(error => {
+        console.log(error);
       })
   }
 
@@ -35,30 +50,30 @@ class QnA extends React.Component {
     console.log('searching the API for: ', query);
   }
 
+
   handleMoreQuestions(event) {
     event.preventDefault();
-    var current = this.props.product_id;
-    Axios.get('/qa/questions', {params: {
-      product_id: current,
+    this.setState({
       count: 9999
-    }})
-      .then(result => {
-        this.setState({
-          list: result.data.results
-        })
-      })
+    })
+    this.getQuestions();
   }
 
 
   render() {
     return (
-      <div>
-        <h2>Questions & Answers</h2>
+      <QnAContainer>
+        <MainHeader>
+          <AlignmentWrapper>
+            <Header2 secondary = {true}>Questions &amp; Answers</Header2>
+          </AlignmentWrapper>
+        </MainHeader>
+
         <QuestionSearch searchHandler={this.searchHandler} />
-        <QuestionList questions={this.state.list}/>
+        <QuestionList questions={this.state.list} getQuestions={this.getQuestions}/>
         <button onClick={this.handleMoreQuestions}>More Answered Questions</button>
         <button>Add A Question</button>
-      </div>
+      </QnAContainer>
     );
   };
 }
