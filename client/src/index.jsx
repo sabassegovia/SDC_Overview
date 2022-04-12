@@ -10,8 +10,8 @@ import Ratings from './components/Ratings.jsx';
 import RelatedItems from './components/relatedItems/RelatedItems.jsx';
 import {Title, Wrapper, Header2} from './styles/Headers.jsx';
 import styled from 'styled-components';
-
 import {ColumnContainer, RowContainer, AlignmentWrapper, Theme, MainHeader} from './styles/Boxes.jsx'
+import {ShoppingCart} from './styles/Icons.jsx'
 
 const BigContainer = styled(RowContainer)`
   justify-content: center;
@@ -32,7 +32,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       overview: null,
-      product_id: 65660,
+      product_id: 65631,
       rating: 0,
       documentTitle: null,
       isRender: false,
@@ -80,7 +80,7 @@ class App extends React.Component {
             </AlignmentWrapper>
             {/* <button onClick = {()=> {this.test()}}>test</button> */}
             <AlignmentWrapper>
-              <Title secondary = {true} >LOGO</Title>
+              <ShoppingCart big ={true} secondary = {true} />
             </AlignmentWrapper>
           </MainHeader>
         {!this.state.overview ? <div></div> :

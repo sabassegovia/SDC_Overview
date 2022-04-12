@@ -12,8 +12,8 @@ import {Axios} from "../AxiosConfig.js"
 import {RowContainer, ColumnContainer, AlignmentWrapper} from '../styles/Boxes.jsx'
 
 const ProductOverviewContainer = styled(RowContainer)`
-  max-height: 1000px;
-  min-height: 1000px;
+  /* max-height: 1400px;
+  min-height: 1000px; */
 `
 const ImageGalleryProductDescription = styled(ColumnContainer)`
   width: 70%;
@@ -37,10 +37,11 @@ class Overview extends React.Component {
   componentDidMount() {
     Axios.get(`/products/${this.props.overview.id}/styles`)
       .then(result => {
+        var styles = result.data.results.length !== 0 ? result.data.results : [{name: this.props.overview.name, original_price: this.props.overview.default_price, photos: [{url: "https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png"}], sale_price: null, skus: {}, style_id: null}]
         this.setState({
-          styles: result.data.results,
-          selectedStyle: result.data.results[0]
-        })
+          styles: styles,
+          selectedStyle: styles[0],
+        },)
       })
       .catch(err => {
       })

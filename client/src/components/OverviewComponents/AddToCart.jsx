@@ -9,13 +9,7 @@ import Button from '../../styles/Buttons.jsx';
 import {FiShoppingCart} from 'react-icons/fi';
 import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
 import {CartContainer, RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx';
-
-
-const ShoppingCart = styled(FiShoppingCart)`
-  width: 24px;
-  height: 24px;
-  padding: 0;
-`;
+import {ShoppingCart} from '../../styles/Icons.jsx'
 
 
 const StyleQuantityCartContainer = styled(ColumnContainer)`
