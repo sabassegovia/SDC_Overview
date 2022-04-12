@@ -71,14 +71,14 @@ class QuestionSearch extends React.Component {
   render() {
     return (
     <AlignmentWrapper>
-      <QnASearchContainer border = {true} >
+      {/* <QnASearchContainer border = {true} >
           <EmptyBox />
           <QnAForm >
             <QnATextArea type="text" onChange={this.handleChange} />
             <QnAInput type="submit" onClick={this.handleSubmit} />
           </QnAForm>
 
-      </QnASearchContainer>
+      </QnASearchContainer> */}
     </AlignmentWrapper>
 
     );
