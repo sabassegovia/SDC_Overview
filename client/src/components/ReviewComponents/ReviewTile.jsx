@@ -10,7 +10,7 @@ import {Title, Header2, Header3, Header4, Text, Span} from '../../styles/Headers
 import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js";
 import {Button} from '../../styles/Buttons.jsx';
-// import ReviewImageModal from './ReviewImageModal.jsx';
+import ReviewImageModal from './ReviewImageModal.jsx';
 
 
 class ReviewTile extends React.Component {
@@ -110,11 +110,10 @@ class ReviewTile extends React.Component {
 
             <Text>
               {this.props.review.body}
-              {/* {reviewbody} */}
             </Text>
 
             {images}
-            {/* {this.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.modalImage}/> : null} */}
+            {this.state.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.state.modalImage}/> : null}
 
             {recommend}
             <div>

@@ -14,16 +14,9 @@ import RatingsStarRating from './ReviewComponents/RatingsStarRating.jsx';
 import RatingsBreakdown from './ReviewComponents/RatingsBreakdown.jsx';
 
 import PropTypes from 'prop-types';
-import ProgressBar from "@ramonak/react-progress-bar";
 import {RowContainer, ColumnContainer, AlignmentWrapper, BreakDownAlignment, MainHeader, RatingsReviewContainer} from '../styles/Boxes.jsx'
 import {Title, Wrapper, Header2, Header3, Span, Header4, Text} from '../styles/Headers.jsx';
 
-
-
-const StarsBar = styled(ProgressBar)`
-  width: 80%;
-  display: inline-block;
-`;
 
 const ReviewSelect = styled(Select)`
   height: 40px;
