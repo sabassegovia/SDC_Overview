@@ -31,7 +31,7 @@ var QuestionList = (props) => {
 
         <QuestionsAnswersContainer border = {true}>
           {props.questions.map(eachQuestion => {
-            return <QuestionListItem question={eachQuestion} key={eachQuestion.question_id} id={eachQuestion.question_id} getQuestions={props.getQuestions}/>
+            return <QuestionListItem question={eachQuestion} key={eachQuestion.question_id} id={eachQuestion.question_id} getQuestions={props.getQuestions} name={props.name}/>
             })}
         </QuestionsAnswersContainer>
         <EmptyBox />

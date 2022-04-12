@@ -41,9 +41,6 @@ const MoreQuestionsButton = styled.button`
 
 const ButtonsRow = styled(RowContainer)`
   width: 100%;
-
-
-
 `
 
 class QnA extends React.Component {
@@ -52,10 +49,17 @@ class QnA extends React.Component {
     this.searchHandler = this.searchHandler.bind(this);
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
+    this.handleAddQuestion = this.handleAddQuestion.bind(this);
     this.state = {
       list: [],
-      count: 4
+      count: 4,
+      showQuestion: false
     }
+  }
+
+  handleAddQuestion(event) {
+    event.preventDefault();
+    this.setState({showQuestion: !this.state.showQuestion})
   }
 
   componentDidMount() {
@@ -93,6 +97,13 @@ class QnA extends React.Component {
 
 
   render() {
+    let AddQuestionThing;
+    if (this.state.showQuestion) {
+      AddQuestionThing =  <AddQuestion id={this.props.product_id} name={this.props.name}/>
+    } else {
+      AddQuestionThing = ''
+    }
+
     return (
       <QnAContainer>
         <QnAHeader border = {true}>
@@ -102,17 +113,17 @@ class QnA extends React.Component {
         </QnAHeader>
 
         <QuestionSearch searchHandler={this.searchHandler} />
-        <QuestionList questions={this.state.list} getQuestions={this.getQuestions}/>
+
+
+      <QuestionList questions={this.state.list} getQuestions={this.getQuestions} name={this.props.name}/>
 
         <ButtonsRow>
 
           <MoreQuestionsButton onClick={this.handleMoreQuestions}>More Answered Questions</MoreQuestionsButton>
-          <MoreQuestionsButton>Add A Question</MoreQuestionsButton>
+          <MoreQuestionsButton onClick={this.handleAddQuestion}>Add A Question</MoreQuestionsButton>
 
         </ButtonsRow>
-
-        <AddQuestion id={this.props.product_id}/>
-        <AddAnswer />
+        {AddQuestionThing}
 
       </QnAContainer>
     );

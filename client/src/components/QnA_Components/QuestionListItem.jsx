@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios"
 import { Axios } from "../../AxiosConfig.js"
 import AnswerList from './AnswerList.jsx';
+import AddAnswer from './AddAnswer.jsx';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -27,7 +28,12 @@ class QuestionListItem extends React.Component {
     super(props);
     this.onHelpfulClick = this.onHelpfulClick.bind(this);
     this.onReportClick = this.onReportClick.bind(this);
-    this.state = {}
+    this.handleAddAnswerButton = this.handleAddAnswerButton.bind(this);
+    this.state = {showAddAnswer: false}
+  }
+  handleAddAnswerButton(event) {
+    event.preventDefault();
+    this.setState({showAddAnswer: !this.state.showAddAnswer})
   }
 
   onHelpfulClick(event) {
@@ -45,17 +51,21 @@ class QuestionListItem extends React.Component {
   }
 
   render () {
+    let AddAnswerThing;
+    if (this.state.showAddAnswer) {
+      AddAnswerThing =  <AddAnswer question_id={574113} name={this.props.name} body={this.props.question.question_body}/>
+    } else {
+      AddAnswerThing = ''
+    }
+
     return (
 
-       <QuestionContainer border = "true">
-
+      <QuestionContainer border = "true">
         <AlignmentWrapper>
-
           <RowContainer>
             <QuestionBody border = {true}><b>Q:</b> {this.props.question.question_body}</QuestionBody>
               <HelpfulReport>
-
-              <Typography
+                <Typography
                   variant="h2"
                   css={`
                     color: black;
@@ -71,19 +81,19 @@ class QuestionListItem extends React.Component {
                       transform: scale(1.05);
                       cursor: pointer;
                     }
-                    `}
+                  `}
                 underline="true">Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.question.question_helpfulness})
-              </Typography>
-
-              <Typography
-                variant="h2"
-                css={`
-                    color: black;
-                    font-size: 14px;
+                </Typography>
+                <Typography
+                  variant="h2"
+                  css={`
+                    color: #989898;
+                    font-size: 12px;
                     line-height: 16px;
                     text-align: right;
                     transition: all 0s ease 0s;
                     height: 16px;
+                    width: 200px;
                     display: block;
                     box-sizing: border-box;
                     &:hover {
@@ -91,23 +101,15 @@ class QuestionListItem extends React.Component {
                       transform: scale(1.05);
                       cursor: pointer;
                     }
-                    `}
-              underline="true"
-              onClick={this.onReportClick}><Header3>Report</Header3>
-
-              </Typography>
-            </HelpfulReport>
-
+                    `} underline="true"
+                    onClick={this.onReportClick}><Header3>Report</Header3></Typography>
+                <tag onClick={this.handleAddAnswerButton}>Add An Answer</tag>
+                {AddAnswerThing}
+              </HelpfulReport>
           </RowContainer>
-          </AlignmentWrapper>
-
-
-
-
-
-
-         <AnswerList answers={this.props.question.answers} question_id={this.props.id} getQuestions={this.props.getQuestions}/>
-       </QuestionContainer>
+        </AlignmentWrapper>
+        <AnswerList answers={this.props.question.answers} question_id={this.props.id} getQuestions={this.props.getQuestions}/>
+      </QuestionContainer>
     );
   }
 }
