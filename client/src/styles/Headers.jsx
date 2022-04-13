@@ -62,12 +62,14 @@ const Header3 = styled(Theme)`
   font-weight: 550;
   font-size: 16px;
   line-height: 19px;
+  padding-top: 3px;
 `
 const Header4 = styled(Theme)`
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
+  padding-top: 3px;
 `
 const Text = styled(Theme)`
   font-style: normal;
@@ -75,7 +77,20 @@ const Text = styled(Theme)`
   font-size: 14px;
   line-height: 14px;
 `
+const Typography = styled(Theme)`
+color: black;
+font-size: 14px;
+line-height: 16px;
+transition: all 0s ease 0s;
+height: 16px;
+width: 200px;
+display: block;
+box-sizing: border-box;
+&:hover {
+  transition-duration: .3s;
+  transform: scale(1.05);
+  cursor: pointer;
+`;
 
 
-
-export {Title, Wrapper, Header2, Header3, Header4, Text, Theme};
+export {Title, Wrapper, Header2, Header3, Header4, Text, Theme, Typography };
