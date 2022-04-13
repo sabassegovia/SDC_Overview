@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import {FiShoppingCart} from 'react-icons/fi';
+import { MdClose } from 'react-icons/md';
+
 
 
 const ShoppingCart = styled(FiShoppingCart)`
@@ -29,6 +31,12 @@ const ShoppingCart = styled(FiShoppingCart)`
   padding: 0;
 `;
 
+const CloseModalButton = styled(MdClose)`
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+`;
 
 
-export {ShoppingCart}
+export {ShoppingCart, CloseModalButton}

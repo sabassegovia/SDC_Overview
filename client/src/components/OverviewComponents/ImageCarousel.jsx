@@ -11,6 +11,7 @@ const CarouselContainer = styled(RowContainer)`
   justify-content: center;
   height: 800px;
   width: 100%;
+
 `
 const CarouselWrapper = styled.div`
   display:flex;
@@ -24,6 +25,7 @@ const CarouselContentWrapper = styled(RowContainer)`
   width:1000px;
   height:800px;
   transition: all 250ms linear;
+
 
 `
 const CarouselContent = styled(ColumnContainer)`

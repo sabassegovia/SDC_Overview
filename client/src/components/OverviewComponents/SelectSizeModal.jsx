@@ -2,11 +2,11 @@ import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactDom from 'react-dom';
-import { MdClose } from 'react-icons/md';
 
 import {ColumnContainer, RowContainer, AlignmentWrapper, Theme, MainHeader} from '../../styles/Boxes.jsx'
 import {Title, Header3} from '../../styles/Headers.jsx';
 import Button from '../../styles/Buttons.jsx'
+import {CloseModalButton} from '../../styles/Icons.jsx'
 
 
 const SizeModalBackground = styled(ColumnContainer)`
@@ -18,8 +18,11 @@ const SizeModalBackground = styled(ColumnContainer)`
   top: ${(props) => props.selectSizePosition.y}px;
   left: ${(props) => props.selectSizePosition.x-318}px;
   z-index: 222;
-  opacity: ${props => props.isRender ? 1 : 0};
-  transition: opacity 0.6s linear;
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  };
+  animation: fadein .3s linear;
 
 `
 const SizeModalWrapper = styled(AlignmentWrapper)`
@@ -55,12 +58,7 @@ const SizeButton = styled(Button)`
   font-weight:600;
   height:32px;
 `
-const CloseModalButton = styled(MdClose)`
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-`;
+
 
 const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, settingSku}) => {
   // var skus_ids = Object.keys(props.selectedStyle.skus)
@@ -75,6 +73,8 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
   }
   useEffect(() => {
     setIsRender(prev => true)
+    window.addEventListener('resize', handleResize)
+
     // console.log(selectSizeRef.current.getBoundingClientRect())
     setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
     return function cleanup () {
@@ -85,7 +85,6 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
   const handleResize = () => {
     setOpenSizeModal(false)
   }
-  window.addEventListener('resize', handleResize)
 
   return ReactDom.createPortal(
     <div>

@@ -33,7 +33,19 @@ border: 2px solid #AFA9A9;
 box-sizing: border-box;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
+const InputTextArea = styled.textarea`
+  width: 90%;
+  height: 80px;
+  font-family: "Helvetica";
+  font-size: 16px;
+`
+
+const InputText = styled.input`
+  width: 90%;
+  height: 30px;
+  font-family: "Helvetica";
+  font-size: 16px;
+`
 
 
-
-export {Form, Label, Input, Select};
+export {Form, Label, Input, Select, InputTextArea, InputText};

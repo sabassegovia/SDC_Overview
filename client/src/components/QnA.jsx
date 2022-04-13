@@ -8,12 +8,13 @@ import QuestionList from './QnA_Components/QuestionList.jsx';
 import QuestionSearch from './QnA_Components/QuestionSearch.jsx';
 import AddQuestion from './QnA_Components/AddQuestion.jsx';
 import AddAnswer from './QnA_Components/AddAnswer.jsx';
-import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader} from '../styles/Boxes.jsx'
+import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader, EmptyBox} from '../styles/Boxes.jsx'
 import {Title, Header2, Header3, Text} from '../styles/Headers.jsx';
 
 const QnAContainer = styled(ColumnContainer)`
   border-radius: 12px;
   row-gap:10px;
+  padding-bottom: 20px;
 `
 
 const QnAHeader = styled(MainHeader)`
@@ -22,8 +23,9 @@ const QnAHeader = styled(MainHeader)`
 
 `
 const MoreQuestionsButton = styled.button`
+  position: relative;
   height: 70px;
-  width: 40%;
+  width: 300px;
   background: #e4e4e4;
   color:  #3e3e3e;
   border-radius: 3px;
@@ -41,6 +43,8 @@ const MoreQuestionsButton = styled.button`
 
 const ButtonsRow = styled(RowContainer)`
   width: 100%;
+  justify-content: space-between;
+
 `
 
 class QnA extends React.Component {
@@ -49,17 +53,12 @@ class QnA extends React.Component {
     this.searchHandler = this.searchHandler.bind(this);
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
-    this.handleAddQuestion = this.handleAddQuestion.bind(this);
     this.state = {
       list: [],
       count: 4,
-      showQuestion: false
+      AddQuestionModal: false,
     }
-  }
-
-  handleAddQuestion(event) {
-    event.preventDefault();
-    this.setState({showQuestion: !this.state.showQuestion})
+    this.AddQuestion = React.createRef()
   }
 
   componentDidMount() {
@@ -95,15 +94,12 @@ class QnA extends React.Component {
     () => {this.getQuestions()})
   }
 
+  handleAddQuestionModal() {
+    this.setState({
+      AddQuestionModal: !this.state.AddQuestionModal,
+    })}
 
   render() {
-    let AddQuestionThing;
-    if (this.state.showQuestion) {
-      AddQuestionThing =  <AddQuestion id={this.props.product_id} name={this.props.name}/>
-    } else {
-      AddQuestionThing = ''
-    }
-
     return (
       <QnAContainer>
         <QnAHeader border = {true}>
@@ -111,20 +107,30 @@ class QnA extends React.Component {
             <Header2 secondary = {true}>Questions &amp; Answers</Header2>
           </AlignmentWrapper>
         </QnAHeader>
-
         <QuestionSearch searchHandler={this.searchHandler} />
+        <QuestionList questions={this.state.list} getQuestions={this.getQuestions}/>
 
 
-      <QuestionList questions={this.state.list} getQuestions={this.getQuestions} name={this.props.name}/>
-
+        {/* <AddAnswer /> */}
         <ButtonsRow>
+          <EmptyBox />
+            <MoreQuestionsButton onClick={this.handleMoreQuestions}>More Answered Questions</MoreQuestionsButton>
+            <MoreQuestionsButton
+              ref = {this.AddQuestion}
+              onClick={()=>{this.handleAddQuestionModal()}}>
+              {!this.state.AddQuestionModal ? 'Add A Question' : 'Go Back'}
+            </MoreQuestionsButton>
+          <EmptyBox />
 
-          <MoreQuestionsButton onClick={this.handleMoreQuestions}>More Answered Questions</MoreQuestionsButton>
-          <MoreQuestionsButton onClick={this.handleAddQuestion}>Add A Question</MoreQuestionsButton>
+
+          {this.state.AddQuestionModal ? <AddQuestion
+            handleAddQuestionModal = {this.handleAddQuestionModal.bind(this)}
+            AddQuestionButtonPosition = {this.AddQuestion.current.getBoundingClientRect()}
+            AddQuestionModal = {this.state.AddQuestionModal}
+            name = {this.props.name}
+            id={this.props.product_id}/> : null}
 
         </ButtonsRow>
-        {AddQuestionThing}
-
       </QnAContainer>
     );
   };
@@ -132,6 +138,7 @@ class QnA extends React.Component {
 
 QnA.propTypes = {
   product_id: PropTypes.number,
+  name: PropTypes.string,
 
 }
 
