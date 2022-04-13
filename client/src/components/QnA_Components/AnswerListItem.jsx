@@ -1,8 +1,45 @@
 import React from 'react';
 import moment from 'moment';
 import axios from "axios"
+import styled from 'styled-components';
 import { Axios } from "../../AxiosConfig.js"
 import AddAnswer from "./AddAnswer.jsx";
+import PropTypes from 'prop-types';
+import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader} from '../../styles/Boxes.jsx'
+import {Title, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx';
+
+const AnswerContainer = styled(ColumnContainer)`
+  row-gap: 5px;
+
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+};
+  animation: fadein .3s linear;
+`
+const Answer = styled(RowContainer)`
+  column-gap: 10px;
+`
+const AuthorHelpfulRow = styled(RowContainer)`
+  padding: 0 0 0 15px;
+  column-gap: 15px;
+`
+const Author = styled(Text)`
+  width: 150px;
+`
+
+const Date = styled(Text)`
+  width: 130px;
+`
+const Helpful = styled(Text)`
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.05);
+    cursor: pointer;
+    }
+`
+
+
 
 class AnswerListItem extends React.Component {
   constructor(props) {
@@ -48,26 +85,40 @@ class AnswerListItem extends React.Component {
     //   for (i = 0; i < this.props.answer.photos.length; i++) {
     //     return <img src="`${this.props.answer.photos[i]}`"></img>
     //   }
-
     return (
-      <div>
-        <section ><b>A: </b>{this.props.answer.body}
-          <div >
-            <section >
-              <div>
-                by {this.props.answer.answerer_name}{this.sellerHandler}
-                , {moment(this.props.answer.date).format('MMMM Do YYYY')}
-                |  Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.answer.helpfulness})
-                |  <tag onClick={this.onReportClick}>Report</tag>
 
-              </div>
+        <AnswerContainer >
+          <Answer>
+            <Header3>A: </Header3> <Header3>{this.props.answer.body}</Header3>
+          </Answer>
 
-            </section>
-          </div>
-        </section>
-      </div>
+
+              <AuthorHelpfulRow>
+                <Author>
+                  by {this.props.answer.answerer_name}{this.sellerHandler},
+                </Author>
+                <Date>
+                  {moment(this.props.answer.date).format('MMMM Do YYYY')}
+                </Date>
+
+                <Header3>Helpful?</Header3>
+                  <Helpful onClick={this.onHelpfulClick}>Yes ({this.props.answer.helpfulness})</Helpful>
+                  <Helpful onClick={this.onReportClick}>Report</Helpful>
+              </AuthorHelpfulRow>
+
+
+
+        </AnswerContainer>
+
     );
   }
 };
+
+AnswerListItem.propTypes = {
+  answer: PropTypes.object,
+  id: PropTypes.number,
+  getAnswers: PropTypes.func,
+
+}
 
 export default AnswerListItem;

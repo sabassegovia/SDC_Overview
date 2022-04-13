@@ -12,13 +12,44 @@ import {CartContainer, RowContainer, ColumnContainer, AlignmentWrapper} from '..
 
 const QuestionContainer = styled(ColumnContainer)`
   row-gap: 10px;
+  border: 1px dashed #3e3e3e;
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+};
+  animation: fadein .3s linear;
 `
+const QuestionRow = styled(RowContainer)`
+`
+const AddAnswerButton = styled.button`
+  height: 40px;
+  background: #e4e4e4;
+  color:  #3e3e3e;
+  border-radius: 3px;
+  font-size:16px;
+  cursor: pointer;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1);
+    background: #3e3e3e;
+    color: #e4e4e4;
+  };
+  border-radius: 12px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
+
 
 const QuestionBody = styled(Header3)`
   flex-grow:1;
+  border-top: none;
+  border-left: none;
+
 `
 const HelpfulReport = styled(RowContainer)`
-  column-gap: 10px;
+  column-gap: 20px;
+  padding: 0 0 0 20px;
+  justify-content: flex-start;
+  align-items: center;
 
 `
 
@@ -30,10 +61,13 @@ class QuestionListItem extends React.Component {
     this.onReportClick = this.onReportClick.bind(this);
     this.handleAddAnswerButton = this.handleAddAnswerButton.bind(this);
     this.state = {showAddAnswer: false}
+
+    this.AddAnswerButton = React.createRef()
   }
   handleAddAnswerButton(event) {
+    console.log('is this firing?')
     event.preventDefault();
-    this.setState({showAddAnswer: !this.state.showAddAnswer})
+    this.setState({showAddAnswer: !(this.state.showAddAnswer)})
   }
 
   onHelpfulClick(event) {
@@ -51,65 +85,53 @@ class QuestionListItem extends React.Component {
   }
 
   render () {
-    let AddAnswerThing;
-    if (this.state.showAddAnswer) {
-      AddAnswerThing =  <AddAnswer question_id={574113} name={this.props.name} body={this.props.question.question_body}/>
-    } else {
-      AddAnswerThing = ''
-    }
+    // let AddAnswerThing;
+    // if (this.state.showAddAnswer) {
+    //   AddAnswerThing =
+    // } else {
+    //   AddAnswerThing = ''
+    // }
 
     return (
-
       <QuestionContainer border = "true">
-        <AlignmentWrapper>
-          <RowContainer>
-            <QuestionBody border = {true}><b>Q:</b> {this.props.question.question_body}</QuestionBody>
-              <HelpfulReport>
-                <Typography
-                  variant="h2"
-                  css={`
-                    color: black;
-                    font-size: 14px;
-                    line-height: 16px;
-                    text-align: right;
-                    transition: all 0s ease 0s;
-                    height: 16px;
-                    display: block;
-                    box-sizing: border-box;
+          <AlignmentWrapper>
+            <QuestionRow>
+              <QuestionBody border = {true}><b>Q:</b> {this.props.question.question_body}</QuestionBody>
+                <HelpfulReport>
+                  <Header3
+                    css={`
+                      &:hover {
+                        transition-duration: .3s;
+                        transform: scale(1.05);
+                        cursor: pointer;}`}
+                  underline="true">Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.question.question_helpfulness})
+                  </Header3>
+                  <Header3
+                    css={`
                     &:hover {
                       transition-duration: .3s;
                       transform: scale(1.05);
-                      cursor: pointer;
-                    }
-                  `}
-                underline="true">Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.question.question_helpfulness})
-                </Typography>
-                <Typography
-                  variant="h2"
-                  css={`
-                    color: #989898;
-                    font-size: 12px;
-                    line-height: 16px;
-                    text-align: right;
-                    transition: all 0s ease 0s;
-                    height: 16px;
-                    width: 200px;
-                    display: block;
-                    box-sizing: border-box;
-                    &:hover {
-                      transition-duration: .3s;
-                      transform: scale(1.05);
-                      cursor: pointer;
-                    }
-                    `} underline="true"
-                    onClick={this.onReportClick}><Header3>Report</Header3></Typography>
-                <tag onClick={this.handleAddAnswerButton}>Add An Answer</tag>
-                {AddAnswerThing}
-              </HelpfulReport>
-          </RowContainer>
-        </AlignmentWrapper>
-        <AnswerList answers={this.props.question.answers} question_id={this.props.id} getQuestions={this.props.getQuestions}/>
-      </QuestionContainer>
+                      cursor: pointer;}`}
+                    underline="true"
+                    onClick={this.onReportClick}>
+                      Report
+                  </Header3>
+
+
+                  <AddAnswerButton
+                    ref = {this.AddAnswerButton}
+                    onClick={this.handleAddAnswerButton}>Add An Answer</AddAnswerButton>
+                  {this.state.showAddAnswer ? <AddAnswer
+                    handleAddAnswerButton = {this.handleAddAnswerButton.bind(this)}
+                    AddAnswerButtonPosition = {this.AddAnswerButton.current.getBoundingClientRect()}
+                    question_id={this.props.id}
+                    name={this.props.name}
+                    body={this.props.question.question_body}/> : null}
+                </HelpfulReport>
+            </QuestionRow>
+          <AnswerList answers={this.props.question.answers} question_id={this.props.id} getQuestions={this.props.getQuestions}/>
+      </AlignmentWrapper>
+        </QuestionContainer>
     );
   }
 }
@@ -118,6 +140,7 @@ QuestionListItem.propTypes = {
   question: PropTypes.object,
   id: PropTypes.number,
   getQuestions: PropTypes.func,
+  name: PropTypes.string,
 }
 
 export default QuestionListItem;
