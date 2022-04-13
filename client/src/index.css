@@ -131,11 +131,12 @@ input[name="rating"] {
   cursor: pointer;
   transition: color 200ms;
   font-size: 30px;
+  padding: 0px;
 }
 
 :root {
   --star-size: 40px;
-  --star-color: #fff;
+  --star-color: rgb(233, 232, 232);
   --star-background: #3e3e3e;
 }
 
@@ -159,7 +160,7 @@ input[name="rating"] {
 .ReviewStars {
   --percent: calc(var(--ReviewRating) / 5 * 100%);
   --star-size: 20px;
-  --star-color: #fff;
+  --star-color: rgb(233, 232, 232);
   --star-background: rgb(0, 0, 0);
   display: inline-block;
   font-size: var(--star-size);
@@ -228,12 +229,12 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 input[id="AddReviewRadio"] {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   display: inline-flex;
-  line-height: 30px;
+  line-height: 18px;
   position: relative;
-  font-size: 30px;
+  font-size: 18px;
   accent-color: black;
   fill: rgb(0, 0, 0);
   margin: 3px;
@@ -243,7 +244,7 @@ input[id="AddReviewRadio"] {
   box-sizing: border-box;
   display: block;
   height: 1px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   width: 100%;
   color: rgb(0, 0, 0);
   border-bottom-color: rgb(0, 0, 0);

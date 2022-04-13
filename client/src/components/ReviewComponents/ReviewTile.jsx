@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FcOk } from 'react-icons/fc';
 import moment from 'moment';
-import Typography from 'react-styled-typography';
+// import Typography from 'react-styled-typography';
 import ReviewTileStarRating from './ReviewTileStarRating.jsx';
 import {ReviewTop, AlignmentWrapper, InnerReviewsContainer, UserMoment, RowContainer, ReviewImages} from '../../styles/Boxes.jsx';
-import {Title, Header2, Header3, Header4, Text, Span} from '../../styles/Headers.jsx'
+import {Title, Header2, Header3, Header4, Text, Span, Typography} from '../../styles/Headers.jsx'
 import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js";
 import {Button} from '../../styles/Buttons.jsx';
@@ -104,8 +104,6 @@ class ReviewTile extends React.Component {
                 </Header3>
               </UserMoment>
             </ReviewTop>
-
-
             <Header2>{this.props.review.summary}</Header2>
 
             <Text>
@@ -117,44 +115,11 @@ class ReviewTile extends React.Component {
 
             {recommend}
             <div>
-              <Typography
-                variant="h2"
-                css={`
-                  color: black;
-                  font-size: 14px;
-                  line-height: 16px;
-                  transition: all 0s ease 0s;
-                  height: 16px;
-                  width: 200px;
-                  display: block;
-                  box-sizing: border-box;
-                  &:hover {
-                    transition-duration: .3s;
-                    transform: scale(1.05);
-                    cursor: pointer;
-                  }
-                  `}
-              underline="true">Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.review.helpfulness}) No (0)</Typography>
+              <Typography underline="true">Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.review.helpfulness}) No (0)</Typography>
             </div>
             <div>
-              <Typography
-                variant="h2"
-                css={`
-                  color: #989898;
-                  font-size: 12px;
-                  line-height: 16px;
-                  transition: all 0s ease 0s;
-                  height: 16px;
-                  width: 200px;
-                  display: block;
-                  box-sizing: border-box;
-                  &:hover {
-                    transition-duration: .3s;
-                    transform: scale(1.05);
-                    cursor: pointer;
-                  }
-                  `} underline="true"
-              onClick={this.onReportClick}>Report</Typography>
+              <Typography underline="true" onClick={this.onReportClick}> Report
+              </Typography>
             </div>
           </InnerReviewsContainer>
         </AlignmentWrapper>

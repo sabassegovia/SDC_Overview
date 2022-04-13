@@ -22,7 +22,7 @@ background: #fff;
 border: 1px solid #000;
 border-radius: 3px;
 width: 30%;
-margin: 5px;
+margin-top: 3px;
 `;
 
 const Select = styled.select`

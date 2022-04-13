@@ -6,37 +6,11 @@ import {Form, Label, Input} from '../../styles/Forms.jsx';
 import {DescriptionBox, BigBox, LittleBox, CharacteristicsContainer, CharacteristicsBox, CharacteristicsButtons, IndividualCharacteristic} from '../../styles/Boxes.jsx';
 import styled, { css } from 'styled-components';
 import AddReviewStarRating from './AddReviewStarRating.jsx';
-
+import {CloseModalButton} from '../../styles/Icons.jsx'
 import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js"
+import {AddSubmitButton, TextArea, Background, ModalWrapper, NewReviewBox, InnerReviewBox, SummaryInput, BodyInput, FadedLabel, Outermost, Mid, InnerMost, SuperInnerMost} from './ReviewStyles.jsx';
 
-const NewReviewBox = styled(BigBox)`
-  height: 100%;
-  width: 55%;
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-`;
-
-const SummaryInput = styled(Input)`
-  width: 70%;
-  inline-size: 400px;
-  height: 25px;
-`;
-
-const BodyInput = styled(Input)`
-  width: 70%;
-  inline-size: 500px;
-  overflow-wrap: break-word;
-  height: 60px;
-`;
-const FadedLabel = styled(Label)`
-margin-top: 0px;
-margin-bottom: 0.5em;
-color: #989898;
-font-size: 14px;
-padding: 0px;
-`;
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -136,7 +110,7 @@ class AddReview extends React.Component {
       const formDescriptions = {
         Fit: ["Runs tight", "Runs slightly tight", "Perfect", "Runs slightly long", "Runs long" ],
         Length:["Runs short", "Runs slightly short", "Perfect", "Runs slightly long", "Runs long" ],
-        Comfort: ["Uncomfortable", "Slightly uncomfortable", "Ok", "Comfortable", "Perfect"],
+        Comfort: ["Uncomfy", "Slightly uncomfy", "Ok", "Comfortable", "Perfect"],
         Quality: ["Poor", "Below average", "What I expected", "Pretty great", "Perfect"],
         Size: ["A size too small" , "1/2 a size too small", "Perfect" , "1/2 a size too big", "A size too wide"],
         Width: ["Too narrow", "Slightly narrow", "Perfect", "Slightly wide", "Too wide"]
@@ -171,63 +145,74 @@ class AddReview extends React.Component {
     }
 
     return (
-        <NewReviewBox>
-          <div>
-            <Header2>WRITE YOUR REVIEW</Header2>
-            <Form onSubmit={this.onTotalSubmit}>
-                <Header3>Your overall rating</Header3>
-              <AddReviewStarRating onStarClick={this.onStarClick} />
+      <Background >
+        <ModalWrapper>
+          <CloseModalButton onClick={this.props.handleClose} role="presentation"
+            aria-label="Close modal"
+          />
+          <Outermost>
 
-              <Header3>Would you recommend this product?</Header3>
-              <Label onChange={this.onRecommend}>
-                Yes
-                <input type="radio" id="AddReviewRadio" name="recommend" value="true" />
-                No
-                <input type="radio" id="AddReviewRadio" name="recommend" value="false" />
-              </Label>
+            <NewReviewBox>
+              <Label><Header3>WRITE YOUR REVIEW</Header3></Label>
+              <Mid onSubmit={this.onTotalSubmit}>
 
-                <CharacteristicsContainer>
+                <InnerMost>
+                  <Header3>Your overall rating</Header3>
+                  <AddReviewStarRating onStarClick={this.onStarClick} />
+
+                  <Header3 onChange={this.onRecommend} > Would you recommend this product? Yes <input type="radio" id="AddReviewRadio" name="recommend" value="true" /> No <input type="radio" id="AddReviewRadio" name="recommend" value="false" />
+                  </Header3>
+
                   <Header3>Characteristics</Header3>
                   {MakeFormFromCharacteristics(this.props.characteristics)}
-                </CharacteristicsContainer>
 
-              <form onChange={this.onReviewSubmit}>
-                  <Header3>What is your experience in one sentence?</Header3>
-                  <SummaryInput type="text" name="summary" placeholder="Example: Best purchase ever!" maxLength="60"/>
+                </InnerMost>
 
+                <InnerMost>
+                  <form onChange={this.onReviewSubmit}>
 
-
-                  <Header3>Tell other people more about the product.</Header3>
-
-
-                  <textarea type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5">
-
-                  </textarea>
+                    <SuperInnerMost>
+                      <Header3>What is your experience in one sentence?</Header3>
+                      <SummaryInput type="text" name="summary" placeholder="Example: Best purchase ever!" maxLength="60" />
+                    </SuperInnerMost>
 
 
-                <Header3>Nickname</Header3>
+                    <SuperInnerMost>
+                      <Header3>Tell other people more about the product.</Header3>
+                      <TextArea type="text" name="body" placeholder="minimum 50 characters" minLength="50" maxLength="1000" rows="5"></TextArea>
+                    </SuperInnerMost>
 
-                  <Input type="text" name="name" placeholder=" Example: jackson11!" maxLength="60"></Input>
 
-                <Header4>For privacy reasons, do not use your full name or email address</Header4>
-                <Header3>e-mail</Header3>
+                    <SuperInnerMost>
+                      <Header3>Nickname</Header3>
+                      <Input type="text" name="name" placeholder=" Example: jackson11!" maxLength="60"></Input>
+                      <Header4>For privacy reasons, do not use your full name or email address</Header4>
+                    </SuperInnerMost>
 
-                <Input type="text" name="email" placeholder=" Example: jackson11@email.com" maxLength="60"></Input>
-                <Header4>For authentication reasons, you will not be emailed</Header4>
+                    <SuperInnerMost>
+                      <Header3>e-mail</Header3>
+                      <Input type="text" name="email" placeholder=" Example: jackson11@email.com" maxLength="60"></Input>
+                      <Header4>For authentication reasons, you will not be emailed</Header4>
+                    </SuperInnerMost>
+                  </form>
+                  <SuperInnerMost>
+                    <Header3>Upload your photos
+                      <Form action="/action_page.php" onChange={this.onImageUpload}>
+                        <input type="file" id="myFile" name="filename" accept="image/gif, image/jpeg, image/png"></input>
+                        {/* <input type="submit"></input> */}
+                      </Form>
+                    </Header3>
+                  </SuperInnerMost>
+                  <SuperInnerMost>
+                    <AddSubmitButton onClick={this.onTotalSubmit}> Submit</AddSubmitButton>
+                  </SuperInnerMost>
+                </InnerMost>
 
-                </form>
-
-              <Header3>Upload your photos
-                <Form action="/action_page.php" onChange={this.onImageUpload}>
-                  <input type="file" id="myFile" name="filename" accept="image/gif, image/jpeg, image/png"></input>
-                  {/* <input type="submit"></input> */}
-                </Form>
-              </Header3>
-
-              <Button onClick={this.onTotalSubmit}> Submit</Button>
-            </Form>
-          </div>
-        </NewReviewBox>
+              </Mid>
+            </NewReviewBox>
+          </Outermost>
+        </ModalWrapper>
+      </Background>
     );
   }
 }
@@ -235,6 +220,7 @@ class AddReview extends React.Component {
 AddReview.propTypes = {
   characteristics: PropTypes.object.isRequired,
   product_id: PropTypes.number.isRequired,
+  handleClose: PropTypes.func.isRequired,
 }
 
 
