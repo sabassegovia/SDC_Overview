@@ -131,7 +131,6 @@ input[name="rating"] {
   cursor: pointer;
   transition: color 200ms;
   font-size: 30px;
-  padding: 0px;
 }
 
 :root {

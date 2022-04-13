@@ -12,10 +12,8 @@ const StarMeaning = styled(Label)`
   display: flex;
   flex-direction: row;
   font-style: normal;
-  font-size: 16px;
-  line-height: 16px;
-  margin: 3px;
-  padding: 3px;
+  font-size: 30px;
+  line-height: 30px;
 `;
 
 const AddReviewStarRating = ({onStarClick}) => {
@@ -34,14 +32,14 @@ const AddReviewStarRating = ({onStarClick}) => {
         const ratingVal = i + 1;
 
         return (
-          <div key={i}>
+          <StarLabel key={i}>
               <input
                 type="radio"
                 name="rating"
                 value={ratingVal}
                 onClick={() => {setRating(ratingVal); onStarClick(ratingVal)}} />
               < FaStar className="star" color={ratingVal <= rating ? "#ffc107" : "#606165"} />
-          </div>
+          </StarLabel>
         );
       })}
       <StarMeaning> {starDescription()} </StarMeaning>

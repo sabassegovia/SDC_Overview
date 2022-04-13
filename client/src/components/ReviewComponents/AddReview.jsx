@@ -9,7 +9,7 @@ import AddReviewStarRating from './AddReviewStarRating.jsx';
 import {CloseModalButton} from '../../styles/Icons.jsx'
 import axios from 'axios';
 import {Axios} from "../../AxiosConfig.js"
-import {AddSubmitButton, TextArea, Background, ModalWrapper, NewReviewBox, InnerReviewBox, SummaryInput, BodyInput, FadedLabel, Outermost, Mid, InnerMost, SuperInnerMost} from './ReviewStyles.jsx';
+import {AddSubmitButton, TextArea, Background, ModalWrapper, NewReviewBox, InnerReviewBox, SummaryInput, BodyInput, FadedLabel, Outermost, Mid, InnerMost, SuperInnerMost, AddReviewHeader} from './ReviewStyles.jsx';
 
 
 class AddReview extends React.Component {
@@ -147,13 +147,16 @@ class AddReview extends React.Component {
     return (
       <Background >
         <ModalWrapper>
-          <CloseModalButton onClick={this.props.handleClose} role="presentation"
-            aria-label="Close modal"
-          />
+
           <Outermost>
 
             <NewReviewBox>
+              <AddReviewHeader>
               <Label><Header3>WRITE YOUR REVIEW</Header3></Label>
+              <CloseModalButton onClick={this.props.handleClose} role="presentation"
+            aria-label="Close modal"
+          />
+          </AddReviewHeader>
               <Mid onSubmit={this.onTotalSubmit}>
 
                 <InnerMost>

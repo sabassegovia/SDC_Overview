@@ -31,6 +31,13 @@ border-radius: 3px;
 width: 70%;
 margin-top: 3px;
 `;
+
+const SummaryInput = styled(Input)`
+  width: 70%;
+  height: 25px;
+`;
+
+
 const Background = styled.div`
 width: 100%;
 height: 100%;
@@ -76,11 +83,6 @@ width: 100%;
   flex-direction: row;
 `;
 
-const SummaryInput = styled(Input)`
-  width: 70%;
-  inline-size: 400px;
-  height: 25px;
-`;
 
 const BodyInput = styled(Input)`
   width: 70%;
@@ -130,4 +132,11 @@ flex-direction: column;
 justify-content: space-between;
 `;
 
-export {AddSubmitButton, TextArea, Background, ModalWrapper, NewReviewBox, InnerReviewBox, SummaryInput, BodyInput, FadedLabel, Outermost, Mid, InnerMost, SuperInnerMost}
+const AddReviewHeader = styled.div`
+width: 95%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+`;
+
+export {AddSubmitButton, TextArea, Background, ModalWrapper, NewReviewBox, InnerReviewBox, SummaryInput, BodyInput, FadedLabel, Outermost, Mid, InnerMost, SuperInnerMost, AddReviewHeader}
