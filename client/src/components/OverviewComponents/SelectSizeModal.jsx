@@ -75,20 +75,29 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
   }
   useEffect(() => {
     setIsRender(prev => true)
+    const handleResize = (e) => {
+      console.log('im firing')
+      setOpenSizeModal(false)
+    }
     window.addEventListener('resize', handleResize)
-    // console.log(selectSizeRef.current.getBoundingClientRect())
+
+    const myFunction = () => {console.log('do something')}
+
+    window.addEventListener('click',myFunction)
+
     setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
 
-    // console.log(position.getBoundingClientRect())
-    // setOurPosition(modalRef.current.getBoundingClientRect())
-    return function cleanup () {
-      console.log('cleanup')
+    return () => {
+      window.removeEventListener('click',myFunction)
+      window.removeEventListener('resize', handleResize)
     }
-  }, [selectSizeRef, modalRef])
+  }, [selectSizeRef, modalRef, 'click', 'resize'])
 
-  const handleResize = () => {
-    setOpenSizeModal(false)
-  }
+
+  // const handleClick = (e) => {
+  //   console.log('im clicking something')
+
+  // }
 
   return ReactDom.createPortal(
     <div>

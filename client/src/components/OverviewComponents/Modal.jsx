@@ -26,15 +26,13 @@ const Background = styled.div`
 const ModalWrapper = styled.div`
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
   position: relative;
-  border-radius: 5px;
-  border: 3px solid #fffffff0;
   color: #fffffff0;
 `;
 
 const ModalImg = styled.img`
-  max-height: 1080px;
-  max-width: 1920px;
-  min-height: 800px;
+  max-height: 80vh;
+  max-width: 80vh;
+  /* min-height: px; */
   /* object-fit:contain; */
   background: #000;
 `;

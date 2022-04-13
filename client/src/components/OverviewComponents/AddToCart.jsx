@@ -177,6 +177,7 @@ const AddToCart = (props) => {
           </AddtoCartButton>
         </RowContainer>
 
+
         <SelectSizeModal
           selectSizeRef = {selectSizeRef}
           setOpenSizeModal = {setOpenSizeModal.bind(this)}
