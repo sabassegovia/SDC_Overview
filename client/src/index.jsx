@@ -31,11 +31,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       overview: null,
-<<<<<<< HEAD
-      product_id: 65646,
-=======
       product_id: 65660,
->>>>>>> 068af278e1c91ed87a6b6ed5ae347924e3fc4672
       rating: 0,
       documentTitle: null,
       isRender: false,
