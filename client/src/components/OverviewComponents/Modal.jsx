@@ -29,12 +29,12 @@ const ModalWrapper = styled.div`
   border-radius: 5px;
   border: 3px solid #fffffff0;
   color: #fffffff0;
-  height:1080px;
 `;
 
 const ModalImg = styled.img`
   max-height: 1080px;
   max-width: 1920px;
+  min-height: 800px;
   /* object-fit:contain; */
   background: #000;
 `;

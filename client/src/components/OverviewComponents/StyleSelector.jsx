@@ -16,6 +16,7 @@ const StyleContainer = styled(ColumnContainer)`
 `
 const RatingsHeader = styled(RowContainer)`
   align-items: flex-end;
+  column-gap: 10px;
   font-size: 20px;
   border-top: none;
   border-right: none;
@@ -30,6 +31,10 @@ const ReviewSlider = styled(Header4)`
     color: #3e3e3e;
     transform: scale(1.1);
   };
+`
+
+const ProductCategoryName = styled(Header2)`
+
 `
 const StyleThumbnails = styled(RowContainer)`
   flex-wrap: wrap;
@@ -68,12 +73,12 @@ const StyleSelector = (props) => {
         </AlignmentWrapper>
 
         <AlignmentWrapper>
-          <Header2>{props.category} - {props.name} </Header2>
+          <ProductCategoryName>{props.category} - {props.name} </ProductCategoryName>
         </AlignmentWrapper>
 
         <AlignmentWrapper>
           <PriceContainer >
-            {sale_price ? <Header3 ><span style={{textDecorationLine: 'line-through'}}>{`$${original_price}`}</span><span style={{color: 'red'}}>{` SALE $${sale_price}`}</span></Header3> : <Header3>{`$${original_price}`}</Header3>}
+            {sale_price ? <Header3 ><span style={{color: 'red'}}>{`$${sale_price}`}</span>  <span style={{textDecorationLine: 'line-through'}}>{`$${original_price}`}</span></Header3> : <Header3>{`$${original_price}`}</Header3>}
           </PriceContainer>
         </AlignmentWrapper>
       </StyleSelectorDescription>

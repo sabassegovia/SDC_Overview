@@ -26,10 +26,10 @@ const ThumbnailImage = styled.img`
 border-radius: 50%;
 width:80px;
 height:80px;
-object-fit: contain;
+object-fit: cover;
 border: ${({selected}) => { return selected ? `2px solid green` : `2px solid #3e3e3e` }};
 transition: border .3s linear;
-background: url(${(props) => props.url}) center;
+/* background: url(${(props) => props.url}) center; */
 
 `
 
@@ -57,9 +57,9 @@ const Style = (props) => {
         <Thumbnail
           onClick = {() => {props.styleOnClick(props.style)}}>
             <ThumbnailImage
-            url = {photos[0].url || "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640" }
-            selected = {props.selected}>
 
+            src = {photos[0].url || "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640" }
+            selected = {props.selected}>
             </ThumbnailImage>
         </Thumbnail>
 

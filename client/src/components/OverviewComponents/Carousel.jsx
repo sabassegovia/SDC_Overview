@@ -8,7 +8,7 @@ import { TiArrowRightThick, TiArrowLeftThick } from "react-icons/ti";
 const CarouselFooter = styled(RowContainer)`
   position: absolute;
   justify-content: space-between;
-  z-index: 999;
+  z-index: 3;
   bottom: 0%;
 `
 
@@ -29,22 +29,24 @@ const ThumbnailBackground = styled.div`
   display:flex;
   flex-direction: row;
   justify-content: space-around;
-  &:hover {
+  /* &:hover {
     transition-duration: .3s;
     transform: scale(1.1)
-  };
+  }; */
 `
 const ThumbnailImage = styled.img`
-  max-height: 65px;
+  height: 65px;
   max-width: 65px;
   border-radius:10%;
   margin: 10px 5px 10px 5px;
   border: 1px solid black;
+  object-fit: cover;
 `
 const NavButtons = styled.button`
   margin: 10px 5px 10px 5px;
   opacity: 1;
   border: 1px solid black;
+  border-radius: 12px;
 `
 const Carousel = (props) => {
 
@@ -55,10 +57,10 @@ const Carousel = (props) => {
   const length = photos.length
 
   const next = () => {
-    setCurrent(current + 1)
+    setCurrent(current => length <= 7 ? current : current === length - 7 ? current : current - 1)
   }
   const prev = () => {
-    setCurrent(current - 1)
+    setCurrent(current => current === 0 ? 0 : current - 1)
   }
 
   const handleThumbnailClick = (index) => {
@@ -85,7 +87,7 @@ const Carousel = (props) => {
           }
         )}
         <NavButtons
-        disabled = {current === length - 7}
+        disabled = {current === length - 7 || length <= 7}
         onClick = {() => next()}><TiArrowRightThick /></NavButtons>
       </CarouselContainer>
     </CarouselFooter>
