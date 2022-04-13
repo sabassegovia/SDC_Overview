@@ -23,6 +23,7 @@ const QuestionRow = styled(RowContainer)`
 `
 const AddAnswerButton = styled.button`
   height: 40px;
+  width: 160px;
   background: #e4e4e4;
   color:  #3e3e3e;
   border-radius: 3px;
@@ -120,7 +121,7 @@ class QuestionListItem extends React.Component {
 
                   <AddAnswerButton
                     ref = {this.AddAnswerButton}
-                    onClick={this.handleAddAnswerButton}>Add An Answer</AddAnswerButton>
+                    onClick={this.handleAddAnswerButton}>{!this.state.showAddAnswer ? `Add An Answer` : `Go Back`}</AddAnswerButton>
                   {this.state.showAddAnswer ? <AddAnswer
                     handleAddAnswerButton = {this.handleAddAnswerButton.bind(this)}
                     AddAnswerButtonPosition = {this.AddAnswerButton.current.getBoundingClientRect()}
