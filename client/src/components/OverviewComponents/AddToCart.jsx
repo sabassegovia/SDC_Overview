@@ -31,10 +31,12 @@ const SizeSelect = styled(Select)`
   font-size: 16px;
   margin: 0 10px 0 0 ;
   border-radius: 12px;
-  &:hover {
-    transition: all .3s linear;
-    transform: scale(1.1);
+  ${props => !props.disabled&&`
+    &:hover {
+      transition: all .3s linear;
+      transform: scale(1.1);
     };
+  `}
 `
 const QuantitySelect = styled(SizeSelect)`
   width: 40%;
@@ -46,12 +48,14 @@ const AddtoCartButton = styled.button`
   color:  #3e3e3e;
   border-radius: 3px;
   font-size:20px;
-  cursor: pointer;
-  &:hover {
+  cursor: ${props => props.disabled ? 'default' : 'pointer'};
 
-    transition: all .3s linear;
-    transform: scale(1.1);
-  };
+  ${props => !props.disabled&&`
+    &:hover {
+      transition: all .3s linear;
+      transform: scale(1.1);
+    };
+  `}
   border-radius: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -172,6 +176,7 @@ const AddToCart = (props) => {
             >{stock ? <ShoppingCart></ShoppingCart> :" Out of Stock"}
           </AddtoCartButton>
         </RowContainer>
+
 
         <SelectSizeModal
           selectSizeRef = {selectSizeRef}

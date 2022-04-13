@@ -16,7 +16,7 @@ const SizeModalBackground = styled(ColumnContainer)`
   position: absolute;
   border-radius: 12px;
   top: ${(props) => props.selectSizePosition.y}px;
-  left: ${(props) => props.selectSizePosition.x-318}px;
+  left: ${(props) => props.selectSizePosition.x - 245}px;
   z-index: 222;
   @keyframes fadein {
     from { opacity: 0; }
@@ -63,9 +63,11 @@ const SizeButton = styled(Button)`
 const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, settingSku}) => {
   // var skus_ids = Object.keys(props.selectedStyle.skus)
   // var {skus} = props.selectedStyle
-  const modalRef = useRef();
+
   const [selectSizePosition, setSelectSizePosition] = useState(null)
   const [isRender, setIsRender] = useState(false)
+  const [ourPosition, setOurPosition] = useState(null)
+  const modalRef = useRef();
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
       setOpenSizeModal(false)
@@ -73,18 +75,29 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
   }
   useEffect(() => {
     setIsRender(prev => true)
+    const handleResize = (e) => {
+      console.log('im firing')
+      setOpenSizeModal(false)
+    }
     window.addEventListener('resize', handleResize)
 
-    // console.log(selectSizeRef.current.getBoundingClientRect())
-    setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
-    return function cleanup () {
-      console.log('cleanup')
-    }
-  }, [selectSizeRef])
+    const myFunction = () => {console.log('do something')}
 
-  const handleResize = () => {
-    setOpenSizeModal(false)
-  }
+    window.addEventListener('click',myFunction)
+
+    setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
+
+    return () => {
+      window.removeEventListener('click',myFunction)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [selectSizeRef, modalRef, 'click', 'resize'])
+
+
+  // const handleClick = (e) => {
+  //   console.log('im clicking something')
+
+  // }
 
   return ReactDom.createPortal(
     <div>

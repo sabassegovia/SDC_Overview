@@ -105,7 +105,6 @@ const ImageCarousel = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    console.log(props.selectedStyle.photos[currentIndex].url)
     // setIsRender(true)
     setLength(children.length)
 
