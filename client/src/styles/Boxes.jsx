@@ -55,8 +55,8 @@ const BreakDownAlignment = styled(AlignmentWrapper)`
 
 const BigBox = styled.div`
   height: 500px;
-  width: 600px;
-  border: 1px solid #000;
+  width: 100%;
+  border: none;
   margin: 10px;
   padding: 10px;
 `;
@@ -87,7 +87,7 @@ const InnerReviewsContainer = styled(ColumnContainer)`
 
 const ReviewBox = styled(ColumnContainer)`
   display: flex;
-  border: 1px dashed rgb(199, 197, 197);
+  border-bottom: 1px dashed rgb(199, 197, 197);
 `;
 
 const ReviewTop = styled(RowContainer)`
@@ -106,7 +106,7 @@ const CharacteristicsContainer = styled.div`
   height: 100%;
   width: 700px;
   margin: 1px;
-  padding: 1px;
+  padding -top: 3px;
   display: flex;
   flex-direction: column;
   border: none;
@@ -114,9 +114,9 @@ const CharacteristicsContainer = styled.div`
 
 const CharacteristicsBox = styled.div`
   height: 100%;
-  width: 650px;
-  margin: 1px;
-  padding: 1px;
+  width: 500px;
+  margin: 5px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
 `;

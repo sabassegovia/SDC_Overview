@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import Button from '../styles/Buttons.jsx';
+// import Button from '../styles/Buttons.jsx';
 // import styled from 'styled-components';
 import {Form, Label, Input, Select} from '../styles/Forms.jsx';
 import {DescriptionBox, EmptyBox, BigBox, LittleBox, ReviewBox, ReviewsContainer, BreakdownBox, ReallyBigBox} from '../styles/Boxes.jsx';
@@ -17,6 +17,23 @@ import PropTypes from 'prop-types';
 import {RowContainer, ColumnContainer, AlignmentWrapper, BreakDownAlignment, MainHeader, RatingsReviewContainer} from '../styles/Boxes.jsx'
 import {Title, Wrapper, Header2, Header3, Span, Header4, Text} from '../styles/Headers.jsx';
 
+const AddSubmitButton = styled.button`
+  width: 30%;
+  height: 40px;
+  background: #E4E4E4;
+  color:  #3E3E3E;
+  border-radius: 10px;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1);
+    background: #3E3E3E;
+    color: #E4E4E4;
+  };
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #000;
+`
 
 const ReviewSelect = styled(Select)`
   height: 40px;
@@ -53,6 +70,12 @@ class Ratings extends React.Component {
     this.handleAddReview = this.handleAddReview.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.handleSort = this.handleSort.bind(this);
+    this.hideReviewModal = this.hideReviewModal.bind(this);
+  }
+
+  hideReviewModal(event) {
+    event.preventDefault();
+    this.setState({showAddReview: false});
   }
 
   handleMoreReviews(event) {
@@ -63,7 +86,7 @@ class Ratings extends React.Component {
 
   handleAddReview(event) {
     event.preventDefault();
-    this.setState({showAddReview: !this.state.showAddReview});
+    this.setState({showAddReview: true});
   }
 
   getReviews() {
@@ -131,7 +154,7 @@ class Ratings extends React.Component {
     let AddReviewForm;
     if (this.state.showAddReview) {
       AddReviewForm = (<AddReview characteristics={this.state.characteristics}
-      product_id ={this.state.product_id}/>)
+      product_id ={this.state.product_id } handleClose={this.hideReviewModal}/>)
     } else {
       AddReviewForm = <div></div>
     }
@@ -192,8 +215,8 @@ class Ratings extends React.Component {
             {ReviewTiles}
 
           <AlignmentWrapper>
-            <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
-            <Button as="a" href="#" onClick={this.handleAddReview}>Add a Review</Button>
+            <AddSubmitButton as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</AddSubmitButton>
+            <AddSubmitButton as="a" href="#" onClick={this.handleAddReview}>Add a Review</AddSubmitButton>
           </AlignmentWrapper>
         </ReviewsContainer>
         <EmptyBox/>
