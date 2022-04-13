@@ -192,7 +192,7 @@ class Ratings extends React.Component {
             {ReviewTiles}
 
           <AlignmentWrapper>
-            <Button as="a" href="#" onClick={this.handleAddReviews}>More Reviews</Button>
+            <Button as="a" href="#" onClick={this.handleMoreReviews}>More Reviews</Button>
             <Button as="a" href="#" onClick={this.handleAddReview}>Add a Review</Button>
           </AlignmentWrapper>
         </ReviewsContainer>
