@@ -1,13 +1,14 @@
 import React from 'react';
 import moment from 'moment';
 import axios from "axios"
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { Axios } from "../../AxiosConfig.js";
-import AnswerImage from "./AnswerImage.jsx";
 import AddAnswer from "./AddAnswer.jsx";
 import PropTypes from 'prop-types';
-import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader} from '../../styles/Boxes.jsx'
+import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader, ReviewImages} from '../../styles/Boxes.jsx'
 import {Title, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx';
+
+import ReviewImageModal from '../ReviewComponents/ReviewImageModal.jsx';
 
 const AnswerContainer = styled(ColumnContainer)`
   row-gap: 5px;
@@ -48,9 +49,13 @@ class AnswerListItem extends React.Component {
     this.sellerHandler = this.sellerHandler.bind(this);
     this.onHelpfulClick = this.onHelpfulClick.bind(this);
     this.onReportClick = this.onReportClick.bind(this);
+    this.onImageClick = this.onImageClick.bind(this);
+    this.hideModal = this.hideModal.bind(this);
 
     this.state = {
       question_id: 0,
+      showImage: false,
+      modalImage: ''
     }
   }
 
@@ -80,18 +85,39 @@ class AnswerListItem extends React.Component {
     .catch(err => {console.log(err)})
   }
 
+  onImageClick(event) {
+    event.preventDefault();
+    this.setState({showImage: true, modalImage: event.target.src});
+  }
+
+  hideModal(event) {
+    event.preventDefault();
+    this.setState({showImage: false})
+  }
+
   render() {
+    let images;
+    if (this.props.answer.photos.length === 0) {
+      images = <div></div>
+    } else {
+    images = (
+      <ReviewImages>
+      {this.props.answer.photos.map(photo => (
+        <div key={photo.id}>
+          <img src={photo.url} alt={photo.id} onClick={this.onImageClick} width="80%" height="100%" className="reviewImage" role="presentation"/>
+        </div>
+      ))}
+      </ReviewImages>
+    )
+    }
     return (
 
         <AnswerContainer >
           <Answer>
             <Header3>A: </Header3> <Header3>{this.props.answer.body}</Header3>
           </Answer>
-          {this.props.answer.photos.map(eachImage => {
-            return <AnswerImage image={eachImage} key={eachImage.id}/>
-            })}
-
-
+          {images}
+          {this.state.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.state.modalImage}/> : null}
               <AuthorHelpfulRow>
                 <Author>
                   by {this.props.answer.answerer_name}{this.sellerHandler}
