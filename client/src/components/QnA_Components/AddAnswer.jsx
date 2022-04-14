@@ -17,8 +17,10 @@ const AnswerFormContainer = styled(ColumnContainer)`
   align-items: center;
   background: #FAFAFA;
   border-radius: 12px;
-  top: ${props => window.scrollY + props.buttonPosition.y - props.ourPosition.height }px;
-  left: ${props => props.buttonPosition.left - props.ourPosition.width - 20}px;
+  /* top: ${props => window.scrollY + props.buttonPosition.y - props.ourPosition.height }px; */
+  top: ${props => window.scrollY + 600 }px;
+
+  left: ${props => window.scrollX + props.buttonPosition.left - props.ourPosition.width - 20}px;
   column-gap: 10px;
   @keyframes fadein {
     from { opacity: 0; }
@@ -73,11 +75,25 @@ class AddAnswer extends React.Component {
     this.AddAnswerForm = React.createRef()
   };
 
+   handleResize () {
+    this.props.handleAddAnswerButton()
+  }
+
   componentDidMount() {
     this.setState({
       question_id: this.props.question_id,
       position: this.AddAnswerForm.current.getBoundingClientRect(),
     })
+    window.addEventListener('resize', this.props.handleAddAnswerButton)
+    window.addEventListener('scroll', this.props.handleAddAnswerButton)
+
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.props.handleAddAnswerButton)
+    window.removeEventListener('scroll', this.props.handleAddAnswerButton)
+
+
   }
 
   handleChange(event) {

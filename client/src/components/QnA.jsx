@@ -108,7 +108,7 @@ class QnA extends React.Component {
           </AlignmentWrapper>
         </QnAHeader>
         <QuestionSearch searchHandler={this.searchHandler} />
-        <QuestionList questions={this.state.list} getQuestions={this.getQuestions}/>
+        <QuestionList questions={this.state.list} getQuestions={this.getQuestions} name = {this.props.name}/>
 
 
         {/* <AddAnswer /> */}

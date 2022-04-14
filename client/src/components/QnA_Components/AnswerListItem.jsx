@@ -30,7 +30,7 @@ const Author = styled(Text)`
 `
 
 const Date = styled(Text)`
-  width: 130px;
+  width: 150px;
 `
 const Helpful = styled(Text)`
   &:hover {
@@ -94,7 +94,7 @@ class AnswerListItem extends React.Component {
 
               <AuthorHelpfulRow>
                 <Author>
-                  by {this.props.answer.answerer_name}{this.sellerHandler},
+                  by {this.props.answer.answerer_name}{this.sellerHandler}
                 </Author>
                 <Date>
                   {moment(this.props.answer.date).format('MMMM Do YYYY')}
