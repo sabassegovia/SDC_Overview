@@ -2,7 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import axios from "axios"
 import styled from 'styled-components';
-import { Axios } from "../../AxiosConfig.js"
+import { Axios } from "../../AxiosConfig.js";
+import AnswerImage from "./AnswerImage.jsx";
 import AddAnswer from "./AddAnswer.jsx";
 import PropTypes from 'prop-types';
 import {RowContainer, ColumnContainer, AlignmentWrapper, MainHeader} from '../../styles/Boxes.jsx'
@@ -80,17 +81,15 @@ class AnswerListItem extends React.Component {
   }
 
   render() {
-    // console.log(this.props.answer.photos)
-    // var imageHandler = () => {
-    //   for (i = 0; i < this.props.answer.photos.length; i++) {
-    //     return <img src="`${this.props.answer.photos[i]}`"></img>
-    //   }
     return (
 
         <AnswerContainer >
           <Answer>
             <Header3>A: </Header3> <Header3>{this.props.answer.body}</Header3>
           </Answer>
+          {this.props.answer.photos.map(eachImage => {
+            return <AnswerImage image={eachImage} key={eachImage.id}/>
+            })}
 
 
               <AuthorHelpfulRow>
