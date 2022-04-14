@@ -71,7 +71,7 @@ animation: fadein .3s linear;
 
 const NewReviewBox = styled(BigBox)`
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -100,7 +100,7 @@ padding: 0px;
 
 const Outermost = styled.div`
 height: 100%;
-width: 100%;
+/* width: 100%; */
 display: flex;
 flex-direction: column;
 `;
