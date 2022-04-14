@@ -76,7 +76,7 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
       return (
         <div key={characteristic}>
           <Characteristic  >
-            <CharacteristicName border={true}>
+            <CharacteristicName >
               {characteristic}
             </CharacteristicName >
             <OtherColumnContainer >
@@ -113,7 +113,7 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
       </RatingsTallyContainer>
         <Header3>Characteristics</Header3>
       <CharContainer>
-        <CharacteristicContainer border = {true}>
+        <CharacteristicContainer >
           {MakeInputFromCharacteristics(characteristics)}
         </CharacteristicContainer>
       </CharContainer>
