@@ -173,7 +173,7 @@ class Ratings extends React.Component {
 
     return (
 
-      <RatingsReviewContainer border = {true}>
+      <RatingsReviewContainer >
         <MainHeader >
           <AlignmentWrapper>
             <Header2 secondary = {true} underline = {true}>
@@ -181,11 +181,11 @@ class Ratings extends React.Component {
             </Header2>
           </AlignmentWrapper>
         </MainHeader>
-        <ReallyBigBox border = {true}>
+        <ReallyBigBox >
           <EmptyBox/>
 
           <AlignmentWrapper>
-          <BreakdownBox border = {true}>
+          <BreakdownBox >
               <Header2 > RATINGS </Header2>
               <Header2>
                 {this.state.rating}
