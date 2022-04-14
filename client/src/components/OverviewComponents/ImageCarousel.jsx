@@ -11,6 +11,8 @@ const CarouselContainer = styled(RowContainer)`
   justify-content: center;
   height: 800px;
   width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 
 `
 const CarouselWrapper = styled.div`

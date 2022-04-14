@@ -12,10 +12,12 @@ const BreakdownText = styled(Text)`
   font-size: 12px;
   line-height: 12px;
   justify-content: space-between;
+
 `;
 const OtherRowContainer = styled(RowContainer)`
   width: 100%;
   justify-content: space-between;
+  position:relative;
 `;
 
 const OtherColumnContainer = styled(ColumnContainer)`
@@ -117,7 +119,6 @@ const RatingsBreakdown = ({ratingsStarBreakdown, characteristics}) => {
           {MakeInputFromCharacteristics(characteristics)}
         </CharacteristicContainer>
       </CharContainer>
-
     </TallyCharacteristicsContainer>
   )
 }

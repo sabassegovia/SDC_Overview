@@ -10,6 +10,8 @@ const CarouselFooter = styled(RowContainer)`
   justify-content: space-between;
   z-index: 3;
   bottom: 0%;
+  bottom: 10px;
+
 `
 
 const CarouselContainer = styled(RowContainer)`
@@ -18,7 +20,9 @@ const CarouselContainer = styled(RowContainer)`
   position: relative;
   justify-content: space-around;
   z-index: 999;
-  width: 65px;
+  height: 65px;
+  column-gap: 10px;
+  align-items: center;
   /* &:hover {
     transition-duration: .3s;
     transform: scale(1.05)
@@ -38,15 +42,15 @@ const ThumbnailImage = styled.img`
   height: 65px;
   max-width: 65px;
   border-radius:10%;
-  margin: 10px 5px 10px 5px;
   border: 1px solid black;
   object-fit: cover;
 `
 const NavButtons = styled.button`
-  margin: 10px 5px 10px 5px;
   opacity: 1;
   border: 1px solid black;
   border-radius: 12px;
+  height: 50%;
+  top: 50%;
 `
 const Carousel = (props) => {
 

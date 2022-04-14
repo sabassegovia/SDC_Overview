@@ -115,7 +115,7 @@ class ReviewTile extends React.Component {
 
             {recommend}
             <div>
-              <Typography underline="true">Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.review.helpfulness}) No (0)</Typography>
+              <Typography underline="true">Helpful? <span role = "presentation" onClick={this.onHelpfulClick}>Yes</span> ({this.props.review.helpfulness}) No (0)</Typography>
             </div>
             <div>
               <Typography underline="true" onClick={this.onReportClick}> Report
