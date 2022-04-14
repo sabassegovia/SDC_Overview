@@ -84,7 +84,12 @@ const Modal = (props) => {
   return ReactDom.createPortal (
     <>
       {props.showModal ? (
-        <Background onClick={closeModal} ref={modalRef} isRender = {isRender}>
+
+
+        <Background
+          role="presentation"
+
+          onClick={closeModal} ref={modalRef} isRender = {isRender}>
           <ModalWrapper>
             <ModalContent >
               <ModalImg src={props.img} alt='camera' />
