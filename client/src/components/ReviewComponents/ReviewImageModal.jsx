@@ -26,7 +26,7 @@ border-radius: 5px;
 border: none;
 color: #fffffff0;
 height: 60%;
-width: 60%
+width: 60%;
 `;
 
 const ModalImg = styled.img`
