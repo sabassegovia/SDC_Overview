@@ -15,8 +15,8 @@ const SizeModalBackground = styled(ColumnContainer)`
   background: #FAFAFA;
   position: absolute;
   border-radius: 12px;
-  top: ${(props) => props.selectSizePosition.y}px;
-  left: ${(props) => props.selectSizePosition.x - 245}px;
+  top: ${(props) => window.scrollY + props.selectSizePosition.y}px;
+  left: ${(props) => window.scrollX + props.selectSizePosition.x - 245}px;
   z-index: 222;
   @keyframes fadein {
     from { opacity: 0; }
@@ -83,11 +83,18 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
   // }
 
   useEffect(() => {
-    console.log('im open')
-    // document.addEventListener('click', handleClickOutside)
 
+    const handleResize = () => {
+      setOpenSizeModal(false)
+    }
+    // document.addEventListener('click', handleClickOutside)
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', handleResize)
     setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
     return () => {
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('scroll', handleResize)
+
       // console.log('im closing')
       // document.removeEventListener('click', handleClickOutside)
     }
