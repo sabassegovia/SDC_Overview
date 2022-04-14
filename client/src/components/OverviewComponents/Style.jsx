@@ -55,9 +55,12 @@ const Style = (props) => {
       {/* <StyleThumbnail> */}
         {props.selected ? <FcOkActive/>:null}
         <Thumbnail
+          role="presentation"
+
           onClick = {() => {props.styleOnClick(props.style)}}>
             <ThumbnailImage
-
+            role="presentation"
+            alt = ""
             src = {photos[0].url || "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640" }
             selected = {props.selected}>
             </ThumbnailImage>

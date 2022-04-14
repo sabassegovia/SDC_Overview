@@ -82,9 +82,11 @@ const AddToCart = (props) => {
   var {skus} = props.selectedStyle
   const [currentSku, setSku] = useState('Select Size')
   const [quantity, setQuantity] = useState('Select Quantity')
+
   const [stock , setStock] = useState(false)
   const [openSizeModal, setOpenSizeModal] = useState(false)
   // const [selectSizePosition, setSelectSizePosition] = useState(null)
+  const cartButtonRef = useRef()
   const selectSizeRef = useRef()
   const selectQuantityRef = useRef()
   let thereIsStock = skus_ids.some(sku => {
@@ -102,6 +104,12 @@ const AddToCart = (props) => {
     setSku(sku)
     setQuantity(quantity === 'Select Quantity' ? 1 : quantity)
   }
+
+  // const handleOpenModal = (e) => {
+  //   setOpenSizeModal(false)
+  //   // document.removeEventListener('click', handleOpenModal)
+  // }
+
   const postCart = () => {
     // console.log('im here')
     setOpenSizeModal(currentSku !== 'Select Size' ? false : true)
@@ -126,7 +134,8 @@ const AddToCart = (props) => {
   const showDropdown = (element) => {
     var event;
     event = document.createEvent('MouseEvents');
-    console.log(event)
+
+
 
     event.initMouseEvent('mousedown', true, true, window);
     element.dispatchEvent(event);
@@ -170,7 +179,7 @@ const AddToCart = (props) => {
       <AlignmentWrapper>
         <RowContainer>
           <AddtoCartButton
-
+            ref = {cartButtonRef}
             onClick = {() => (postCart())}
             disabled = {!stock}
             >{stock ? <ShoppingCart></ShoppingCart> :" Out of Stock"}
@@ -178,12 +187,14 @@ const AddToCart = (props) => {
         </RowContainer>
 
 
-        <SelectSizeModal
+        {openSizeModal ? <SelectSizeModal
+          cartButtonRef = {cartButtonRef}
           selectSizeRef = {selectSizeRef}
           setOpenSizeModal = {setOpenSizeModal.bind(this)}
           skus = {skus}
           settingSku = {settingSku.bind(this)}
-          openSizeModal = {openSizeModal}/>
+          openSizeModal = {openSizeModal}/> : null}
+
       </AlignmentWrapper>
 
       <AlignmentWrapper>

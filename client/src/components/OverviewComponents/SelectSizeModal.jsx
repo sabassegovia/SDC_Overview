@@ -59,13 +59,11 @@ const SizeButton = styled(Button)`
   height:32px;
 `
 
-
-const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, settingSku}) => {
+const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, settingSku, cartButtonRef}) => {
   // var skus_ids = Object.keys(props.selectedStyle.skus)
   // var {skus} = props.selectedStyle
 
   const [selectSizePosition, setSelectSizePosition] = useState(null)
-  const [isRender, setIsRender] = useState(false)
   const [ourPosition, setOurPosition] = useState(null)
   const modalRef = useRef();
   const closeModal = (e) => {
@@ -73,25 +71,27 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
       setOpenSizeModal(false)
     }
   }
+
+  // const handleClickOutside = (e) => {
+  //   e.preventDefault()
+  //   if (e.target !== cartButtonRef.current || e.target !== modalRef.current) {
+
+  //     setOpenSizeModal(false)
+
+  //   }
+  //   // console.log(e.target, modalRef.current)
+  // }
+
   useEffect(() => {
-    setIsRender(prev => true)
-    const handleResize = (e) => {
-      console.log('im firing')
-      setOpenSizeModal(false)
-    }
-    window.addEventListener('resize', handleResize)
-
-    const myFunction = () => {console.log('do something')}
-
-    window.addEventListener('click',myFunction)
+    console.log('im open')
+    // document.addEventListener('click', handleClickOutside)
 
     setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
-
     return () => {
-      window.removeEventListener('click',myFunction)
-      window.removeEventListener('resize', handleResize)
+      // console.log('im closing')
+      // document.removeEventListener('click', handleClickOutside)
     }
-  }, [selectSizeRef, modalRef, 'click', 'resize'])
+  }, [modalRef, selectSizeRef])
 
 
   // const handleClick = (e) => {
@@ -100,10 +100,10 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
   // }
 
   return ReactDom.createPortal(
+
     <div>
-      {openSizeModal ?
-      <SizeModalBackground
-        isRender = {isRender}
+      {selectSizePosition ?  <SizeModalBackground
+        // isRender = {isRender}
         border = {true}
         ref = {modalRef}
         onClick = {closeModal}
@@ -132,6 +132,7 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
           </SizeContainer>
         </SizeModalWrapper>
       </SizeModalBackground> : null}
+
     </div>, document.getElementById('portal')
   )
 }

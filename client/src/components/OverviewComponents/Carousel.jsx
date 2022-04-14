@@ -66,6 +66,7 @@ const Carousel = (props) => {
   const handleThumbnailClick = (index) => {
     props.ThumbnailOnClick(index)
   }
+
   return (
     <CarouselFooter>
       <CarouselContainer>
@@ -77,6 +78,8 @@ const Carousel = (props) => {
             return (
               <ThumbnailBackground key = {index}>
                   <ThumbnailImage
+                  role="presentation"
+                  alt=""
                   name = {index}
                   onClick = {(e) => {handleThumbnailClick(index)}}
                   src = {photo} />
