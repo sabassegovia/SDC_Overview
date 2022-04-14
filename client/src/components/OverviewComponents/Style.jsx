@@ -10,6 +10,7 @@ const ThumbnailContainer = styled(ColumnContainer)`
   border-top: none;
   border-right: none;
   border-left: none;
+
 `
 const Thumbnail = styled.div`
 border-radius: 50%;
@@ -21,6 +22,8 @@ ${({selected}) => selected && `transform: scale(1.1)`};
 };
 width:80px;
 height:80px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 `
 const ThumbnailImage = styled.img`
 border-radius: 50%;

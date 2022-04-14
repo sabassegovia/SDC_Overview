@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
@@ -14,8 +14,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 border: 20px;
-opacity: 1;
-transition: opacity 0.6s linear;
+opacity: ${props => props.isRender ? 1 : 0};
+  transition: opacity 0.6s linear;
 z-index: 999;
 `;
 
@@ -26,7 +26,7 @@ border-radius: 5px;
 border: none;
 color: #fffffff0;
 height: 60%;
-width: 60%
+width: 60%;
 `;
 
 const ModalImg = styled.img`
@@ -68,9 +68,15 @@ border-radius: 50%;
 `;
 
 const ReviewImageModal = ({ handleClose, show, img }) => {
+  const [isRender, setIsRender] = useState(false)
+
+  useEffect(()=> {
+    setIsRender(true)
+
+  });
   const showHideClassName = show ? "modal display-block" : "modal display-none";
   return (
-    <Background onClick={handleClose} role="presentation">
+    <Background isRender = {isRender} onClick={handleClose} role="presentation">
       <ModalWrapper>
       <ModalContent>
         <ModalImg src={img} alt=''/>

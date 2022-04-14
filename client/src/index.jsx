@@ -25,6 +25,8 @@ const AppContainer = styled(ColumnContainer)`
   min-width: 1100px;
   max-width: 1400px;
   border-radius: 12px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 `
 class App extends React.Component {
   constructor(props) {

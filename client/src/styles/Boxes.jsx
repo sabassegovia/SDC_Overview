@@ -25,9 +25,10 @@ const MainHeader = styled(RowContainer)`
   align-items: center;
   min-height: 100px;
   background-color: #3e3e3e;
-  border: 5px solid #FAFAFA;
   border-radius: 20px;
-  margin: 10px 0 30px 0;
+  margin: 10px 10px 30px 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 `
 
 const DescriptionBox = styled.div`

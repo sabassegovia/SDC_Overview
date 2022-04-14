@@ -33,11 +33,14 @@ class AddReview extends React.Component {
     this.onReviewSubmit = this.onReviewSubmit.bind(this);
     this.onImageUpload = this.onImageUpload.bind(this);
     this.onCharSubmit = this.onCharSubmit.bind(this);
+
+    this.AddReviewModalRef = React.createRef();
   }
 
   componentDidMount() {
     this.setState({product_id: this.props.product_id}, () => {
       console.log(this.state.product_id)})
+
   }
 
   onStarClick(starRating) {
@@ -47,7 +50,7 @@ class AddReview extends React.Component {
   }
 
   onRecommend(event) {
-    event.preventDefault();
+    // event.preventDefault();
     var bool = event.target.value === "true" ? true: false;
     // console.log(event.target.value);
     this.setState({ recommend: bool }, () => {
@@ -74,11 +77,13 @@ class AddReview extends React.Component {
   }
 
   onCharSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
     let id = event.target.name;
     let copiedCharacteristics = this.state.characteristics;
     copiedCharacteristics[id] = Number(event.target.value);
-    this.setState({ characteristics: copiedCharacteristics }, () => {
+    this.setState({
+      characteristics: copiedCharacteristics,
+    }, () => {
       console.log(JSON.stringify(this.state.characteristics))
     });
   }
@@ -98,7 +103,6 @@ class AddReview extends React.Component {
       characteristics: this.state.characteristics
     }
 
-    console.log(params)
     Axios.post(`/reviews`,  params )
     .then(result => {console.log(result.data)})
     .catch(err => {console.log(err)})
@@ -118,18 +122,18 @@ class AddReview extends React.Component {
 
       return Object.keys(characteristics).map(characteristic => {
         return (
-          <div key={characteristic}>
+          <div key={characteristic} ref = {this.AddReviewModalRef}>
             <span className="radioSpan"></span>
             <Header3>{characteristic}</Header3>
             <CharacteristicsBox >
             <form onChange={this.onCharSubmit}>
 
               <CharacteristicsButtons>
-                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="1"></input>
-                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="2"></input>
-                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="3"></input>
-                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="4"></input>
-                <input type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="5"></input>
+                <input  type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="1"></input>
+                <input  type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="2"></input>
+                <input  type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="3"></input>
+                <input  type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="4"></input>
+                <input  type="radio" id="AddReviewRadio" name={JSON.stringify(characteristics[characteristic].id)} value="5"></input>
 
               </CharacteristicsButtons>
               </form>

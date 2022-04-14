@@ -20,6 +20,8 @@ const QuestionContainer = styled(ColumnContainer)`
   animation: fadein .3s linear;
 `
 const QuestionRow = styled(RowContainer)`
+  justify-content: space-between;
+  align-items: center;
 `
 const AddAnswerButton = styled.button`
   height: 40px;
@@ -41,10 +43,9 @@ const AddAnswerButton = styled.button`
 
 
 const QuestionBody = styled(Header3)`
-  flex-grow:1;
   border-top: none;
   border-left: none;
-
+  border-right:none;
 `
 const HelpfulReport = styled(RowContainer)`
   column-gap: 20px;
@@ -66,7 +67,7 @@ class QuestionListItem extends React.Component {
     this.AddAnswerButton = React.createRef()
   }
   handleAddAnswerButton(event) {
-    console.log('is this firing?')
+    // console.log('is this firing?')
     event.preventDefault();
     this.setState({showAddAnswer: !(this.state.showAddAnswer)})
   }
@@ -97,7 +98,12 @@ class QuestionListItem extends React.Component {
       <QuestionContainer border = "true">
           <AlignmentWrapper>
             <QuestionRow>
-              <QuestionBody border = {true}><b>Q:</b> {this.props.question.question_body}</QuestionBody>
+              <QuestionBody
+                css = {`
+                font-size:20px;
+
+                `}
+                border = {false}><b>Q:</b> {this.props.question.question_body}</QuestionBody>
                 <HelpfulReport>
                   <Header3
                     css={`
@@ -105,7 +111,7 @@ class QuestionListItem extends React.Component {
                         transition-duration: .3s;
                         transform: scale(1.05);
                         cursor: pointer;}`}
-                  underline="true">Helpful? <tag onClick={this.onHelpfulClick}>Yes</tag> ({this.props.question.question_helpfulness})
+                  underline="true">Helpful? <span role = "presentation" onClick={this.onHelpfulClick}>Yes</span> ({this.props.question.question_helpfulness})
                   </Header3>
                   <Header3
                     css={`

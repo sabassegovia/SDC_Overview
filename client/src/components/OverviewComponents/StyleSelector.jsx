@@ -22,6 +22,7 @@ const RatingsHeader = styled(RowContainer)`
   border-right: none;
   border-left: none;
   padding-bottom: 10px;
+
 `
 const ReviewSlider = styled(Header4)`
   cursor: pointer;

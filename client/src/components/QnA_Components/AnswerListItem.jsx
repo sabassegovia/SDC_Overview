@@ -25,6 +25,7 @@ const Answer = styled(RowContainer)`
 const AuthorHelpfulRow = styled(RowContainer)`
   padding: 0 0 0 15px;
   column-gap: 15px;
+  align-items: center;
 `
 const Author = styled(Text)`
   width: 150px;
@@ -40,7 +41,6 @@ const Helpful = styled(Text)`
     cursor: pointer;
     }
 `
-
 
 
 class AnswerListItem extends React.Component {
@@ -96,6 +96,7 @@ class AnswerListItem extends React.Component {
   }
 
   render() {
+    const isSeller = this.sellerHandler()
     let images;
     if (this.props.answer.photos.length === 0) {
       images = <div></div>
@@ -120,13 +121,13 @@ class AnswerListItem extends React.Component {
           {this.state.showImage ? <ReviewImageModal show={this.state.showImage} handleClose={this.hideModal} img={this.state.modalImage}/> : null}
               <AuthorHelpfulRow>
                 <Author>
-                  by {this.props.answer.answerer_name}{this.sellerHandler}
+                  by {this.props.answer.answerer_name}{isSeller}
                 </Author>
                 <Date>
                   {moment(this.props.answer.date).format('MMMM Do YYYY')}
                 </Date>
 
-                <Header3>Helpful?</Header3>
+                <Header4>Helpful?</Header4>
                   <Helpful onClick={this.onHelpfulClick}>Yes ({this.props.answer.helpfulness})</Helpful>
                   <Helpful onClick={this.onReportClick}>Report</Helpful>
               </AuthorHelpfulRow>

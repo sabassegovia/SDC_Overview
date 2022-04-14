@@ -85,6 +85,7 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
   useEffect(() => {
 
     const handleResize = () => {
+      console.log('am i firing?')
       setOpenSizeModal(false)
     }
     // document.addEventListener('click', handleClickOutside)
