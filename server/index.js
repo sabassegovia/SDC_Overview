@@ -3,10 +3,12 @@ const axios = require('axios')
 const {configureOptions} = require("./helper.js")
 const cors = require('cors')
 // const path = require('path')
+const compression = require('compression')
 
 const express = require('express');
 // const router = require('./router.js')
 const app = express();
+app.use(compression());
 app.use(express.json());
 app.use(cors())
 // app.set('view engine', 'ejs');
