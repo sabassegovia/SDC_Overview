@@ -136,9 +136,9 @@ const ImageCarousel = (props) => {
               // </CurrentCarouselImageContainer>
               <CarouselContent
                 onClick = {() => {openModal()}}
-                key = {JSON.stringify(photo)}>
+                key = {JSON.stringify(photo) + index} >
                   <CurrentCarouselImageContainer
-                    key = {index}>
+                    >
                     <img src = {photo.url || "https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png"}  alt = "placeholder"/>
                   </CurrentCarouselImageContainer>
                   <BlurBackgroundImageContainer>

@@ -94,7 +94,7 @@ const StyleSelector = (props) => {
               return <Style
               selected = {style.style_id === props.selectedStyle.style_id}
               // selected = {props.selectedStyle.style_id}
-              key = {style.name + index}
+              key = {style.style_id + index}
               style = {style}
               styleOnClick = {props.styleOnClick}
               />
