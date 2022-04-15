@@ -12,6 +12,8 @@ import {Title, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
 const AnswerListContainer = styled(ColumnContainer)`
   row-gap:10px;
   padding: 10px;
+
+};
 `
 const MoreAnswersButton = styled.button`
   background: #e4e4e4;
@@ -41,6 +43,7 @@ class AnswerList extends React.Component {
       count: 2,
       moreAnswersClicked: false,
     }
+    this.moreAnswersButton = React.createRef()
   }
 
   componentDidMount() {
@@ -79,7 +82,7 @@ class AnswerList extends React.Component {
     var loadMore;
     var ans = this.props.answers;
     if (Object.keys(ans).length > 2) {
-      loadMore = <MoreAnswersButton onClick={this.moreAnswers}>{!this.state.moreAnswersClicked ? 'Load more answers' : 'Show less answers'}</MoreAnswersButton>
+      loadMore = <MoreAnswersButton ref={this.moreAnswersButton} onClick={this.moreAnswers}>{!this.state.moreAnswersClicked ? 'Load more answers' : 'Show less answers'}</MoreAnswersButton>
     }
     return (
 
@@ -96,6 +99,7 @@ class AnswerList extends React.Component {
 AnswerList.propTypes = {
   answers: PropTypes.object,
   question_id: PropTypes.number,
+  questionRef: PropTypes.object,
 }
 
 

@@ -13,11 +13,8 @@ import ReviewImageModal from '../ReviewComponents/ReviewImageModal.jsx';
 const AnswerContainer = styled(ColumnContainer)`
   row-gap: 5px;
 
-  @keyframes fadein {
-    from { opacity: 0; }
-    to { opacity: 1; }
-};
-  animation: fadein .3s linear;
+  transition: opacity 2s linear;
+  opacity: ${setTimeout((props => props.isRender ? 1 : 0), 500)};
 `
 const Answer = styled(RowContainer)`
   column-gap: 10px;
@@ -55,15 +52,20 @@ class AnswerListItem extends React.Component {
     this.state = {
       question_id: 0,
       showImage: false,
-      modalImage: ''
+      modalImage: '',
+      isRender: false,
     }
   }
 
   componentDidMount() {
     this.setState({
-      question_id: this.props.id
+      question_id: this.props.id,
+      isRender: true,
+
     })
   }
+
+
 
   sellerHandler() {
     if (this.props.answer.answerer_name === "Seller") {
@@ -104,7 +106,10 @@ class AnswerListItem extends React.Component {
     images = (
       <ReviewImages>
       {this.props.answer.photos.map(photo => (
-        <div key={photo.id}>
+        <div key={photo.id} css = {`&:hover {
+          transition-duration: .3s;
+          transform: scale(1.05);
+        };`}>
           <img src={photo.url} alt={photo.id} onClick={this.onImageClick} width="80%" height="100%" className="reviewImage" role="presentation"/>
         </div>
       ))}
@@ -113,7 +118,7 @@ class AnswerListItem extends React.Component {
     }
     return (
 
-        <AnswerContainer >
+        <AnswerContainer isRender = {this.state.isRender}>
           <Answer>
             <Header3>A: </Header3> <Header3>{this.props.answer.body}</Header3>
           </Answer>

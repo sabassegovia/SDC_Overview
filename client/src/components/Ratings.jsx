@@ -93,7 +93,6 @@ class Ratings extends React.Component {
     let params = { product_id: this.props.product_id, count: this.state.count };
     Axios.get(`/reviews/`, { params })
     .then(result => {
-      console.log(result.data);
       this.setState({ reviews: result.data.results});
     })
     .catch(err => {console.log(err)})
@@ -101,11 +100,9 @@ class Ratings extends React.Component {
 
   handleSort(event) {
     event.preventDefault();
-    console.log(event.target.value);
-    let params = { product_id: this.props.product_id, sort: event.target.value};
+    let params = { product_id: this.props.product_id, sort: event.target.value };
     Axios.get(`/reviews/`, { params })
     .then(result => {
-      console.log(result.data);
       this.setState({reviews: result.data.results})
     })
     .catch(err => {console.log(err)});
@@ -115,12 +112,10 @@ class Ratings extends React.Component {
     let params = { product_id: this.props.product_id, count: 2 };
     Axios.get(`/reviews/`, { params })
       .then(result => {
-        console.log(result.data.results);
         const firstResults = result.data.results;
 
         Axios.get(`/reviews/meta/`, { params })
           .then(result => {
-            console.log(result.data);
             const ratings = Object.values(result.data.ratings).map(x => Number(x));
             let totalratings = ratings.reduce((x, c) => { return (x + c) }, 0);
             let totalweighted = 0;

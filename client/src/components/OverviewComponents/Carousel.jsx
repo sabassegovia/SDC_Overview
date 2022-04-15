@@ -61,7 +61,7 @@ const Carousel = (props) => {
   const length = photos.length
 
   const next = () => {
-    setCurrent(current => length <= 7 ? current : current === length - 7 ? current : current - 1)
+    setCurrent(current => length <= 7 ? current : current === length - 7 ? current : current + 1)
   }
   const prev = () => {
     setCurrent(current => current === 0 ? 0 : current - 1)

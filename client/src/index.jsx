@@ -33,7 +33,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       overview: null,
-      product_id: 65660,
+      product_id: 65635,
       rating: 0,
       documentTitle: null,
       isRender: false,
@@ -44,7 +44,6 @@ class App extends React.Component {
   }
 
   test() {
-    console.log('im hit test')
     Axios.get('/test');
   }
   componentDidMount() {
@@ -61,7 +60,6 @@ class App extends React.Component {
   getProduct() {
     Axios.get(`/products/${this.state.product_id}/`)
     .then(result => {
-      // console.log(result.data)
       this.setState({
         overview: result.data,
         documentTitle: `${result.data.category} - ${result.data.name}`,

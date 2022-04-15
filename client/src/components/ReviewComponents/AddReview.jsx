@@ -38,8 +38,7 @@ class AddReview extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({product_id: this.props.product_id}, () => {
-      console.log(this.state.product_id)})
+    this.setState({product_id: this.props.product_id})
 
   }
 

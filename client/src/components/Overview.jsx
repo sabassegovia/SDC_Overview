@@ -14,6 +14,7 @@ import {RowContainer, ColumnContainer, AlignmentWrapper} from '../styles/Boxes.j
 const ProductOverviewContainer = styled(RowContainer)`
   /* max-height: 1400px;
   min-height: 1000px; */
+  padding-bottom: 20px;
 `
 const ImageGalleryProductDescription = styled(ColumnContainer)`
   width: 70%;

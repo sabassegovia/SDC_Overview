@@ -12,7 +12,6 @@ const MorePictureUploads = (props) => {
   const [upload, setUpload] = useState(false);
 
   const handleOnChange = (e) => {
-    console.log(e)
     setUpload(prev => prev ? prev : props.photoUploads === 4 ? prev : !prev)
     return props.onImageUpload(e)
   }
