@@ -43,15 +43,11 @@ class AddReview extends React.Component {
   }
 
   onStarClick(starRating) {
-    this.setState({rating: starRating}, () => {
-      console.log(this.state.rating);
-    })
+    this.setState({rating: starRating})
   }
 
   onRecommend(event) {
-    // event.preventDefault();
     var bool = event.target.value === "true" ? true: false;
-    // console.log(event.target.value);
     this.setState({ recommend: bool }, () => {
       console.log(this.state.recommend);
     })
@@ -60,20 +56,14 @@ class AddReview extends React.Component {
   onReviewSubmit(event) {
     event.preventDefault();
     this.setState({
-      [Object.values(event.target)[1].name]: event.target.value}, () => {
-      console.log(this.state[Object.values(event.target)[1].name])
-    })
-  }
+      [Object.values(event.target)[1].name]: event.target.value});}
 
   onImageUpload(event) {
     event.preventDefault();
     // console.log(event.target.value);
     let copyPhotos = this.state.photos;
     copyPhotos.push(event.target.value);
-    this.setState({photos: copyPhotos}, () => {
-      console.log(JSON.stringify(this.state.photos))
-    });
-  }
+    this.setState({photos: copyPhotos});}
 
   onCharSubmit(event) {
     // event.preventDefault();
@@ -82,10 +72,7 @@ class AddReview extends React.Component {
     copiedCharacteristics[id] = Number(event.target.value);
     this.setState({
       characteristics: copiedCharacteristics,
-    }, () => {
-      console.log(JSON.stringify(this.state.characteristics))
-    });
-  }
+    });}
 
   onTotalSubmit(event) {
     event.preventDefault();
@@ -103,7 +90,12 @@ class AddReview extends React.Component {
     }
 
     Axios.post(`/reviews`,  params )
-    .then(result => {console.log(result.data)})
+    .then(result => {
+
+      this.props.handleClose()
+      {console.log(result.data)}
+    }
+      )
     .catch(err => {console.log(err)})
   }
 
@@ -150,9 +142,7 @@ class AddReview extends React.Component {
     return (
       <Background >
         <ModalWrapper>
-
           <Outermost>
-
             <NewReviewBox>
               <AddReviewHeader>
               <Label><Header3>WRITE YOUR REVIEW</Header3></Label>

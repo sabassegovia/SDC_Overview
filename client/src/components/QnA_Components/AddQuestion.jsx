@@ -105,10 +105,7 @@ class AddQuestion extends React.Component {
       name: this.state.name,
       email: this.state.email
     }
-    console.log(params)
-    console.log('submitting question!')
-    console.log(typeof params.body)
-    console.log(typeof params.product_id)
+
     Axios.post(`/qa/questions`,  params )
     .then(result => {console.log(result.data)
       this.props.handleAddQuestionModal()})

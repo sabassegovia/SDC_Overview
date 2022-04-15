@@ -100,8 +100,7 @@ class AddAnswer extends React.Component {
   }
 
   onImageUpload(value) {
-    console.log('am i firing?')
-    console.log(value)
+
     var {photoUploads, photos} = this.state
     // event.preventDefault();
     let copyPhotos = photos;
@@ -111,7 +110,6 @@ class AddAnswer extends React.Component {
       photos: copyPhotos,
       photoUploads: photoUploads
     }, () => {
-      console.log(JSON.stringify(this.state.photos))
     });
   }
 

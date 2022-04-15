@@ -110,7 +110,7 @@ class AnswerListItem extends React.Component {
           transition-duration: .3s;
           transform: scale(1.05);
         };`}>
-          <img src={photo.url} alt={photo.id} onClick={this.onImageClick} width="80%" height="100%" className="reviewImage" role="presentation"/>
+          <img src={photo.url} alt={photo.id} onClick={this.onImageClick} width="100%" height="100%" className="reviewImage" role="presentation"/>
         </div>
       ))}
       </ReviewImages>
