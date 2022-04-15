@@ -30,6 +30,7 @@ module.exports = {
       template: path.join(__dirname, "client", "index.html"),
     }),
   ],
+  mode: 'production',
   // devServer: {
   //   onListening: (args) => {
   //     console.log('im wacthing u', args , '<<<<<<<<<<')
