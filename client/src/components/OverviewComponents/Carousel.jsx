@@ -75,6 +75,7 @@ const Carousel = (props) => {
     <CarouselFooter>
       <CarouselContainer>
         <NavButtons
+        aria-label = "left navigation"
         disabled = {current === 0}
         onClick = {() => prev()}><TiArrowLeftThick/></NavButtons>
         {photos.map((photo, index) => {
@@ -94,6 +95,7 @@ const Carousel = (props) => {
           }
         )}
         <NavButtons
+        aria-label = "right navigation"
         disabled = {current === length - 7 || length <= 7}
         onClick = {() => next()}><TiArrowRightThick /></NavButtons>
       </CarouselContainer>

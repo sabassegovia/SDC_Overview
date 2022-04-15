@@ -68,11 +68,16 @@ class ReviewTile extends React.Component {
     images = (
       <ReviewImages>
       {this.props.review.photos.map(photo => (
+<<<<<<< HEAD
         <div key={photo.id} css = {`&:hover {
           transition-duration: .3s;
           transform: scale(1.05);
         };`}>
           <img src={photo.url} alt={photo.id} onClick={this.onImageClick} onKeyDown={this.onImageKeyDown} width="80%" height="100%" className="reviewImage" role="presentation"/>
+=======
+        <div key={photo.id}>
+          <img src={photo.url} alt={photo.id} onClick={this.onImageClick} onKeyDown={this.onImageKeyDown} width="100px" height="130px" className="reviewImage" role="presentation"/>
+>>>>>>> 595bcf7c1a8605db992d1a1900fccbb5d91a1a90
         </div>
       ))}
       </ReviewImages>

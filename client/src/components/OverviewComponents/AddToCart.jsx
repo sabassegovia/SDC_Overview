@@ -212,7 +212,8 @@ const AddToCart = (props) => {
             ref = {cartButtonRef}
             onClick = {() => (postCart())}
             disabled = {!stock}
-            >
+            aria-label = "add to cart button"
+            >{stock ? <ShoppingCart></ShoppingCart> :" Out of Stock"}
           </AddtoCartButton>
         </RowContainer>
 
