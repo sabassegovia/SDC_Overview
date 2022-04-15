@@ -60,8 +60,7 @@ const SizeButton = styled(Button)`
 `
 
 const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, settingSku, cartButtonRef}) => {
-  // var skus_ids = Object.keys(props.selectedStyle.skus)
-  // var {skus} = props.selectedStyle
+
 
   const [selectSizePosition, setSelectSizePosition] = useState(null)
   const [ourPosition, setOurPosition] = useState(null)
@@ -72,23 +71,13 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
     }
   }
 
-  // const handleClickOutside = (e) => {
-  //   e.preventDefault()
-  //   if (e.target !== cartButtonRef.current || e.target !== modalRef.current) {
 
-  //     setOpenSizeModal(false)
-
-  //   }
-  //   // console.log(e.target, modalRef.current)
-  // }
 
   useEffect(() => {
 
     const handleResize = () => {
-      console.log('am i firing?')
       setOpenSizeModal(false)
     }
-    // document.addEventListener('click', handleClickOutside)
     window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleResize)
     setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
@@ -96,16 +85,10 @@ const SelectSizeModal = ({openSizeModal, setOpenSizeModal, selectSizeRef, skus, 
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('scroll', handleResize)
 
-      // console.log('im closing')
-      // document.removeEventListener('click', handleClickOutside)
+
     }
   }, [modalRef, selectSizeRef])
 
-
-  // const handleClick = (e) => {
-  //   console.log('im clicking something')
-
-  // }
 
   return ReactDom.createPortal(
 

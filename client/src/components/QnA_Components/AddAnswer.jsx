@@ -19,7 +19,6 @@ const AnswerFormContainer = styled(ColumnContainer)`
   border-radius: 12px;
   /* top: ${props => window.scrollY + props.buttonPosition.y - props.ourPosition.height }px; */
   top: ${props => window.scrollY + 600 }px;
-
   left: ${props => window.scrollX + props.buttonPosition.left - props.ourPosition.width - 20}px;
   column-gap: 10px;
   @keyframes fadein {
@@ -46,14 +45,12 @@ const AddSubmitButton = styled.button`
 const AddAnswerContainer = styled(ColumnContainer)`
   position:relative;
   row-gap: 10px;
-
 `
 
 const FormColumn = styled.form`
   display:flex;
   flex-direction: column;
   row-gap: 10px;
-
 `
 
 class AddAnswer extends React.Component {

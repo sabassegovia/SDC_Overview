@@ -52,7 +52,6 @@ const HelpfulReport = styled(RowContainer)`
   padding: 0 0 0 20px;
   justify-content: flex-start;
   align-items: center;
-
 `
 
 
@@ -101,7 +100,6 @@ class QuestionListItem extends React.Component {
               <QuestionBody
                 css = {`
                 font-size:20px;
-
                 `}
                 border = {false}><b>Q:</b> {this.props.question.question_body}</QuestionBody>
                 <HelpfulReport>

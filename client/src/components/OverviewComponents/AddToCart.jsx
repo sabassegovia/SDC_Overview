@@ -10,6 +10,8 @@ import {FiShoppingCart} from 'react-icons/fi';
 import {Title, Wrapper, Header2, Header3, Header4, Text} from '../../styles/Headers.jsx'
 import {CartContainer, RowContainer, ColumnContainer, AlignmentWrapper} from '../../styles/Boxes.jsx';
 import {ShoppingCart} from '../../styles/Icons.jsx'
+import {FaTwitter, FaFacebookSquare, FaPinterest} from 'react-icons/fa'
+
 
 const StyleQuantityCartContainer = styled(ColumnContainer)`
 justify-content: space-between;
@@ -41,7 +43,7 @@ const SizeSelect = styled(Select)`
 const QuantitySelect = styled(SizeSelect)`
   width: 40%;
 `
-const AddtoCartButton = styled.button`
+const AddtoCartButton = styled(FiShoppingCart)`
   height: 50px;
   width: 40%;
   background: #e4e4e4;
@@ -52,9 +54,11 @@ const AddtoCartButton = styled.button`
 
   ${props => !props.disabled&&`
     &:hover {
-      transition: all .3s linear;
-      transform: scale(1.1);
-    };
+    transition-duration: .3s;
+    transform: scale(1.1);
+    background: #3e3e3e;
+    color: #e4e4e4;
+  };
   `}
   border-radius: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -64,7 +68,7 @@ const SocialButonRow = styled(RowContainer)`
   justify-content:flex-start;
   column-gap: 20px;
 `
-const MediaButton = styled.button`
+const TwitterButton = styled(FaTwitter)`
   width: 20%;
   height: 40px;
   background: #e4e4e4;
@@ -77,7 +81,34 @@ const MediaButton = styled.button`
     color: #e4e4e4;
   };
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
+`
+const FacebookButton = styled(FaFacebookSquare)`
+  width: 20%;
+  height: 40px;
+  background: #e4e4e4;
+  color:  #3e3e3e;
+  border-radius: 12px;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1);
+    background: #3e3e3e;
+    color: #e4e4e4;
+  };
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
+const PinterestButton = styled(FaPinterest)`
+  width: 20%;
+  height: 40px;
+  background: #e4e4e4;
+  color:  #3e3e3e;
+  border-radius: 12px;
+  &:hover {
+    transition-duration: .3s;
+    transform: scale(1.1);
+    background: #3e3e3e;
+    color: #e4e4e4;
+  };
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 const AddToCart = (props) => {
   var skus_ids = Object.keys(props.selectedStyle.skus)
@@ -96,8 +127,7 @@ const AddToCart = (props) => {
   })
 
   useEffect(() => {
-    // console.log(selectSizeRef.current.getBoundingClientRect())
-    // console.log(selectQuantityRef.current.getBoundingClientRect(), '<<<<<<<<<<<')
+
     setStock(thereIsStock ? thereIsStock : thereIsStock)
     // setSelectSizePosition(selectSizeRef.current.getBoundingClientRect())
   })
@@ -113,12 +143,10 @@ const AddToCart = (props) => {
   // }
 
   const postCart = () => {
-    // console.log('im here')
     setOpenSizeModal(currentSku !== 'Select Size' ? false : true)
     if (!openSizeModal) {
       Axios.post("/cart", {sku_id: currentSku})
       .then(result => {
-        console.log (result)
       })
       .catch(err => {
         console.log(err)
@@ -184,7 +212,7 @@ const AddToCart = (props) => {
             ref = {cartButtonRef}
             onClick = {() => (postCart())}
             disabled = {!stock}
-            >{stock ? <ShoppingCart></ShoppingCart> :" Out of Stock"}
+            >
           </AddtoCartButton>
         </RowContainer>
 
@@ -201,9 +229,9 @@ const AddToCart = (props) => {
 
       <AlignmentWrapper>
         <SocialButonRow>
-            <MediaButton>Facebook</MediaButton>
-            <MediaButton>Pinterest</MediaButton>
-            <MediaButton>Twitter</MediaButton>
+            <TwitterButton>Facebook</TwitterButton>
+            <FacebookButton>Pinterest</FacebookButton>
+            <PinterestButton>Twitter</PinterestButton>
         </SocialButonRow>
 
       </AlignmentWrapper>

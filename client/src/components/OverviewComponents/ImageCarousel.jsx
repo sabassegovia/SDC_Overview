@@ -77,42 +77,32 @@ const ModalButton = styled.button`
   right: 0%;
 `
 const CurrentCarouselImageContainer = styled(ColumnContainer)`
-/* position: absolute; */
 justify-content:center;
 align-items:center;
 height:800px;
 width:1000px;
-/* top:0;
-right:0; */
-/* left:0; */
-/* bottom:0; */
+
 img {
   max-height: 800px;
   max-width: 1000px;
-  /* object-fit:contain; */
-  /* position: absolute; */
+
   z-index: 2;
 
 
 }
 `
-// const CurrentCarouselImagePicture = styled.div`
-//   background-image: url(${(props) => props.url});
-// `
+
 const ImageCarousel = (props) => {
   const {children} = props;
-  // const [isRender, setIsRender] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // setIsRender(true)
     setLength(children.length)
 
     return function cleanup() {
-      // console.log('second effect')
-      // setIsRender(false)
+
     }
   }, [children])
 

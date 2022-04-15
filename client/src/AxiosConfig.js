@@ -1,4 +1,4 @@
 const axios = require("axios")
 exports.Axios = axios.create({
-  baseURL: 'http://3.101.127.33:3000'
+  baseURL: 'http://localhost:3000'
 });
