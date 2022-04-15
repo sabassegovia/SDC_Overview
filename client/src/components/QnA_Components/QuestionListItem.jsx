@@ -66,7 +66,6 @@ class QuestionListItem extends React.Component {
     this.AddAnswerButton = React.createRef()
   }
   handleAddAnswerButton(event) {
-    // console.log('is this firing?')
     event.preventDefault();
     this.setState({showAddAnswer: !(this.state.showAddAnswer)})
   }

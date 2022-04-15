@@ -139,7 +139,7 @@ const IndividualCharacteristic = styled(CharacteristicsButtons)`
 
 const ReviewImages = styled.div`
   height: 130px;
-
+  column-gap: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

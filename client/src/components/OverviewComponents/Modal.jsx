@@ -24,7 +24,6 @@ const Background = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
   position: relative;
   color: #fffffff0;
 `;

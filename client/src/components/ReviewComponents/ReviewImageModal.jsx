@@ -20,7 +20,6 @@ z-index: 999;
 `;
 
 const ModalWrapper = styled.div`
-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
 position: center;
 border-radius: 5px;
 border: none;

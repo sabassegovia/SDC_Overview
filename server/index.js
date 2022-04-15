@@ -53,7 +53,7 @@ app.post("/*", (req, res) => {
   // console.log(req.body)
    axios(configureOptions(req))
     .then((result) => {
-      // console.log(result.data)
+      console.log(result.data)
       res.send(result.data)
     })
     .catch((err) => {
