@@ -8,7 +8,7 @@
     "client-dev": "webpack-dev-server --mode development --open --hot",
     "server-dev": "nodemon server/index.js",
     "build": "webpack --mode production",
-    "schema": "psql -d productsDB -f ./server/database/schema.sql"
+    "schema": "psql -d productsdb -f ./server/database/schema.sql"
   },
   "repository": {
     "type": "git",

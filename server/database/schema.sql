@@ -3,65 +3,69 @@ CREATE DATABASE productsdb;
 
 CREATE TABLE products (
  product_id INT UNIQUE NOT NULL,
- name VARCHAR(255) NOT NULL,
- slogan VARCHAR(255) NOT NULL,
- description VARCHAR(255) NOT NULL,
- category VARCHAR(255) NOT NULL,
- default_price DECIMAL(5, 2) NOT NULL
+ name VARCHAR(500) NOT NULL,
+ slogan VARCHAR(500) NOT NULL,
+ description VARCHAR(500) NOT NULL,
+ category VARCHAR(500) NOT NULL,
+ default_price BIGINT NOT NULL
 );
 
 
 ALTER TABLE products ADD CONSTRAINT products_pkey PRIMARY KEY (product_id);
 
-CREATE TABLE product_styles (
- style_id INT NOT NULL,
+CREATE TABLE features (
+ feature_id INT UNIQUE NOT NULL,
  product_id INT NOT NULL,
- name VARCHAR(255) NOT NULL,
- original_price DECIMAL(5, 2) NOT NULL,
- sale_price DECIMAL(5, 2) NOT NULL,
+ feature VARCHAR(500) NOT NULL,
+ value VARCHAR(500) NOT NULL
+);
+
+
+ALTER TABLE features ADD CONSTRAINT features_pkey PRIMARY KEY (feature_id);
+
+CREATE TABLE styles (
+ style_id INT UNIQUE NOT NULL,
+ product_id INT NOT NULL,
+ name VARCHAR(500) NOT NULL,
+ sale_price VARCHAR(500) NOT NULL,
+ original_price VARCHAR(500) NOT NULL,
  default_style BOOLEAN NOT NULL
 );
 
 
-ALTER TABLE product_styles ADD CONSTRAINT product_styles_pkey PRIMARY KEY (style_id);
+ALTER TABLE styles ADD CONSTRAINT styles_pkey PRIMARY KEY (style_id);
 
-CREATE TABLE product_features (
- product_id INT NOT NULL,
- feature VARCHAR(255) NOT NULL,
- value VARCHAR(255) NOT NULL
-);
-
-
-ALTER TABLE product_features ADD CONSTRAINT product_features_pkey PRIMARY KEY (product_id);
-
-CREATE TABLE related_products (
+CREATE TABLE related (
+ related_id INT UNIQUE NOT NULL,
  product_id INT NOT NULL,
  related_product_id INT NOT NULL
 );
 
 
-ALTER TABLE related_products ADD CONSTRAINT related_products_pkey PRIMARY KEY (product_id);
+ALTER TABLE related ADD CONSTRAINT related_pkey PRIMARY KEY (related_id);
 
-CREATE TABLE product_photos (
+CREATE TABLE photos (
+ photo_id INT UNIQUE NOT NULL,
  style_id INT NOT NULL,
- thumbnail_url VARCHAR(255) NOT NULL,
- url VARCHAR(255) NOT NULL
+ url TEXT NOT NULL,
+ thumbnail_url TEXT NOT NULL
 );
 
 
-ALTER TABLE product_photos ADD CONSTRAINT product_photos_pkey PRIMARY KEY (style_id);
+ALTER TABLE photos ADD CONSTRAINT photos_pkey PRIMARY KEY (photo_id);
 
-CREATE TABLE product_sku (
+CREATE TABLE sku (
+ sku_id INT UNIQUE NOT NULL,
  style_id INT NOT NULL,
- quantity INT NOT NULL,
- size VARCHAR(255) NOT NULL
+ size VARCHAR(500) NOT NULL,
+ quantity INT NOT NULL
 );
 
 
-ALTER TABLE product_sku ADD CONSTRAINT product_sku_pkey PRIMARY KEY (style_id);
+ALTER TABLE sku ADD CONSTRAINT sku_pkey PRIMARY KEY (sku_id);
 
-ALTER TABLE product_styles ADD CONSTRAINT product_styles_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
-ALTER TABLE product_features ADD CONSTRAINT product_features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
-ALTER TABLE related_products ADD CONSTRAINT related_products_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
-ALTER TABLE product_photos ADD CONSTRAINT product_photos_style_id_fkey FOREIGN KEY (style_id) REFERENCES product_styles(style_id);
-ALTER TABLE product_sku ADD CONSTRAINT product_sku_style_id_fkey FOREIGN KEY (style_id) REFERENCES product_styles(style_id);
+ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
+ALTER TABLE styles ADD CONSTRAINT styles_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
+ALTER TABLE related ADD CONSTRAINT related_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
+ALTER TABLE photos ADD CONSTRAINT photos_style_id_fkey FOREIGN KEY (style_id) REFERENCES styles(style_id);
+ALTER TABLE sku ADD CONSTRAINT sku_style_id_fkey FOREIGN KEY (style_id) REFERENCES styles(style_id);
