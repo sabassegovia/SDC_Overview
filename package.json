@@ -31,6 +31,7 @@
     "html-webpack-plugin": "^5.5.0",
     "install": "^0.13.0",
     "moment": "^2.29.1",
+    "mongoose": "^6.3.0",
     "nodemon": "^2.0.15",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
@@ -74,8 +75,15 @@
     "setupFilesAfterEnv": [
       "./node_modules/jest-enzyme/lib/index.js"
     ],
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "collectCoverageFrom": ["src/**/*.js", "!src/index.js"],
-    "coverageReporters": ["text"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ]
   }
 }
