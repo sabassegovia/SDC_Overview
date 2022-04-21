@@ -1,0 +1,29 @@
+COPY products()
+FROM
+DELIMITER
+CSV HEADER;
+
+COPY product_styles()
+FROM
+DELIMITER
+CSV HEADER;
+
+COPY product_features()
+FROM
+DELIMITER
+CSV HEADER;
+
+COPY related_products()
+FROM
+DELIMITER
+CSV HEADER;
+
+COPY product_photos()
+FROM
+DELIMITER
+CSV HEADER;
+
+COPY product_sku()
+FROM
+DELIMITER
+CSV HEADER;
