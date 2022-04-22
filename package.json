@@ -33,6 +33,7 @@
     "moment": "^2.29.1",
     "mongoose": "^6.3.0",
     "nodemon": "^2.0.15",
+    "pg": "^8.7.3",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -85,5 +86,9 @@
     "coverageReporters": [
       "text"
     ]
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": []
 }
