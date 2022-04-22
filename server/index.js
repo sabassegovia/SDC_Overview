@@ -1,3 +1,7 @@
+/////////THIS IS THE ORIGINAL SERVER FILE GIVEN TO US
+/////////NEW SERVER FILE IS:
+/////////    sdcIndex.js, same folder
+
 require('dotenv').config();
 const axios = require('axios')
 const {configureOptions} = require("./helper.js")
